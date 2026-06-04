@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>여름 시스템에어컨 설치, 성수기 전에 끝내세요 | 다원에어시스</title>
+<meta name="description" content="LG전자 시스템에어컨 공식 인증점 다원에어시스. 실명제 직영 시공·시공 하자 10년 무상 A/S. 폭염 성수기 전 현장 실측 예약하세요.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --red:#A50034; --red-a:#CC0033; --red-d:#7E0027; --ink:#1A1A1A;
+    --mute:#6B6B6B; --line:#ECECEC; --bg:#FFFFFF; --soft:#FBF4F6; --softer:#FCF7F9;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Pretendard',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:600px;margin:0 auto;padding:0 22px;}
+  section{padding:54px 0;}
+
+  /* hero */
+  .hero{background:linear-gradient(160deg,#7E0027,#A50034 55%,#CC0033);color:#fff;position:relative;overflow:hidden;}
+  .hero .wrap{padding-top:56px;padding-bottom:64px;position:relative;z-index:1;}
+  .hero .ring{position:absolute;right:-110px;top:-60px;width:340px;height:340px;border:2px solid rgba(255,255,255,0.16);border-radius:50%;}
+  .badge{display:inline-block;background:rgba(255,255,255,0.16);backdrop-filter:blur(4px);font-size:13px;font-weight:700;letter-spacing:.04em;padding:8px 16px;border-radius:999px;}
+  .hero h1{font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.22;margin-top:20px;}
+  .hero h1 .u{color:#FFD66B;}
+  .hero p{margin-top:16px;font-size:16px;color:#F3D3DC;font-weight:500;}
+  .hero .cta-row{margin-top:30px;display:flex;flex-direction:column;gap:10px;}
+  .hero a.tel{display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:var(--red);text-decoration:none;font-size:21px;font-weight:800;padding:17px;border-radius:14px;}
+  .hero a.kakao{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(0,0,0,0.18);color:#fff;text-decoration:none;font-size:15px;font-weight:700;padding:14px;border-radius:14px;border:1.5px solid rgba(255,255,255,0.25);}
+
+  .lead-strip{background:var(--ink);color:#fff;text-align:center;padding:18px;font-size:15px;font-weight:600;}
+  .lead-strip b{color:#FF8FA8;}
+
+  .sec-eyebrow{font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--red);}
+  .sec-title{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-top:10px;line-height:1.3;}
+  .sec-title .hl{color:var(--red);}
+
+  /* 강점 카드 */
+  .feats{display:flex;flex-direction:column;gap:14px;margin-top:26px;}
+  .feat{display:flex;gap:16px;align-items:flex-start;background:var(--softer);border:1.5px solid #F2DDE4;border-radius:16px;padding:20px;}
+  .feat .ic{width:50px;height:50px;border-radius:13px;background:var(--red);display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .feat .ft{font-size:18px;font-weight:800;}
+  .feat .fs{font-size:14.5px;color:var(--mute);margin-top:4px;line-height:1.5;}
+
+  /* 체크리스트 */
+  .check{background:var(--soft);}
+  .chk-list{margin-top:24px;display:flex;flex-direction:column;gap:12px;}
+  .chk{display:flex;gap:13px;align-items:center;background:#fff;border-radius:13px;padding:15px 18px;border:1.5px solid var(--line);}
+  .chk .box{width:30px;height:30px;border-radius:8px;background:var(--red);display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .chk .ct{font-size:16px;font-weight:700;}
+  .chk .cs{font-size:13px;color:var(--mute);font-weight:500;}
+
+  .why{text-align:center;}
+  .why .clock{font-size:54px;}
+  .why .big{font-size:24px;font-weight:800;margin-top:10px;letter-spacing:-.02em;}
+  .why .big .hl{color:var(--red);}
+  .why p{font-size:15px;color:var(--mute);margin-top:12px;line-height:1.6;}
+
+  /* 최종 CTA */
+  .final{background:linear-gradient(160deg,#A50034,#7E0027);color:#fff;border-radius:0;text-align:center;}
+  .final h2{font-size:27px;font-weight:800;letter-spacing:-.02em;line-height:1.3;}
+  .final p{font-size:15px;color:#F3D3DC;margin-top:12px;}
+  .final .cta-row{margin-top:26px;display:flex;flex-direction:column;gap:10px;}
+  .final a.tel{background:#fff;color:var(--red);text-decoration:none;font-size:22px;font-weight:800;padding:18px;border-radius:14px;}
+  .final a.tel2{background:transparent;border:2px solid rgba(255,255,255,0.4);color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:15px;border-radius:14px;}
+
+  footer{background:var(--ink);color:#9AA0AA;text-align:center;padding:30px 22px;font-size:13px;line-height:1.7;}
+  footer .b{color:#fff;font-weight:800;}
+  footer .dot{color:var(--red-a);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">● LG전자 시스템에어컨 공식 인증점</span>
+    <h1>올여름 시스템에어컨,<br><span class="u">성수기 전</span>에<br>끝내세요</h1>
+    <p>7~8월엔 예약이 몰려 원하는 날짜를 잡기 어렵습니다. 폭염 오기 전 현장 실측부터 받아보세요.</p>
+    <div class="cta-row">
+      <a class="tel" href="tel:1555-7726">📞 1555-7726 현장 실측 예약</a>
+      <a class="kakao" href="http://pf.kakao.com/_xbxcxcxj/chat" target="_blank" rel="noopener">카카오톡으로 상담하기</a>
+    </div>
+  </div>
+  <div class="ring"></div>
+</div>
+
+<div class="lead-strip">실명제 직영 시공 · 시공 하자 <b>10년 무상 A/S</b> · 전국 시공</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow">WHY 다원에어시스</div>
+    <h2 class="sec-title">제품은 같아도, <span class="hl">시공이 절반</span>입니다</h2>
+    <div class="feats">
+      <div class="feat">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 32 32" fill="none"><path d="M16 4l10 4v7c0 6-4 10-10 13C10 25 6 21 6 15V8l10-4z" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 15l4 4 7-7" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><div class="ft">LG전자 시스템에어컨 공식 인증점</div><div class="fs">검증된 자재와 정품 시공으로 안심하실 수 있습니다.</div></div>
+      </div>
+      <div class="feat">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="11" r="5" stroke="#fff" stroke-width="2.4"/><path d="M6 27c0-5 4-8 10-8s10 3 10 8" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+        <div><div class="ft">하도급 없는 실명제 직영 시공</div><div class="fs">현장명·시공책임자를 기록하는 직영팀이 직접 작업합니다.</div></div>
+      </div>
+      <div class="feat">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 32 32" fill="none"><rect x="6" y="7" width="20" height="18" rx="3" stroke="#fff" stroke-width="2.4"/><path d="M6 13h20M11 4v6M21 4v6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+        <div><div class="ft">시공 하자 10년 무상 A/S</div><div class="fs">설치가 끝이 아니라, 그 이후까지 책임집니다.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="check">
+  <div class="wrap">
+    <div class="sec-eyebrow">CHECK BEFORE</div>
+    <h2 class="sec-title">계약 전, <span class="hl">이것부터</span> 확인하세요</h2>
+    <div class="chk-list">
+      <div class="chk"><span class="box"><svg width="16" height="12" viewBox="0 0 18 14"><path d="M2 7l4 4 10-9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="ct">냉방 용량</div><div class="cs">바닥 면적만 아니라 층고·창 방향까지</div></div></div>
+      <div class="chk"><span class="box"><svg width="16" height="12" viewBox="0 0 18 14"><path d="M2 7l4 4 10-9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="ct">실외기 자리</div><div class="cs">통풍·소음·점검 동선이 성능을 가릅니다</div></div></div>
+      <div class="chk"><span class="box"><svg width="16" height="12" viewBox="0 0 18 14"><path d="M2 7l4 4 10-9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="ct">배관 경로</div><div class="cs">길이·매립이 당일 추가비를 좌우합니다</div></div></div>
+      <div class="chk"><span class="box"><svg width="16" height="12" viewBox="0 0 18 14"><path d="M2 7l4 4 10-9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="ct">업체 검증</div><div class="cs">직영·실명제·A/S 보증 기간을 확인하세요</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="clock">⏳</div>
+    <div class="big">진짜 더위가 오기 전, <span class="hl">지금이 적기</span>입니다</div>
+    <p>거주세대는 보양·일정 조율에 시간이 듭니다. 봄에서 초여름 사이 예약하시면<br>첫 무더위 전에 시운전까지 여유 있게 끝낼 수 있습니다.</p>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>여름 오기 전,<br>현장 실측부터 받아보세요</h2>
+    <p>직영 전문팀이 현장에 맞는 제품과 용량을 직접 산정해 드립니다.</p>
+    <div class="cta-row">
+      <a class="tel" href="tel:1555-7726">📞 1555-7726</a>
+      <a class="tel2" href="tel:010-4854-2627">휴대전화 010-4854-2627</a>
+      <a class="tel2" href="http://pf.kakao.com/_xbxcxcxj/chat" target="_blank" rel="noopener">카카오톡 채널 상담</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="b">다원에어시스</span> <span class="dot">|</span> LG전자 시스템에어컨 공식 인증점<br>
+  실명제 직영 시공 · 시공 하자 10년 무상 A/S · 전국 시공 가능<br>
+  1555-7726 · 010-4854-2627
+</footer>
+
+</body>
+</html>

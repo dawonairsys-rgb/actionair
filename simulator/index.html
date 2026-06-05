@@ -129,14 +129,14 @@
         <button data-s="std" class="on">표준</button>
         <button data-s="opt">낙관적</button>
       </div>
-      <p class="scenario-note" id="scnNote">표준: 히트펌프 COP·단열 평균 가정. 같은 열량 기준 가스비의 1/2~1/3 수준이라는 일반 효율을 토대로 한 추정입니다.</p>
+      <p class="scenario-note" id="scnNote">표준: SCOP 3.3(정부 인정기준) + 전기 약 250원/kWh 가정. 한국석유공사·한전 2026 가정용 단가 기반 추정입니다.</p>
     </div>
   </div>
 
   <div class="result">
     <div class="rlabel">히트펌프 전환 시 예상 절감</div>
-    <div class="big">월 <span id="saveMonth">0</span><small>원</small></div>
-    <div class="per">연간 난방 시즌(약 5개월) 기준 <b id="saveYear">0원</b> 절감 추정</div>
+    <div class="big" id="bigBox">월 <span>0</span><small>원</small></div>
+    <div class="per" id="perBox">연간 난방 시즌(약 5개월) 기준 <b>0원</b> 절감 추정</div>
     <div class="bars">
       <div class="bar-item">
         <div class="bt"><span>현재 난방비</span><span id="nowTxt">0원</span></div>
@@ -150,7 +150,7 @@
   </div>
 
   <div class="disc">
-    <b>※ 이 수치는 일반 효율을 토대로 한 추정치입니다.</b> 실제 절감액은 단열 상태, 외기 온도, 사용 패턴, 연료·전기 단가, 설치 용량에 따라 달라집니다. 정확한 값은 <b>현장 실측 견적</b>으로 확인하셔야 합니다. (히트펌프 COP 3~4 기준)
+    <b>※ 공개 단가 기반 추정치입니다.</b> 연료별 유효 열단가는 한국석유공사·한전 <b>2026년 가정용 기준</b>(도시가스·등유·LPG·심야전기), 히트펌프 효율은 <b>SCOP 2.7~4.0</b>(정부 인정기준 3.3) 범위로 계산했습니다. 실제 절감액은 단열·외기온도·사용 패턴·<b>전기 누진 구간</b>·설치 용량에 따라 달라지며, 특히 <b>도시가스·심야전기는 차이가 작거나 없을 수</b> 있습니다. 정확한 값은 <b>현장 실측 견적</b>으로 확인하세요.
   </div>
 
   <div class="cta">
@@ -170,34 +170,48 @@
   const COST = document.getElementById('cost');
   let fuel = 'gas', scn = 'std';
 
-  // 연료별 기준 절감률 범위(추정) — 가스 대비 표준, 고가연료(LPG·등유)는 절감폭↑, 심야전기는 절감폭↓
-  // [보수, 표준, 낙관]
-  const RATE = {
-    gas:  [0.40, 0.52, 0.62],
-    lpg:  [0.50, 0.62, 0.72],
-    oil:  [0.48, 0.60, 0.70],
-    elec: [0.30, 0.42, 0.52],
+  // === 실데이터 기반 계산 ===
+  // 연료별 '유효 열단가' (원/kWh-열, 기기효율 반영) — 한국석유공사·한전 2026 가정용 기준
+  // 원자료: 원/1000kcal → ×0.86 으로 원/kWh 환산 (1kWh=860kcal)
+  //   도시가스 129.20, LPG 223.68, 등유 181.72, 심야전기 132.38 (원/1000kcal)
+  const FUEL = { gas:111, lpg:192, oil:156, elec:114 };   // 원/kWh-열
+  // 시나리오 = 히트펌프 SCOP + 구동 전기단가(누진 반영) 묶음
+  //   히트펌프 유효 열단가 = 전기단가 ÷ SCOP
+  const SCEN = {
+    con: { scop:2.7, e:320 },   // 보수: 한파 저SCOP + 누진 3구간
+    std: { scop:3.3, e:250 },   // 표준: 정부 인정기준 SCOP + 2~3구간 경계
+    opt: { scop:4.0, e:200 },   // 낙관: 저온수 바닥난방 + 2구간
   };
   const NOTE = {
-    con: '보수적: 단열·노후 변수까지 감안한 낮은 추정. 실제는 이보다 나을 수 있습니다.',
-    std: '표준: 히트펌프 COP·단열 평균 가정. 같은 열량 기준 가스비의 1/2~1/3 수준이라는 일반 효율을 토대로 한 추정입니다.',
-    opt: '낙관적: 단열 양호·저온수 바닥난방 등 히트펌프에 유리한 조건 가정.',
+    con: '보수적: SCOP 2.7 + 한파·누진 3구간(전기 약 320원/kWh) 가정. 도시가스·심야전기라면 절감이 미미하거나 없을 수 있습니다.',
+    std: '표준: SCOP 3.3(정부 인정기준) + 전기 약 250원/kWh 가정. 한국석유공사·한전 2026 가정용 단가 기반 추정입니다.',
+    opt: '낙관적: SCOP 4.0(저온수 바닥난방) + 전기 약 200원/kWh 가정. 단열 양호·유리한 조건.',
   };
-  const SCNIDX = { con:0, std:1, opt:2 };
 
   function won(n){ return Math.round(n).toLocaleString('ko-KR'); }
   function parseCost(){ return parseInt((COST.value||'0').replace(/[^0-9]/g,''),10)||0; }
 
   function calc(){
     const now = parseCost();
-    const rate = RATE[fuel][SCNIDX[scn]];
+    const hp = SCEN[scn].e / SCEN[scn].scop;     // 히트펌프 유효 열단가
+    let rate = 1 - hp / FUEL[fuel];              // 절감률 (음수 가능)
+    const near = rate < 0.05;                    // 5% 미만이면 '비슷'으로 순화
+    if (rate < 0) rate = 0;
     const after = now * (1 - rate);
-    const saveM = now - after;
-    document.getElementById('saveMonth').textContent = won(saveM);
-    document.getElementById('saveYear').textContent = won(saveM*5)+'원';
+    const saveM = Math.max(0, now - after);
+
+    const big = document.getElementById('bigBox');
+    const per = document.getElementById('perBox');
+    if (near) {
+      big.textContent = '비슷한 수준';
+      per.innerHTML = '지금 연료와 <b>큰 차이가 없을 수</b> 있어요 — 단열·사용량·누진 구간에 따라 갈립니다.';
+    } else {
+      big.innerHTML = '월 ' + won(saveM) + '<small>원</small>';
+      per.innerHTML = '연간 난방 시즌(약 5개월) 기준 <b>' + won(saveM*5) + '원</b> 절감 추정';
+    }
     document.getElementById('nowTxt').textContent = won(now)+'원';
     document.getElementById('hpTxt').textContent = won(after)+'원';
-    const pct = now>0 ? Math.max(8,Math.round(after/now*100)) : 50;
+    const pct = now>0 ? Math.max(8, Math.round(after/now*100)) : 50;
     document.getElementById('barHp').style.width = pct+'%';
   }
 

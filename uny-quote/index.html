@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유앤영컴퍼니 — 삼성 인피니티 견적 상담</title>
+<style>
+  :root{
+    --sam-blue:#1428A0;
+    --sam-blue-dark:#0c1a6b;
+    --ink:#1A1A1A;
+    --muted:#6b6b6b;
+    --bg:#F1F3F8;
+    --card:#ffffff;
+    --line:#e1e4ee;
+    --good:#1a7f4b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:"Pretendard","Malgun Gothic","맑은 고딕",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    justify-content:center;
+    padding:32px 20px;
+  }
+  .wrap{width:100%;max-width:1000px;}
+
+  header.top{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:22px;
+  }
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand-badge{
+    background:var(--sam-blue);color:#fff;font-weight:800;
+    padding:8px 16px;border-radius:10px;font-size:20px;letter-spacing:.5px;
+  }
+  .brand-sub{font-size:15px;color:var(--muted);font-weight:600;}
+  .reset-btn{
+    border:1px solid var(--line);background:#fff;color:var(--muted);
+    padding:10px 18px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;
+    transition:.15s;
+  }
+  .reset-btn:hover{background:#f7f8fc;color:var(--ink);border-color:#cdd2e3;}
+  .reset-btn:active{transform:scale(.97);}
+
+  .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;}
+  @media(max-width:860px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:26px 26px 28px;box-shadow:0 10px 30px rgba(20,40,160,.05);
+  }
+  .step-label{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:800;color:var(--sam-blue);
+    letter-spacing:.4px;margin-bottom:14px;text-transform:uppercase;
+  }
+  .step-num{
+    background:var(--sam-blue);color:#fff;width:22px;height:22px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;
+  }
+  .base-row{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding-bottom:20px;border-bottom:1px dashed var(--line);margin-bottom:22px;
+  }
+  .base-row .t{font-size:17px;font-weight:700;color:var(--ink);}
+  .base-row .v{font-size:26px;font-weight:800;color:var(--ink);}
+  .base-row .v small{font-size:16px;color:var(--muted);font-weight:700;}
+
+  .toggle-btn{
+    width:100%;border:2px solid var(--line);background:#fff;border-radius:14px;
+    padding:18px 20px;display:flex;align-items:center;justify-content:space-between;
+    cursor:pointer;transition:.15s;font-family:inherit;
+  }
+  .toggle-btn .lab{font-size:19px;font-weight:800;color:var(--ink);}
+  .toggle-btn .amt{font-size:17px;font-weight:800;color:var(--muted);}
+  .toggle-btn:hover{border-color:#aeb8e0;background:#f6f8ff;}
+  .toggle-btn:active{transform:scale(.99);}
+  .toggle-btn.on{
+    border-color:var(--sam-blue);background:var(--sam-blue);
+  }
+  .toggle-btn.on .lab,.toggle-btn.on .amt{color:#fff;}
+  .toggle-btn.on .amt{opacity:.92;}
+
+  .onnuri-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:4px;}
+  @media(max-width:520px){.onnuri-grid{grid-template-columns:repeat(3,1fr);}}
+  .chip{
+    border:2px solid var(--line);background:#fff;border-radius:12px;
+    padding:16px 6px;cursor:pointer;transition:.15s;text-align:center;font-family:inherit;
+  }
+  .chip .c-amt{font-size:18px;font-weight:800;color:var(--ink);display:block;}
+  .chip .c-off{font-size:12px;font-weight:700;color:var(--muted);margin-top:4px;display:block;}
+  .chip:hover{border-color:#aeb8e0;background:#f6f8ff;}
+  .chip:active{transform:scale(.97);}
+  .chip.on{border-color:var(--sam-blue);background:var(--sam-blue);}
+  .chip.on .c-amt,.chip.on .c-off{color:#fff;}
+  .chip.on .c-off{opacity:.9;}
+
+  .hint{font-size:13px;color:var(--muted);margin-top:14px;line-height:1.5;}
+
+  /* 우측 합계 패널 */
+  .summary{
+    background:linear-gradient(160deg,#0a1340 0%,#101f78 55%,var(--sam-blue) 100%);
+    color:#fff;border-radius:18px;padding:30px 28px;
+    display:flex;flex-direction:column;height:100%;
+  }
+  .sum-title{font-size:14px;font-weight:700;letter-spacing:.5px;opacity:.8;margin-bottom:20px;}
+  .line-item{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:11px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  .line-item .li-l{opacity:.85;font-weight:600;}
+  .line-item .li-v{font-weight:800;font-variant-numeric:tabular-nums;}
+  .line-item.discount .li-v{color:#cdd6ff;}
+  .line-item.muted{opacity:.4;}
+  .final{
+    margin-top:auto;padding-top:24px;
+  }
+  .final .f-lab{font-size:15px;opacity:.85;font-weight:600;margin-bottom:6px;}
+  .final .f-val{
+    font-size:46px;font-weight:900;letter-spacing:-1px;
+    font-variant-numeric:tabular-nums;line-height:1;
+  }
+  .final .f-val small{font-size:24px;font-weight:800;opacity:.9;}
+  .save-badge{
+    margin-top:16px;background:rgba(255,255,255,.14);border-radius:12px;
+    padding:12px 16px;display:flex;justify-content:space-between;align-items:center;
+  }
+  .save-badge .s-l{font-size:14px;font-weight:700;opacity:.9;}
+  .save-badge .s-v{font-size:20px;font-weight:900;color:#9af0bf;font-variant-numeric:tabular-nums;}
+
+  .foot{margin-top:22px;text-align:center;font-size:13px;color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <span class="brand-badge">유앤영컴퍼니</span>
+      <span class="brand-sub">삼성 시스템에어컨 · 인피니티 견적 상담</span>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">↺ 처음으로</button>
+  </header>
+
+  <div class="grid">
+    <!-- 좌측: 클릭 영역 -->
+    <div class="card">
+      <div class="base-row">
+        <span class="t">삼성 인피니티 적용 금액</span>
+        <span class="v">5,600,000<small> 원</small></span>
+      </div>
+
+      <div class="step-label"><span class="step-num">1</span> 기본 할인</div>
+      <button id="btnDisc" class="toggle-btn" onclick="toggleDisc()">
+        <span class="lab">할인 적용 <span style="font-size:14px;font-weight:700;opacity:.7">(약 10.7%)</span></span>
+        <span class="amt">− 600,000원</span>
+      </button>
+
+      <div style="height:26px"></div>
+
+      <div class="step-label"><span class="step-num">2</span> 디지털 온누리 7% 추가 할인</div>
+      <div class="onnuri-grid">
+        <button class="chip" data-man="100" onclick="selectOnnuri(this,100)">
+          <span class="c-amt">100만</span><span class="c-off">−70,000</span>
+        </button>
+        <button class="chip" data-man="200" onclick="selectOnnuri(this,200)">
+          <span class="c-amt">200만</span><span class="c-off">−140,000</span>
+        </button>
+        <button class="chip" data-man="300" onclick="selectOnnuri(this,300)">
+          <span class="c-amt">300만</span><span class="c-off">−210,000</span>
+        </button>
+        <button class="chip" data-man="400" onclick="selectOnnuri(this,400)">
+          <span class="c-amt">400만</span><span class="c-off">−280,000</span>
+        </button>
+        <button class="chip" data-man="500" onclick="selectOnnuri(this,500)">
+          <span class="c-amt">500만</span><span class="c-off">−350,000</span>
+        </button>
+      </div>
+      <p class="hint">온누리상품권으로 결제하시는 금액을 선택하면 해당 금액의 <b>7%</b>가 추가로 할인됩니다. (다시 누르면 해제)</p>
+    </div>
+
+    <!-- 우측: 실시간 합계 -->
+    <div class="summary">
+      <div class="sum-title">실시간 견적</div>
+
+      <div class="line-item">
+        <span class="li-l">기준 금액</span>
+        <span class="li-v">5,600,000원</span>
+      </div>
+      <div id="rowDisc" class="line-item discount muted">
+        <span class="li-l">기본 할인 (10.7%)</span>
+        <span class="li-v" id="discVal">− 0원</span>
+      </div>
+      <div id="rowOnnuri" class="line-item discount muted">
+        <span class="li-l" id="onnuriLab">온누리 7% 할인</span>
+        <span class="li-v" id="onnuriVal">− 0원</span>
+      </div>
+
+      <div class="final">
+        <div class="f-lab">최종 결제 금액</div>
+        <div class="f-val"><span id="finalVal">5,600,000</span><small> 원</small></div>
+        <div class="save-badge">
+          <span class="s-l">총 할인 금액</span>
+          <span class="s-v" id="saveVal">0원</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot">※ 상담용 참고 화면입니다. 최종 금액은 현장 조건에 따라 달라질 수 있습니다.</p>
+</div>
+
+<script>
+  const BASE = 5600000;
+  const DISC_OFF = 600000;   // 5,600,000 → 5,000,000 (약 10.7%)
+  const ONNURI_RATE = 0.07;
+
+  let discOn = false;
+  let onnuriMan = 0; // 선택된 만원 단위 (0이면 미선택)
+
+  const won = n => n.toLocaleString('ko-KR') + '원';
+
+  function render(){
+    const discOff = discOn ? DISC_OFF : 0;
+    const onnuriOff = onnuriMan ? Math.round(onnuriMan * 10000 * ONNURI_RATE) : 0;
+    const final = BASE - discOff - onnuriOff;
+    const totalSave = discOff + onnuriOff;
+
+    // 기본 할인 줄
+    document.getElementById('discVal').textContent = '− ' + won(discOff);
+    document.getElementById('rowDisc').classList.toggle('muted', !discOn);
+
+    // 온누리 줄
+    document.getElementById('onnuriVal').textContent = '− ' + won(onnuriOff);
+    document.getElementById('onnuriLab').textContent =
+      onnuriMan ? `온누리 7% 할인 (${onnuriMan}만원)` : '온누리 7% 할인';
+    document.getElementById('rowOnnuri').classList.toggle('muted', !onnuriMan);
+
+    // 최종
+    document.getElementById('finalVal').textContent = final.toLocaleString('ko-KR');
+    document.getElementById('saveVal').textContent = won(totalSave);
+  }
+
+  function toggleDisc(){
+    discOn = !discOn;
+    document.getElementById('btnDisc').classList.toggle('on', discOn);
+    render();
+  }
+
+  function selectOnnuri(el, man){
+    const already = (onnuriMan === man);
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+    if(already){
+      onnuriMan = 0;            // 같은 버튼 재클릭 → 해제
+    }else{
+      onnuriMan = man;
+      el.classList.add('on');
+    }
+    render();
+  }
+
+  function resetAll(){
+    discOn = false;
+    onnuriMan = 0;
+    document.getElementById('btnDisc').classList.remove('on');
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+    render();
+  }
+
+  render();
+</script>
+</body>
+</html>

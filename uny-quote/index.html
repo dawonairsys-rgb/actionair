@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>유앤영컴퍼니 — 삼성 인피니티 견적 상담</title>
+<title>유앤영컴퍼니 — 삼성 일반 모델 견적 상담</title>
 <style>
   :root{
     --sam-blue:#1428A0;
@@ -141,7 +141,7 @@
   <header class="top">
     <div class="brand">
       <span class="brand-badge">유앤영컴퍼니</span>
-      <span class="brand-sub">삼성 시스템에어컨 · 인피니티 견적 상담</span>
+      <span class="brand-sub">삼성 시스템에어컨 · 일반 모델 견적 상담</span>
     </div>
     <button class="reset-btn" onclick="resetAll()">↺ 처음으로</button>
   </header>
@@ -150,14 +150,14 @@
     <!-- 좌측: 클릭 영역 -->
     <div class="card">
       <div class="base-row">
-        <span class="t">삼성 인피니티 적용 금액</span>
-        <span class="v">5,600,000<small> 원</small></span>
+        <span class="t">삼성 일반 모델 적용 금액</span>
+        <span class="v">5,400,000<small> 원</small></span>
       </div>
 
       <div class="step-label"><span class="step-num">1</span> 기본 할인</div>
       <button id="btnDisc" class="toggle-btn" onclick="toggleDisc()">
-        <span class="lab">할인 적용 <span style="font-size:14px;font-weight:700;opacity:.7">(약 10.7%)</span></span>
-        <span class="amt">− 600,000원</span>
+        <span class="lab">할인 적용 <span style="font-size:14px;font-weight:700;opacity:.7">(약 9.3%)</span></span>
+        <span class="amt">− 500,000원</span>
       </button>
 
       <div style="height:26px"></div>
@@ -189,10 +189,10 @@
 
       <div class="line-item">
         <span class="li-l">기준 금액</span>
-        <span class="li-v">5,600,000원</span>
+        <span class="li-v">5,400,000원</span>
       </div>
       <div id="rowDisc" class="line-item discount muted">
-        <span class="li-l">기본 할인 (10.7%)</span>
+        <span class="li-l">기본 할인 (9.3%)</span>
         <span class="li-v" id="discVal">− 0원</span>
       </div>
       <div id="rowOnnuri" class="line-item discount muted">
@@ -202,7 +202,7 @@
 
       <div class="final">
         <div class="f-lab">최종 결제 금액</div>
-        <div class="f-val"><span id="finalVal">5,600,000</span><small> 원</small></div>
+        <div class="f-val"><span id="finalVal">5,400,000</span><small> 원</small></div>
         <div class="save-badge">
           <span class="s-l">총 할인 금액</span>
           <span class="s-v" id="saveVal">0원</span>
@@ -215,8 +215,8 @@
 </div>
 
 <script>
-  const BASE = 5600000;
-  const DISC_OFF = 600000;   // 5,600,000 → 5,000,000 (약 10.7%)
+  const BASE = 5400000;
+  const DISC_OFF = 500000;   // 5,400,000 → 4,900,000 (약 9.3%)
   const ONNURI_RATE = 0.07;
 
   let discOn = false;

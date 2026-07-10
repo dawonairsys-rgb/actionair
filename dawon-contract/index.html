@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>다원에어시스 — 시스템에어컨 계약 신청</title>
+<style>
+  :root{
+    --lg-red:#A50034; --lg-red-dark:#7d0027;
+    --ink:#1A1A1A; --muted:#6b6b6b; --bg:#F4F2EF;
+    --card:#ffffff; --line:#e6e2dc; --good:#1a7f4b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Pretendard","Malgun Gothic","맑은 고딕",sans-serif;background:var(--bg);
+    color:var(--ink);-webkit-font-smoothing:antialiased;padding:28px 18px 60px;line-height:1.6}
+  .wrap{width:100%;max-width:560px;margin:0 auto}
+
+  header.top{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .brand-badge{background:var(--lg-red);color:#fff;font-weight:800;padding:7px 14px;border-radius:10px;font-size:18px;letter-spacing:.5px}
+  .brand-sub{font-size:13.5px;color:var(--muted);font-weight:700}
+
+  .hero{margin-bottom:18px}
+  .hero h1{font-size:23px;font-weight:800;line-height:1.35;margin-bottom:6px}
+  .hero p{font-size:14px;color:var(--muted)}
+
+  /* 절차 */
+  .steps{display:flex;gap:8px;margin-bottom:22px}
+  .steps .s{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:12px 10px;text-align:center;position:relative}
+  .steps .s .n{display:inline-flex;width:24px;height:24px;border-radius:50%;background:#F2E6EA;color:var(--lg-red);
+    font-weight:800;font-size:13px;align-items:center;justify-content:center;margin-bottom:6px}
+  .steps .s .t{font-size:12px;font-weight:700;color:var(--ink);line-height:1.35}
+  .steps .s.active{border-color:var(--lg-red);box-shadow:0 6px 16px rgba(165,0,52,.10)}
+  .steps .s.active .n{background:var(--lg-red);color:#fff}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:22px 20px;box-shadow:0 10px 30px rgba(40,30,20,.05);margin-bottom:16px}
+  .card .lab{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;
+    color:var(--lg-red);letter-spacing:.4px;margin-bottom:14px}
+  .card .lab .dot{width:22px;height:22px;border-radius:50%;background:var(--lg-red);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+
+  /* 제품 선택 */
+  .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .opt{border:2px solid var(--line);border-radius:14px;padding:18px 14px;text-align:center;cursor:pointer;
+    background:#fff;transition:.15s;user-select:none}
+  .opt:hover{border-color:#d9b3c0}
+  .opt.sel{border-color:var(--lg-red);background:#FCF4F7;box-shadow:0 6px 16px rgba(165,0,52,.10)}
+  .opt .name{font-size:19px;font-weight:800;margin-bottom:4px}
+  .opt .rng{font-size:12.5px;color:var(--muted);font-weight:600}
+
+  /* 대수 선택 */
+  #qtyCard{display:none}
+  .qty-grid{display:flex;flex-wrap:wrap;gap:10px}
+  .qty{flex:1 1 22%;min-width:70px;border:2px solid var(--line);border-radius:12px;padding:14px 0;
+    text-align:center;font-weight:800;font-size:17px;cursor:pointer;background:#fff;transition:.15s}
+  .qty:hover{border-color:#d9b3c0}
+  .qty.sel{border-color:var(--lg-red);background:#FCF4F7;color:var(--lg-red)}
+
+  /* 확정 CTA */
+  #goCard{display:none}
+  .summary{background:#FCF4F7;border:1px dashed #E3B9C8;border-radius:12px;padding:14px 16px;
+    font-size:15px;margin-bottom:14px;text-align:center}
+  .summary b{color:var(--lg-red);font-weight:800}
+  .go-btn{display:block;text-align:center;background:var(--lg-red);color:#fff;text-decoration:none;
+    font-weight:800;font-size:16px;padding:16px;border-radius:14px;transition:.15s}
+  .go-btn:hover{background:var(--lg-red-dark)}
+  .go-note{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+
+  .footer{text-align:center;font-size:12.5px;color:var(--muted);margin-top:26px;line-height:1.9}
+  .footer b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <span class="brand-badge">다원에어시스</span>
+    <span class="brand-sub">LG전자 시스템에어컨 공식 인증점</span>
+  </header>
+
+  <div class="hero">
+    <h1>시스템에어컨 계약 신청</h1>
+    <p>제품과 설치 대수를 선택하시면 신청서로 안내해 드립니다.</p>
+  </div>
+
+  <!-- 절차 -->
+  <div class="steps">
+    <div class="s active" id="stp1"><span class="n">1</span><div class="t">제품·대수<br>선택</div></div>
+    <div class="s" id="stp2"><span class="n">2</span><div class="t">신청서<br>작성</div></div>
+    <div class="s" id="stp3"><span class="n">3</span><div class="t">상담 후<br>계약 확정</div></div>
+  </div>
+
+  <!-- STEP 1: 제품 -->
+  <div class="card">
+    <span class="lab"><span class="dot">1</span> 제품을 선택하세요</span>
+    <div class="prod-grid">
+      <div class="opt" data-prod="올인원" onclick="pickProd('올인원')">
+        <div class="name">올인원</div>
+        <div class="rng">2 · 3 · 4 · 5대</div>
+      </div>
+      <div class="opt" data-prod="멀티" onclick="pickProd('멀티')">
+        <div class="name">멀티</div>
+        <div class="rng">3 · 4 · 5대</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: 대수 -->
+  <div class="card" id="qtyCard">
+    <span class="lab"><span class="dot">2</span> 설치 대수를 선택하세요</span>
+    <div class="qty-grid" id="qtyGrid"></div>
+  </div>
+
+  <!-- STEP 3: 신청서로 -->
+  <div class="card" id="goCard">
+    <span class="lab"><span class="dot">3</span> 선택 완료</span>
+    <div class="summary">선택하신 구성 : <b id="sumText"></b></div>
+    <a class="go-btn" id="goBtn" href="#" target="_blank" rel="noopener">신청서 작성하러 가기 →</a>
+    <p class="go-note">버튼을 누르면 구글 신청서로 이동합니다.</p>
+  </div>
+
+  <div class="footer">
+    <b>다원에어시스</b> · LG전자 시스템에어컨 공식 인증점<br>
+    문의 1555-7726 / 010-4854-2627<br>
+    blog.naver.com/3122627
+  </div>
+</div>
+
+<script>
+  // 제품·대수 → 구글 폼 매핑
+  var FORMS = {
+    "올인원": {
+      "2": "https://forms.gle/VZo1d323HtuKJpTKA",
+      "3": "https://forms.gle/3HWzgYxZPAGNg3SP9",
+      "4": "https://forms.gle/MbtEz5X5kKGcyAPPA",
+      "5": "https://forms.gle/4nLYwQZfb7Psuyx59"
+    },
+    "멀티": {
+      "3": "https://forms.gle/kJLAvUGd2npz98BD6",
+      "4": "https://forms.gle/KwuJLxdkcdX1eUpU8",
+      "5": "https://forms.gle/vQ9dsGT5dkrhVasGA"
+    }
+  };
+
+  var state = { prod:null, qty:null };
+
+  function pickProd(prod){
+    state.prod = prod; state.qty = null;
+    document.querySelectorAll('.opt').forEach(function(el){
+      el.classList.toggle('sel', el.dataset.prod === prod);
+    });
+    // 대수 버튼 생성
+    var grid = document.getElementById('qtyGrid');
+    grid.innerHTML = '';
+    Object.keys(FORMS[prod]).forEach(function(q){
+      var b = document.createElement('div');
+      b.className = 'qty'; b.textContent = q + '대';
+      b.onclick = function(){ pickQty(q, b); };
+      grid.appendChild(b);
+    });
+    document.getElementById('qtyCard').style.display = 'block';
+    document.getElementById('goCard').style.display = 'none';
+    document.getElementById('stp1').classList.add('active');
+    document.getElementById('qtyCard').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  function pickQty(q, el){
+    state.qty = q;
+    document.querySelectorAll('.qty').forEach(function(b){ b.classList.remove('sel'); });
+    el.classList.add('sel');
+    var url = FORMS[state.prod][q];
+    document.getElementById('sumText').textContent = state.prod + ' ' + q + '대';
+    document.getElementById('goBtn').setAttribute('href', url);
+    document.getElementById('goCard').style.display = 'block';
+    document.getElementById('stp2').classList.add('active');
+    document.getElementById('goCard').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+</script>
+</body>
+</html>

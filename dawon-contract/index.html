@@ -67,6 +67,14 @@
   .go-btn:hover{background:var(--lg-red-dark)}
   .go-note{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
 
+  .lab2{display:block;font-size:15px;font-weight:800;color:var(--ink);margin-bottom:6px}
+  .card .desc2{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+  .link-btn{display:block;text-align:center;border:2px solid var(--lg-red);color:var(--lg-red);
+    text-decoration:none;font-weight:800;font-size:15px;padding:14px;border-radius:14px;background:#fff;transition:.15s}
+  .link-btn:hover{background:#FCF4F7}
+  .section-title{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.4px;
+    margin:26px 4px 12px;text-transform:uppercase}
+
   .footer{text-align:center;font-size:12.5px;color:var(--muted);margin-top:26px;line-height:1.9}
   .footer b{color:var(--ink)}
 </style>
@@ -80,8 +88,8 @@
   </header>
 
   <div class="hero">
-    <h1>시스템에어컨 계약 신청</h1>
-    <p>제품과 설치 대수를 선택하시면 신청서로 안내해 드립니다.</p>
+    <h1>시스템에어컨 계약 안내</h1>
+    <p>신청 · 계약서 · 결제 안내를 한 곳에서 확인하실 수 있습니다.</p>
   </div>
 
   <!-- 절차 -->
@@ -118,6 +126,22 @@
     <div class="summary">선택하신 구성 : <b id="sumText"></b></div>
     <a class="go-btn" id="goBtn" href="#" target="_blank" rel="noopener">신청서 작성하러 가기 →</a>
     <p class="go-note">버튼을 누르면 구글 신청서로 이동합니다.</p>
+  </div>
+
+  <div class="section-title">계약 진행에 필요한 자료</div>
+
+  <!-- 계약서 -->
+  <div class="card">
+    <span class="lab2">📄 계약서</span>
+    <p class="desc2">계약 내용을 확인하고 작성하실 수 있습니다.</p>
+    <a class="link-btn" href="__CONTRACT_URL__" target="_blank" rel="noopener">계약서 확인하기 →</a>
+  </div>
+
+  <!-- 스마트스토어 결제 안내 -->
+  <div class="card">
+    <span class="lab2">💳 스마트스토어 결제 안내</span>
+    <p class="desc2">계약금·잔금 결제 방법을 단계별로 안내해 드립니다.</p>
+    <a class="link-btn" href="https://dawonairsys-rgb.github.io/actionair/dawon-deposit/" target="_blank" rel="noopener">결제 안내 보기 →</a>
   </div>
 
   <div class="footer">
@@ -176,6 +200,16 @@
     document.getElementById('stp2').classList.add('active');
     document.getElementById('goCard').scrollIntoView({behavior:'smooth', block:'nearest'});
   }
+
+  // 아직 연결 안 된 링크(계약서 등) 클릭 시 안내
+  document.querySelectorAll('.link-btn').forEach(function(a){
+    a.addEventListener('click', function(e){
+      if(a.getAttribute('href').indexOf('__') === 0){
+        e.preventDefault();
+        alert('계약서 링크가 아직 연결되지 않았습니다.\n관리자에게 문의해 주세요.');
+      }
+    });
+  });
 </script>
 </body>
 </html>

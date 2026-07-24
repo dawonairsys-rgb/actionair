@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>힐스테이트 도안2차 냉방시스템 — 전용 계약·신청 안내</title>
+<style>
+  :root{
+    --navy:#1E2A38; --navy2:#28374A; --gold:#C0A05A; --gold-d:#A8863E;
+    --cream:#F6F2E9; --ink:#23272E; --muted:#6E7682; --line:#E7E1D3;
+    --card:#FFFFFF; --shadow:0 10px 30px rgba(30,42,56,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Pretendard','Malgun Gothic','맑은 고딕',sans-serif;color:var(--ink);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 22px}
+  section{padding:52px 0}
+  .eyebrow{color:var(--gold-d);font-weight:800;font-size:14px;letter-spacing:2px;margin-bottom:14px}
+  h2{font-size:29px;font-weight:800;letter-spacing:-1px;line-height:1.25;margin-bottom:24px}
+  h2 .g{color:var(--gold-d)}
+  h3{font-size:19px;font-weight:800;letter-spacing:-.5px}
+  p{color:#3B424C}.sub{color:var(--muted);font-size:15px}
+
+  .topbar{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+  .topbar .bland{font-weight:800;font-size:15px}.topbar .bland b{color:var(--gold)}
+  .topbar a{color:#fff;text-decoration:none;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.35);padding:8px 14px;border-radius:100px}
+
+  .hero{background:var(--navy);color:#fff;padding:60px 0 66px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(192,160,90,.22),transparent 70%)}
+  .hero .kick{color:var(--gold);font-weight:800;letter-spacing:3px;font-size:13px;margin-bottom:16px}
+  .hero h1{font-size:42px;font-weight:800;letter-spacing:-1.5px;line-height:1.15}
+  .hero h1 .g{color:var(--gold)}
+  .hero .lead{margin-top:18px;color:#C9D2DD;font-size:16px;max-width:600px}
+  .hero .meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+  .hero .chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:9px 16px;font-size:13.5px;font-weight:700;color:#EAEFF5}
+  .hero .chip b{color:var(--gold)}
+
+  /* payment steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .step .sh{background:var(--navy);color:#fff;padding:14px 20px;font-weight:800;letter-spacing:1px;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  .step .sh .st{color:var(--gold)}
+  .step .sb{padding:20px}
+  .step .amt{font-size:26px;font-weight:800;letter-spacing:-1px}
+  .step .amt small{font-size:14px;color:var(--gold-d);font-weight:700}
+  .step .when{margin-top:12px;color:var(--muted);font-size:13px;font-weight:700}
+  .step .whenv{font-weight:800;color:var(--ink);font-size:15px;margin-top:2px}
+  .step .extra{margin-top:10px;font-size:13px;color:#3B424C}
+  .midnote{margin-top:16px;font-size:12.5px;color:var(--muted)}
+
+  /* apply flow */
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+  .fcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center;box-shadow:var(--shadow);position:relative}
+  .fcard .fn{width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+  .fcard h3{font-size:17px;margin-bottom:6px}
+  .fcard p{font-size:13.5px;color:#3B424C}
+  .applybox{background:var(--navy);color:#fff;border-radius:18px;padding:30px;text-align:center}
+  .applybox p{color:#C9D2DD;font-size:14.5px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:100px;font-weight:800;text-decoration:none;font-size:15px}
+  .btn.gold{background:var(--gold);color:#2a2208}
+  .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+  .btn.disabled{background:#54627244;color:#B9C3CF;border:1.5px dashed rgba(255,255,255,.35);cursor:not-allowed}
+  .prep{display:inline-block;margin-left:8px;background:rgba(192,160,90,.2);color:var(--gold);font-size:12px;font-weight:800;padding:3px 10px;border-radius:100px;vertical-align:middle}
+
+  /* price */
+  .ptable{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);font-size:14.5px}
+  .ptable th,.ptable td{padding:14px 12px;text-align:center;border-bottom:1px solid var(--line)}
+  .ptable thead th{background:var(--navy);color:#fff;font-size:13.5px;font-weight:700}
+  .ptable thead th.on{background:#3E7A57}
+  .ptable tbody td:first-child{font-weight:800}
+  .ptable .cfg{color:var(--muted);font-size:12.5px}
+  .ptable .final{color:#2F6B48;font-weight:800}
+  .ptable .final small{display:block;color:#8a8f97;font-weight:600;font-size:11px}
+  .scroll{overflow-x:auto}
+  .pnote{margin-top:12px;font-size:12.5px;color:var(--muted)}
+  .paycards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+  .paycard{border:1px solid var(--line);border-radius:13px;padding:18px;background:#fff}
+  .paycard .h{font-weight:800;margin-bottom:6px}
+  .paycard p{font-size:13.5px;color:#3B424C}.paycard .hi{color:var(--gold-d);font-weight:800}
+  .callout{background:#FBF7EE;border:1px solid var(--gold);border-radius:14px;padding:20px 22px;margin-top:18px}
+  .callout b{color:var(--gold-d)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .schip{background:#fff;border:1px solid var(--line);border-radius:100px;padding:10px 16px;font-size:13.5px;font-weight:700}
+  .schip b{color:var(--gold-d)}
+
+  .speed{background:var(--navy);color:#fff;border-radius:16px;padding:26px 30px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+  .speed .big{font-size:40px;font-weight:800;color:var(--gold);letter-spacing:-1px;line-height:1}
+  .speed p{color:#DDE4EC;font-size:15px;flex:1;min-width:240px}
+
+  .warngrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .wcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+  .wcard h3{font-size:16px;margin-bottom:6px}.wcard p{font-size:14px;color:#3B424C}
+
+  .bigbtn{background:#fff;border:2px solid var(--gold);border-radius:18px;padding:26px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow)}
+  .bigbtn .t h3{font-size:20px}.bigbtn .t p{font-size:14px;color:var(--muted);margin-top:4px}
+
+  .cta{background:var(--navy);color:#fff;border-radius:20px;padding:42px;text-align:center}
+  .cta .lbl{color:#AEB8C4;font-size:14px}
+  .cta .num{font-size:38px;font-weight:800;color:var(--gold);letter-spacing:1px;margin:6px 0 4px}
+  .btnrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+
+  footer{background:#161F29;color:#9AA6B2;padding:34px 0;font-size:13px}
+  footer b{color:#E7EDF3}
+
+  @media (max-width:760px){
+    .hero h1{font-size:30px}h2{font-size:23px}
+    .steps,.flow,.paycards,.warngrid{grid-template-columns:1fr}
+    section{padding:40px 0}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="bland">힐스테이트 도안2차 · <b>전용 계약·신청</b></div>
+    <a href="index.html">제품 상세 →</a>
+  </div>
+</div>
+
+<div style="background:#8A6D1F;color:#fff;text-align:center;font-size:13px;font-weight:700;padding:9px 14px;letter-spacing:.3px">📝 검토용 초안 (DRAFT) — 내용·금액은 확정 전이며 검토 과정에서 변경될 수 있습니다</div>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kick">HILLSTATE DOAN 2 · CONTRACT & APPLY</div>
+    <h1>냉방시스템 공동설치<br><span class="g">전용 계약·신청 안내</span></h1>
+    <p class="lead">계약은 구글폼으로 일괄 진행되며, 진행 현황은 입주민에게 투명하게 공개됩니다.
+      결제 단계와 신청 방법을 한 곳에서 안내해 드립니다.</p>
+    <div class="meta">
+      <span class="chip">전 <b>516세대</b> 공동설치</span>
+      <span class="chip">주관 <b>다원에어시스 · 액션에어</b></span>
+      <span class="chip">1차 행사 <b>70% 참여 시 단가 보장</b></span>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">STEP · PAYMENT</div>
+    <h2>결제 단계 — <span class="g">계약금 · 중도금 · 잔금</span></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="sh"><span>STEP 01</span><span class="st">계약금</span></div>
+        <div class="sb">
+          <div class="amt">1,000,000원 <small>정액</small></div>
+          <div class="when">납부 시점</div>
+          <div class="whenv">계약 체결 시</div>
+          <div class="extra">구글폼 작성·신청 직후 납부</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sh"><span>STEP 02</span><span class="st">중도금</span></div>
+        <div class="sb">
+          <div class="amt">구성별 차등</div>
+          <div class="when">납부 시점</div>
+          <div class="whenv">시공 1일 전 (제품 입고 시점)</div>
+          <div class="extra">2대 300만 / 3대 400만 / 4·5대 500만원</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sh"><span>STEP 03</span><span class="st">잔금</span></div>
+        <div class="sb">
+          <div class="amt">잔여 금액</div>
+          <div class="when">납부 시점</div>
+          <div class="whenv">시운전 완료 후</div>
+          <div class="extra">시공 점검·시운전 확인 후 납부</div>
+        </div>
+      </div>
+    </div>
+    <div class="midnote">※ 결제 단계·금액은 계약 시점 안내 기준이며, 세부 조건은 시공 협약서에 따릅니다.</div>
+  </div>
+</section>
+
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="eyebrow">HOW TO APPLY</div>
+    <h2>신청 방법 — <span class="g">구글폼 일괄 진행</span></h2>
+    <div class="flow">
+      <div class="fcard"><div class="fn">1</div><h3>신청폼 작성</h3><p>세대 정보·구성 선택을 구글폼으로 신청</p></div>
+      <div class="fcard"><div class="fn">2</div><h3>계약금 납부</h3><p>신청 직후 계약금 1,000,000원 입금</p></div>
+      <div class="fcard"><div class="fn">3</div><h3>접수 확인</h3><p>접수 완료 안내 · 세대별 시공일 개별 협의</p></div>
+    </div>
+    <div class="applybox">
+      <h3 style="color:#fff">지금 신청하기</h3>
+      <p style="margin:8px 0 18px">신청 폼이 열리면 이 버튼으로 바로 연결됩니다.</p>
+      <a class="btn disabled" href="#" onclick="return false;">신청폼 바로가기<span class="prep">준비중</span></a>
+      <p style="margin-top:14px;font-size:13px">신청 마감 · 시공 일정은 통합관리위원회 협의 후 별도 공지됩니다.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">PRICING</div>
+    <h2>구성별 가격 — <span class="g">결제수단별 매칭 혜택</span></h2>
+    <div class="scroll">
+      <table class="ptable">
+        <thead><tr>
+          <th>구성</th><th>실내기 구성</th><th>공식 표시가<br><small>(카드결제)</small></th>
+          <th>현금+현금영수증<br><small>(실 부담)</small></th><th class="on">디지털 온누리상품권<br><small>결제 시 최종가</small></th>
+        </tr></thead>
+        <tbody>
+          <tr><td>2대 4HP</td><td class="cfg">18평+6평</td><td>5,750,000원</td><td>5,600,000원</td><td class="final">5,460,000원<small>▼ 140,000</small></td></tr>
+          <tr><td>3대 5HP</td><td class="cfg">18평+6평+5평</td><td>6,750,000원</td><td>6,600,000원</td><td class="final">6,390,000원<small>▼ 210,000</small></td></tr>
+          <tr><td>4대 5HP</td><td class="cfg">18평+6평+5평×2</td><td>7,950,000원</td><td>7,800,000원</td><td class="final">7,520,000원<small>▼ 280,000</small></td></tr>
+          <tr><td>5대 5HP</td><td class="cfg">18평+6평+5평×3</td><td>8,950,000원</td><td>8,800,000원</td><td class="final">8,520,000원<small>▼ 280,000</small></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="paycards">
+      <div class="paycard"><div class="h">💳 카드결제</div><p>카드사 무이자 할부 <span class="hi">6·9·12개월</span></p></div>
+      <div class="paycard"><div class="h">💵 현금+현금영수증</div><p>협력 인센티브 <span class="hi">150,000원 차감</span></p></div>
+      <div class="paycard"><div class="h">🎁 디지털 온누리상품권</div><p>최대 <span class="hi">14만/21만/28만원</span> 절감 (현 정책 기준)</p></div>
+    </div>
+    <div class="callout">
+      <h3 style="margin-bottom:10px">📌 구성 선택 시 꼭 확인하세요</h3>
+      <p style="margin-bottom:6px"><b>2대 설치</b> — 시스템 특성상 추후 <b>추가 설치가 불가</b>합니다. 방 개수·사용 계획을 미리 고려해 선택해 주세요.</p>
+      <p><b>3대 이상 설치</b> — 추후 <b>추가 설치는 가능</b>하나, 개별 작업으로 진행되어 <b>비용이 더 발생</b>할 수 있습니다.</p>
+    </div>
+    <p class="pnote">※ 부가세 포함 · 기본 시공 포함(배관 30M · 전원선 50M · 보양 · 도배 일체) · 공식 표시가는 카드/현금 동일</p>
+  </div>
+</section>
+
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="eyebrow">SPEED</div>
+    <h2>세대당 시공, <span class="g">하루면 끝</span></h2>
+    <div class="speed">
+      <div class="big">3대당 1일</div>
+      <p>일반 시공은 최하 2~4일이 걸리지만, 힐스테이트 도안2차 전용 시공 패턴으로
+        FCU 철거·배관·실내기 설치·보양·도배 마감까지 <b style="color:var(--gold)">하루 안에</b> 완결합니다.
+        거주 중 설치의 불편을 최소화합니다.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">INCLUDED</div>
+    <h2>시공 포함 범위 — <span class="g">추가 비용 없는 일체 시공</span></h2>
+    <div class="chips">
+      <span class="schip">기존 FCU 철거·반출</span>
+      <span class="schip">냉매 배관 <b>30M</b></span>
+      <span class="schip">전원선 <b>50M</b> · 공용부 전원연결</span>
+      <span class="schip">층별 비트실 타공</span>
+      <span class="schip">실내 보양 작업</span>
+      <span class="schip">배관·타공 도배 마감</span>
+      <span class="schip">공용부 2단 제작앵글</span>
+      <span class="schip">시운전 · 인수인계</span>
+    </div>
+    <p class="pnote">※ 위 항목은 계약 단가에 모두 포함됩니다. 별도 추가비용이 발생하지 않습니다.</p>
+  </div>
+</section>
+
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="eyebrow">WARRANTY</div>
+    <h2>보증 · AS — <span class="g">책임 시공 일원화</span></h2>
+    <div class="warngrid">
+      <div class="wcard"><h3>무상 AS 2년</h3><p>시공 인도일로부터 2년 무상 시공 AS · 단지 전담 시공팀 일괄 책임 응대</p></div>
+      <div class="wcard"><h3>LG전자 공식 서비스망</h3><p>제품 자체 결함은 LG전자 공식 서비스망 보증(LG 정책)</p></div>
+      <div class="wcard"><h3>시공 후 1년 정기 점검</h3><p>다원에어시스 + 액션에어 시공팀 정기 점검 제공</p></div>
+      <div class="wcard"><h3>분지관·배관·전원선 무상</h3><p>배관 누설·전원선 결함 등 시공 하자는 시공팀 무상 처리</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="bigbtn">
+      <div class="t"><h3>제품이 더 궁금하세요?</h3><p>시스템 구성·설치 방식·소음/안전/미관 답변·FAQ까지 자세히</p></div>
+      <a class="btn gold" href="index.html">제품 상세 정보 보기 →</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta">
+      <h2 style="color:#fff;margin-bottom:6px">전용 상담으로 편하게 문의하세요</h2>
+      <p style="color:#C9D2DD">구성 선택·시공 일정·결제 방법, 무엇이든 안내해 드립니다.</p>
+      <div class="lbl" style="margin-top:22px">힐스테이트 도안2차 전용 상담</div>
+      <div class="num">1555-7726</div>
+      <div class="btnrow">
+        <a class="btn gold" href="tel:15557726">전화 상담하기</a>
+        <a class="btn ghost" href="index.html">제품 상세 보기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>힐스테이트 도안2차 냉방시스템 공동설치</b> · 시공 주관 ㈜다원에어시스 + 액션에어<br>
+    대표번호 1555-7726 · 세종시 소정면 소정구길 228 · 사업자 520-88-00856<br>
+    <span style="opacity:.7">계약은 구글폼 일괄 진행 · 진행 현황 투명 공개 · 세부 조건은 시공 협약서에 따릅니다.</span>
+  </div>
+</footer>
+
+</body>
+</html>

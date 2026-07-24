@@ -12,7 +12,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:'Pretendard','Malgun Gothic','맑은 고딕',sans-serif;color:var(--ink);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased}
+  body{font-family:'Pretendard','Malgun Gothic','맑은 고딕',sans-serif;color:var(--ink);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .wrap{max-width:960px;margin:0 auto;padding:0 22px}
   section{padding:52px 0}
   .eyebrow{color:var(--gold-d);font-weight:800;font-size:14px;letter-spacing:2px;margin-bottom:14px}
@@ -105,9 +105,25 @@
   footer b{color:#E7EDF3}
 
   @media (max-width:760px){
-    .hero h1{font-size:30px}h2{font-size:23px}
+    .hero h1{font-size:29px}h2{font-size:22px}
     .steps,.flow,.paycards,.warngrid{grid-template-columns:1fr}
     section{padding:40px 0}
+    .cta{padding:30px}
+    .bigbtn{flex-direction:column;align-items:flex-start}
+  }
+  @media (max-width:440px){
+    .wrap{padding:0 15px}
+    .hero{padding:46px 0 52px}
+    .hero h1{font-size:25px}
+    .hero .chip{font-size:12px;padding:8px 12px}
+    h2{font-size:20px;margin-bottom:20px}
+    .eyebrow{font-size:12.5px}
+    .step .sb,.fcard,.wcard,.paycard{padding:18px}
+    .ptable th,.ptable td{padding:10px 6px;font-size:12px}
+    .btn{padding:14px 20px;font-size:14px}
+    .cta .num{font-size:32px}
+    .topbar .bland{font-size:13px}.topbar a{font-size:12px;padding:7px 11px}
+    .step .amt{font-size:23px}
   }
 </style>
 </head>

@@ -13,7 +13,7 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Pretendard','Malgun Gothic','맑은 고딕',sans-serif;color:var(--ink);
-    background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased}
+    background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   img{max-width:100%}
   .wrap{max-width:960px;margin:0 auto;padding:0 22px}
   section{padding:56px 0}
@@ -145,13 +145,30 @@
   footer{background:#161F29;color:#9AA6B2;padding:34px 0;font-size:13px}
   footer b{color:#E7EDF3}
 
+  .scope4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
   @media (max-width:760px){
-    .hero h1{font-size:32px}.hero .lead{font-size:15px}
-    h2{font-size:24px}
+    .hero h1{font-size:30px}.hero .lead{font-size:15px}
+    h2{font-size:23px}
     .grid2,.grid3,.grid4,.spec,.paycards,.speed,.qna .qrow,.cmp{grid-template-columns:1fr}
+    .scope4{grid-template-columns:repeat(2,1fr)}
     .qrow{grid-template-columns:1fr}.qrow .qh{padding:14px 20px}
-    .speed .big{font-size:40px}
-    section{padding:42px 0}
+    .speed .big{font-size:38px}
+    section{padding:40px 0}
+    .cta,.speed{padding:26px}
+  }
+  @media (max-width:440px){
+    .wrap{padding:0 15px}
+    .hero{padding:48px 0 54px}
+    .hero h1{font-size:25px}
+    .hero .chip{font-size:12px;padding:8px 12px}
+    h2{font-size:20px;margin-bottom:20px}
+    .eyebrow{font-size:12.5px}
+    .card,.paycard,.unitcard{padding:18px}
+    .ptable th,.ptable td{padding:10px 6px;font-size:12px}
+    .scope4{grid-template-columns:1fr 1fr;gap:11px}
+    .btn{padding:14px 20px;font-size:14px}
+    .cta .num{font-size:32px}
+    .topbar .bland{font-size:13px}.topbar a{font-size:12px;padding:7px 11px}
   }
 </style>
 </head>
@@ -287,7 +304,7 @@
     <div class="eyebrow">06 · SCOPE OF WORK</div>
     <h2>시공 포함 범위 — <span class="g">추가 비용 없는 일체 시공</span></h2>
     <p class="sub" style="margin-bottom:22px">계약 단가 안에 포함되는 모든 시공 항목입니다. 별도 추가비용이 발생하지 않습니다.</p>
-    <div class="grid4" style="grid-template-columns:repeat(4,1fr)">
+    <div class="scope4">
       <div class="card" style="padding:20px"><h3 style="font-size:16px">기존 FCU 철거</h3><p class="sub">철거·반출·폐기 일체</p></div>
       <div class="card" style="padding:20px"><h3 style="font-size:16px">냉매 배관</h3><p class="sub">기본 30M 포함</p></div>
       <div class="card" style="padding:20px"><h3 style="font-size:16px">전원선 설치</h3><p class="sub">기본 50M · 공용부 전원연결</p></div>

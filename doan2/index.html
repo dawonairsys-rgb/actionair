@@ -211,6 +211,24 @@
     .grid4 .card .n{position:absolute;top:10px;right:15px;font-size:19px;opacity:.5}
     .grid4 .card h3{padding-right:36px}
   }
+
+  /* CTA 강조 — 신청 버튼 / 전용 상담 박스 */
+  .btn.red{background:#C4362F;color:#fff;box-shadow:0 8px 20px rgba(196,54,47,.34)}
+  .callbox{display:inline-flex;align-items:center;gap:15px;margin-top:20px;text-decoration:none;
+    background:rgba(255,255,255,.07);border:1.5px solid rgba(192,160,90,.55);border-radius:16px;padding:14px 26px}
+  .callbox .ic{width:46px;height:46px;border-radius:50%;background:var(--gold);color:#2a2208;flex:none;
+    display:flex;align-items:center;justify-content:center;font-size:22px}
+  .callbox .ic svg{display:block}
+  .callbox .tx{text-align:left}
+  .callbox .tx span{display:block}
+  .callbox .lbl2{color:var(--gold);font-size:13px;font-weight:800;letter-spacing:.2px}
+  .callbox .num2{font-size:33px;font-weight:800;color:#fff;letter-spacing:1px;line-height:1.18}
+  @media (max-width:440px){
+    .callbox{padding:12px 17px;gap:12px}
+    .callbox .ic{width:38px;height:38px;font-size:18px}
+    .callbox .num2{font-size:26px}
+    .callbox .lbl2{font-size:12px}
+  }
 </style>
 </head>
 <body>
@@ -238,6 +256,26 @@
     </div>
   </div>
 </div>
+
+<section style="padding:38px 0 8px">
+  <div class="wrap">
+    <div class="cta">
+      <h2 style="margin-bottom:6px">계약·신청은 전용 페이지에서</h2>
+      <p style="color:#C9D2DD">결제 단계·신청 방법·구성 선택을 한 곳에서 안내해 드립니다.</p>
+      <a class="callbox" href="tel:15557726">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+        <span class="tx">
+          <span class="lbl2">힐스테이트 도안2차 전용 상담</span>
+          <span class="num2">1555-7726</span>
+        </span>
+      </a>
+      <div class="btnrow">
+        <a class="btn red" href="contract.html">신청하기 &rarr;</a>
+        <a class="btn ghost" href="tel:15557726">전화 상담하기</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -534,10 +572,15 @@
     <div class="cta">
       <h2 style="margin-bottom:6px">계약·신청은 전용 페이지에서</h2>
       <p style="color:#C9D2DD">결제 단계·신청 방법·구성 선택을 한 곳에서 안내해 드립니다.</p>
-      <div class="lbl" style="margin-top:22px">힐스테이트 도안2차 전용 상담</div>
-      <div class="num">1555-7726</div>
+      <a class="callbox" href="tel:15557726">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+        <span class="tx">
+          <span class="lbl2">힐스테이트 도안2차 전용 상담</span>
+          <span class="num2">1555-7726</span>
+        </span>
+      </a>
       <div class="btnrow">
-        <a class="btn gold" href="contract.html">계약·신청 안내 보기 →</a>
+        <a class="btn red" href="contract.html">신청하기 &rarr;</a>
         <a class="btn ghost" href="tel:15557726">전화 상담하기</a>
       </div>
     </div>

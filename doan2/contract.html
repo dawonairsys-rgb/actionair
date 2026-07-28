@@ -175,6 +175,8 @@
     .callout{padding:16px 17px;margin-top:14px}
     .bigbtn{padding:20px}
   }
+
+  #apply{scroll-margin-top:74px}
 </style>
 </head>
 <body>
@@ -396,5 +398,24 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+  /* 재방문·새로고침 시 항상 페이지 최상단에서 시작 */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) window.scrollTo(0, 0);
+  /* 내부 앵커는 URL에 해시를 남기지 않고 부드럽게 이동 */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = a.getAttribute('href');
+    if (id.length < 2) return;
+    var el = document.querySelector(id);
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+})();
+</script>
 </body>
 </html>

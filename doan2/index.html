@@ -275,6 +275,7 @@
     .asrow .aic svg{width:16px;height:16px}
     .ab{font-size:12px;padding:6px 13px;margin-left:42px}
   }
+  .btn{cursor:pointer}
 </style>
 </head>
 <body>
@@ -662,16 +663,21 @@
 
 <script>
 (function(){
-  /* 재방문·새로고침 시 항상 페이지 최상단에서 시작 */
+  /* 어떤 경로로 들어와도 항상 페이지 최상단에서 시작 */
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  if (!location.hash) window.scrollTo(0, 0);
-  /* 내부 앵커는 URL에 해시를 남기지 않고 부드럽게 이동 */
+  function toTop(){ window.scrollTo(0, 0); }
+  if (location.hash) {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  }
+  toTop();
+  window.addEventListener('load', toTop);
+  setTimeout(toTop, 0);
+  setTimeout(toTop, 150);
+  /* 내부 이동 버튼: URL에 해시를 남기지 않고 부드럽게 스크롤 */
   document.addEventListener('click', function(e){
-    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    var a = e.target.closest ? e.target.closest('[data-scroll]') : null;
     if (!a) return;
-    var id = a.getAttribute('href');
-    if (id.length < 2) return;
-    var el = document.querySelector(id);
+    var el = document.getElementById(a.getAttribute('data-scroll'));
     if (!el) return;
     e.preventDefault();
     el.scrollIntoView({behavior:'smooth', block:'start'});

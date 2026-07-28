@@ -229,6 +229,19 @@
     .callbox .num2{font-size:26px}
     .callbox .lbl2{font-size:12px}
   }
+
+  /* 시공 예시 사진 */
+  .photos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+  .photo{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+  .photo img{width:100%;height:176px;object-fit:cover;display:block}
+  .photo .cap{padding:11px 14px;font-size:13px;font-weight:700;color:#3B424C}
+  @media (max-width:760px){
+    .photos{grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+    .photo img{height:112px}
+    .photo .cap{padding:8px 10px;font-size:11.5px;letter-spacing:-.3px}
+    .photo:last-child{grid-column:1 / -1}
+    .photo:last-child img{height:132px}
+  }
 </style>
 </head>
 <body>
@@ -400,6 +413,15 @@
       <div class="card"><div class="icoline"><span class="badge">✓</span><h3>전원연결공사 일괄발주</h3></div>
         <p class="sub">세대→공용부 전원선도 단지 일괄 발주 · 전 세대수로 균등 분담 → 동일 단가</p></div>
     </div>
+    <div class="photos">
+      <div class="photo"><img src="img/outdoor-rooftop.png" alt="옥상 실외기 설치">
+        <div class="cap">옥상 실외기 설치</div></div>
+      <div class="photo"><img src="img/outdoor-angle.png" alt="2단 제작앵글">
+        <div class="cap">2단 제작앵글</div></div>
+      <div class="photo"><img src="img/pipe-shaft.png" alt="공용부 입상배관·비트실">
+        <div class="cap">공용부 입상배관 · 비트실</div></div>
+    </div>
+    <p class="pnote">※ 위 사진은 유사 현장의 시공 예시이며, 본 단지 실제 시공 상태·배치와 다를 수 있습니다.</p>
   </div>
 </section>
 

@@ -189,6 +189,18 @@
   .pcard li:before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
   .pcard li small{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.4px;margin-top:2px}
   @media(max-width:760px){.catalog{grid-template-columns:1fr}}
+
+  /* 모바일 컴팩트 — 02 단지가치 / 03 공동설치 강점 / 05 실외기 설치 */
+  @media (max-width:760px){
+    .grid3,.grid4{gap:10px}
+    .grid3 .card,.grid4 .card{padding:14px 16px;position:relative}
+    .grid3 .card .icoline{margin-bottom:5px;gap:10px}
+    .grid3 .card .badge{width:30px;height:30px;border-radius:8px;font-size:15px}
+    .grid3 .card h3,.grid4 .card h3{font-size:16.5px;letter-spacing:-.4px}
+    .grid3 .card .sub,.grid4 .card .sub{font-size:13.5px;line-height:1.5;margin-top:2px}
+    .grid4 .card .n{position:absolute;top:10px;right:15px;font-size:19px;opacity:.5}
+    .grid4 .card h3{padding-right:36px}
+  }
 </style>
 </head>
 <body>

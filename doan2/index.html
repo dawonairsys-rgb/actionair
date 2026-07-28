@@ -242,6 +242,39 @@
     .photo:last-child{grid-column:1 / -1}
     .photo:last-child img{height:132px}
   }
+
+  /* AS · 보증 블록 */
+  .asbanner{background:var(--navy);color:#fff;border-radius:18px;padding:26px 30px;
+    display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  .asbanner .lbl3{color:var(--gold);font-weight:800;letter-spacing:1.5px;font-size:13px}
+  .asbanner .big2{font-size:38px;font-weight:800;letter-spacing:-1.2px;line-height:1.1;margin-top:6px;white-space:nowrap}
+  .asbanner .big2 em{font-style:normal;color:var(--gold)}
+  .asbanner p{color:#C9D2DD;font-size:15px;flex:1;min-width:250px;
+    border-left:1px solid rgba(255,255,255,.18);padding-left:28px}
+
+  .aslist{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+  .asrow{display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff;
+    border:1px solid var(--line);border-radius:13px;padding:14px 18px;box-shadow:var(--shadow)}
+  .asrow .ak{display:flex;align-items:center;gap:13px;font-weight:700;font-size:15.5px;letter-spacing:-.3px}
+  .asrow .aic{width:36px;height:36px;border-radius:10px;background:var(--cream);flex:none;
+    display:flex;align-items:center;justify-content:center;color:var(--gold-d)}
+  .asrow .aic svg{display:block}
+  .ab{font-size:13px;font-weight:800;padding:8px 15px;border-radius:100px;white-space:nowrap;flex:none}
+  .ab.gold{background:#FBF3E2;color:var(--gold-d);border:1px solid rgba(192,160,90,.55)}
+  .ab.navy{background:#EAEEF3;color:var(--navy);border:1px solid #C6D1DD}
+  .ab.gray{background:#F1F2F4;color:#6E7682;border:1px solid #E1E4E8}
+
+  @media (max-width:760px){
+    .asbanner{padding:20px;gap:14px}
+    .asbanner .big2{font-size:30px}
+    .asbanner p{font-size:13.5px;border-left:0;border-top:1px solid rgba(255,255,255,.18);
+      padding:14px 0 0;min-width:0}
+    .asrow{flex-direction:column;align-items:flex-start;gap:9px;padding:13px 15px}
+    .asrow .ak{font-size:15px;gap:11px}
+    .asrow .aic{width:31px;height:31px}
+    .asrow .aic svg{width:16px;height:16px}
+    .ab{font-size:12px;padding:6px 13px;margin-left:42px}
+  }
 </style>
 </head>
 <body>
@@ -521,23 +554,33 @@
   <div class="wrap">
     <div class="eyebrow">10 · AS & WARRANTY</div>
     <h2>AS · 하자 — <span class="g">책임 시공 일원화</span></h2>
-    <div class="grid2" style="align-items:start">
-      <div class="card dark">
-        <div class="sub" style="color:var(--gold);font-weight:800;letter-spacing:1px">보증 · AS 안내</div>
-        <div style="font-size:40px;font-weight:800;margin:10px 0 4px">무상 AS <span style="color:var(--gold)">2년</span></div>
-        <p>LG전자 공식 서비스망 보증 · 단지 전담 시공팀 운영으로 동일 기준 일괄 책임 응대</p>
+    <div class="asbanner">
+      <div>
+        <div class="lbl3">보증 · AS 안내</div>
+        <div class="big2">무상 AS <em>2년</em></div>
       </div>
-      <div class="scroll">
-        <table class="astable">
-          <thead><tr><th>구분</th><th>책임 주체</th></tr></thead>
-          <tbody>
-            <tr><td>제품 자체 결함</td><td>LG전자 공식 서비스망</td></tr>
-            <tr><td>설치·시공 하자</td><td>다원에어시스 + 액션에어</td></tr>
-            <tr><td>시공 후 1년 공용부 및 실외기실 1년 정기점검</td><td>다원에어시스 + 액션에어</td></tr>
-            <tr><td>분지관·배관 누설</td><td>시공팀 (무상)</td></tr>
-            <tr><td>입주민 사용 부주의</td><td>유상 처리 (LG 정책)</td></tr>
-          </tbody>
-        </table>
+      <p>LG전자 공식 서비스망 보증 · 단지 전담 시공팀 운영으로 동일 기준 일괄 책임 응대</p>
+    </div>
+    <div class="aslist">
+      <div class="asrow">
+        <span class="ak"><span class="aic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 3v2H7a2 2 0 0 0-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2h2V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9zm0 6h6v6H9V9z"/></svg></span>제품 자체 결함</span>
+        <span class="ab navy">LG전자 공식 서비스망</span>
+      </div>
+      <div class="asrow">
+        <span class="ak"><span class="aic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.7 18.3l-7.1-7.1a5.5 5.5 0 0 0-6.9-6.9l3.3 3.3-2.4 2.4-3.3-3.3a5.5 5.5 0 0 0 6.9 6.9l7.1 7.1a1 1 0 0 0 1.4 0l1.1-1.1a1 1 0 0 0 0-1.3z"/></svg></span>설치·시공 하자</span>
+        <span class="ab gold">다원에어시스 + 액션에어</span>
+      </div>
+      <div class="asrow">
+        <span class="ak"><span class="aic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 8v9H5v-9h14zm-9 2H7v3h3v-3z"/></svg></span>시공 후 1년 공용부 및 실외기실 1년 정기점검</span>
+        <span class="ab gold">다원에어시스 + 액션에어</span>
+      </div>
+      <div class="asrow">
+        <span class="ak"><span class="aic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5S5.5 10 5.5 14.2a6.5 6.5 0 0 0 13 0C18.5 10 12 2.5 12 2.5z"/></svg></span>분지관·배관 누설</span>
+        <span class="ab gold">시공팀 (무상)</span>
+      </div>
+      <div class="asrow">
+        <span class="ak"><span class="aic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1.5 20.5h21L12 2zm1 13h-2v-5h2v5zm0 4h-2v-2h2v2z"/></svg></span>입주민 사용 부주의</span>
+        <span class="ab gray">유상 처리 (LG 정책)</span>
       </div>
     </div>
   </div>

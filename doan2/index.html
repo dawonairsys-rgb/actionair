@@ -188,7 +188,17 @@
   .pcard li{position:relative;padding-left:16px;margin-top:9px;line-height:1.5}
   .pcard li:before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
   .pcard li small{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.4px;margin-top:2px}
-  @media(max-width:760px){.catalog{grid-template-columns:1fr}}
+  @media(max-width:760px){
+    .catalog{grid-template-columns:1fr 1fr;gap:10px}
+    .pcard .pimg{height:132px;padding:10px}
+    .pcard .pbody{padding:13px 13px 15px}
+    .pcard .tag{font-size:10.5px;letter-spacing:.8px}
+    .pcard h3{font-size:15px;margin:5px 0 2px;letter-spacing:-.5px}
+    .pcard ul{font-size:12.5px}
+    .pcard li{margin-top:7px;padding-left:13px;line-height:1.45}
+    .pcard li:before{width:5px;height:5px;top:7px}
+    .pcard li small{font-size:10.5px;letter-spacing:.2px;margin-top:1px}
+  }
 
   /* 모바일 컴팩트 — 02 단지가치 / 03 공동설치 강점 / 05 실외기 설치 */
   @media (max-width:760px){
@@ -432,30 +442,10 @@
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="eyebrow">09 · CONCERN ①</div>
-    <h2>실외기 — <span class="g">소음 · 안전 · 미관</span>에 대한 답변</h2>
-    <div class="qna">
-      <div class="qrow"><div class="qh">소음 우려</div><div class="qb">
-        <div class="q">Q. 옥상·2층 실외기 소음이 실내까지 전달되지 않을까?</div>
-        <p>상업용 인버터 실외기는 가정용 대비 정숙 설계입니다. 옥상·2층 분산 배치로 단일 세대 인접 부하를 줄이고, 층간 슬래브가 충분한 차음 역할을 합니다.</p>
-      </div></div>
-      <div class="qrow"><div class="qh">안전 우려</div><div class="qb">
-        <div class="q">Q. 공용부 설치 시 낙하·고정 안전성은?</div>
-        <p>2단 제작앵글로 면적 효율과 강성을 확보합니다. 앵커·내진 고정 / 점검 동선 확보 시공 기준을 적용하고, 전 세대 시운전 시 외부 고정 상태를 확인합니다.</p>
-      </div></div>
-      <div class="qrow"><div class="qh">미관 우려</div><div class="qb">
-        <div class="q">Q. 단지 외관이 어수선해지지 않을까?</div>
-        <p>동일 모델·동일 위치·동일 앵글 기준의 통일 시공으로 개별 시공 난립을 방지합니다. 공용공간 활용 도면은 통합관리위원회 사전 협의를 거칩니다.</p>
-      </div></div>
-    </div>
-  </div>
-</section>
 
 <section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
-    <div class="eyebrow">10 · CONCERN ②</div>
+    <div class="eyebrow">09 · CONCERN</div>
     <h2>가격 신뢰 — <span class="g">타 단지 대비 합리적 근거</span></h2>
     <div class="cmp">
       <div class="col a"><div class="t">일반 세대형 시공</div><h4>세대 내부 시공 완결</h4>
@@ -469,7 +459,7 @@
 
 <section>
   <div class="wrap">
-    <div class="eyebrow">11 · AS & WARRANTY</div>
+    <div class="eyebrow">10 · AS & WARRANTY</div>
     <h2>AS · 하자 — <span class="g">책임 시공 일원화</span></h2>
     <div class="grid2" style="align-items:start">
       <div class="card dark">
@@ -496,7 +486,7 @@
 
 <section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
-    <div class="eyebrow">12 · COMMUNITY BENEFIT</div>
+    <div class="eyebrow">11 · COMMUNITY BENEFIT</div>
     <h2>단지혜택 — <span class="g">입주민 특별 패키지</span></h2>
     <div class="grid2" style="align-items:stretch">
       <div class="card dark">
@@ -520,7 +510,7 @@
 
 <section>
   <div class="wrap">
-    <div class="eyebrow">13 · FAQ</div>
+    <div class="eyebrow">12 · FAQ</div>
     <h2>자주 <span class="g">묻는 질문</span></h2>
     <div class="grid2">
       <div class="card"><div class="q" style="color:var(--gold-d);font-weight:800;margin-bottom:6px">Q. 전기요금이 많이 오르지 않나요?</div>

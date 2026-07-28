@@ -152,6 +152,39 @@
     .fcard .fn{position:absolute;top:10px;right:15px;font-size:19px;opacity:.5}
     .fcard h3{padding-right:34px}
   }
+
+  /* 모바일 간격 압축 */
+  @media (max-width:760px){
+    section{padding:32px 0}
+    h2{margin-bottom:18px}
+    .steps,.flow,.paycards,.warngrid{gap:10px}
+
+    .step .sh{padding:11px 16px;font-size:13px}
+    .step .sb{padding:15px 16px}
+    .step .amt{font-size:23px}
+    .step .amt small{font-size:13px}
+    .step .when{display:inline-block;margin-top:9px;font-size:12.5px}
+    .step .whenv{display:inline-block;margin-top:9px;margin-left:7px;font-size:14.5px}
+    .step .extra{margin-top:6px;font-size:12.5px}
+
+    .fcard{padding:15px 16px;text-align:left;display:grid;column-gap:12px;
+      grid-template-columns:auto 1fr;grid-template-areas:"n h" "n p";align-items:start}
+    .fcard .fn{grid-area:n;width:34px;height:34px;font-size:16px;margin:2px 0 0}
+    .fcard h3{grid-area:h;font-size:16.5px;margin-bottom:2px}
+    .fcard p{grid-area:p;font-size:13.5px;line-height:1.5}
+    .applybox{padding:22px 18px}
+
+    .paycard{padding:14px 16px}
+    .paycard .h{font-size:15px;margin-bottom:3px}
+    .paycard p{font-size:13px;line-height:1.5}
+
+    .wcard{padding:15px 16px}
+    .wcard h3{font-size:15.5px;margin-bottom:4px}
+    .wcard p{font-size:13.5px;line-height:1.5}
+
+    .callout{padding:16px 17px;margin-top:14px}
+    .bigbtn{padding:20px}
+  }
 </style>
 </head>
 <body>
@@ -331,8 +364,8 @@
     <div class="warngrid">
       <div class="wcard"><h3>무상 AS 2년</h3><p>시공 인도일로부터 2년 무상 시공 AS · 단지 전담 시공팀 일괄 책임 응대</p></div>
       <div class="wcard"><h3>LG전자 공식 서비스망</h3><p>제품 자체 결함은 LG전자 공식 서비스망 보증(LG 정책)</p></div>
-      <div class="wcard"><h3>시공 후 1년 정기 점검</h3><p>다원에어시스 + 액션에어 시공팀 정기 점검 제공</p></div>
-      <div class="wcard"><h3>분지관·배관·전원선 무상</h3><p>배관 누설·전원선 결함 등 시공 하자는 시공팀 무상 처리</p></div>
+      <div class="wcard"><h3>시공 후 1년 공용부 및 실외기실 1년 정기점검</h3><p>다원에어시스 + 액션에어 시공팀 정기 점검 제공</p></div>
+      <div class="wcard"><h3>분지관·배관 무상</h3><p>배관 누설 등 시공 하자는 시공팀 무상 처리</p></div>
     </div>
   </div>
 </section>

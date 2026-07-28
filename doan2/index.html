@@ -170,6 +170,25 @@
     .cta .num{font-size:32px}
     .topbar .bland{font-size:13px}.topbar a{font-size:12px;padding:7px 11px}
   }
+
+  /* product catalog */
+  .catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .pcard .pimg{height:214px;background:#F8F9FB;display:flex;align-items:center;justify-content:center;padding:16px;border-bottom:1px solid var(--line)}
+  .pcard .pimg img{max-width:100%;max-height:100%;object-fit:contain}
+  .pcard .ph{height:214px;border-bottom:1px solid var(--line);color:#A2AAB4;
+    background:repeating-linear-gradient(45deg,#F5F6F8,#F5F6F8 11px,#EFF1F4 11px,#EFF1F4 22px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
+  .pcard .ph .ic{font-size:27px;opacity:.7}
+  .pcard .ph .tx{font-size:12.5px;font-weight:800;letter-spacing:.4px}
+  .pcard .pbody{padding:20px 22px 23px}
+  .pcard .tag{color:var(--gold-d);font-weight:800;letter-spacing:1.5px;font-size:12px}
+  .pcard h3{margin:7px 0 4px;font-size:19px}
+  .pcard ul{list-style:none;font-size:13.5px;color:#3B424C}
+  .pcard li{position:relative;padding-left:16px;margin-top:9px;line-height:1.5}
+  .pcard li:before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .pcard li small{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.4px;margin-top:2px}
+  @media(max-width:760px){.catalog{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -187,11 +206,12 @@
   <div class="wrap">
     <div class="kick">HILLSTATE DOAN 2 · GROUP INSTALLATION</div>
     <h1>냉방시스템 <span class="g">공동설치</span><br>제품 안내</h1>
-    <p class="lead">노후 FCU 가동중지에 따른 전 세대 개별 냉방시스템 도입 사업입니다.
+    <p class="lead">FCU 가동중지에 따른 전 세대 개별 냉방시스템 도입 사업입니다.
       단지 통일 시공으로 미관·안전·효율을 함께 확보합니다.</p>
     <div class="meta">
       <span class="chip">대상 단지 <b>힐스테이트 도안2차</b></span>
-      <span class="chip">전 <b>516세대</b></span>
+      <span class="chip">4BL <b>258세대</b></span>
+      <span class="chip">7BL <b>258세대</b></span>
       <span class="chip">시공 주관 <b>다원에어시스 · 액션에어</b></span>
     </div>
   </div>
@@ -199,26 +219,15 @@
 
 <section>
   <div class="wrap">
-    <div class="eyebrow">01 · WHY NOW</div>
-    <h2>왜 지금, <span class="g">냉방시스템 교체</span>가 필요한가</h2>
-    <div class="grid2">
-      <div class="card">
-        <div class="icoline"><span class="badge">!</span><h3>팬코일유닛(FCU) 가동 중지</h3></div>
-        <ul>
-          <li>단지 전체 FCU 시스템 노후화</li>
-          <li>부품 수급 어려움 · 잦은 고장 발생</li>
-          <li>가동 시 전력 비효율 → 공용전기료 급증</li>
-          <li>운영 지속 시 단지 자산가치 하락 우려</li>
-        </ul>
-      </div>
-      <div class="card dark">
-        <div class="icoline"><span class="badge">❄</span><h3 style="color:#fff">개별 세대 냉방시스템 신규 도입</h3></div>
-        <ul>
-          <li style="color:#B9C3CF">516세대 동시 진행이 필수 조건</li>
-          <li style="color:#B9C3CF">별도 실외기실 부재 → 공용공간 활용</li>
-          <li style="color:#B9C3CF">단지 통일 시공으로 미관·안전 확보</li>
-        </ul>
-      </div>
+    <div class="eyebrow">01 · WHY TOGETHER</div>
+    <h2>왜 <span class="g">단지 전체가 함께</span> 진행하는가</h2>
+    <div class="card dark">
+      <div class="icoline"><span class="badge">❄</span><h3 style="color:#fff">개별 세대 냉방시스템 신규 도입</h3></div>
+      <ul>
+        <li style="color:#B9C3CF">4BL·7BL 각 258세대 동시 진행이 필수 조건</li>
+        <li style="color:#B9C3CF">별도 실외기실 부재 → 공용공간 활용</li>
+        <li style="color:#B9C3CF">단지 통일 시공으로 미관·안전 확보</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -243,7 +252,7 @@
     <div class="eyebrow">03 · WHY GROUP PURCHASE</div>
     <h2>개별 구매 대비 <span class="g">공동설치의 4가지 강점</span></h2>
     <div class="grid4">
-      <div class="card"><div class="n">01</div><h3>규모의 경제</h3><p class="sub">516세대 일괄 시공 기준 · 시공·자재 원가 최적화</p></div>
+      <div class="card"><div class="n">01</div><h3>규모의 경제</h3><p class="sub">4BL·7BL 각 258세대 일괄 시공 기준 · 시공·자재 원가 최적화</p></div>
       <div class="card"><div class="n">02</div><h3>단일 책임 시공</h3><p class="sub">단지 전담 시공팀 운영 · 일정·품질·AS 일원화</p></div>
       <div class="card"><div class="n">03</div><h3>균일한 품질·미관</h3><p class="sub">동일 시공팀·자재·기준 적용 · 단지 외관 통일</p></div>
       <div class="card"><div class="n">04</div><h3>우선 시공·일정 보장</h3><p class="sub">참여 세대 우선 일정 배정 · 입주민 편의 중심</p></div>
@@ -255,33 +264,67 @@
   <div class="wrap">
     <div class="eyebrow">04 · SYSTEM SPEC</div>
     <h2>시스템 구성 — <span class="g">LG 상업용 냉방전용</span></h2>
-    <div class="spec">
-      <div class="unitcard">
-        <div class="tag">OUTDOOR UNIT · 실외기</div>
-        <h3 style="margin:8px 0 6px">LG 상업용 냉방전용 실외기</h3>
-        <div class="modelrow"><div class="pyeong"><b>4HP</b></div>
-          <div class="mm">RPUQ041S2S<small>2대 구성 시공</small></div></div>
-        <div class="modelrow"><div class="pyeong"><b>5HP</b></div>
-          <div class="mm">RPUQ051S2S<small>3·4·5대 구성 시공</small></div></div>
-        <div class="featbar">일반 가정용 대비 <b>고효율 상업용 등급</b> → 전력비 절감 효과 우수</div>
+    <div class="catalog">
+      <div class="pcard">
+        <div class="pimg"><img src="img/indoor-1way.png" alt="LG 1way 천장형 실내기"></div>
+        <div class="pbody">
+          <div class="tag">PRODUCT · 실내기</div>
+          <h3>LG 1way 천장형 실내기</h3>
+          <ul>
+            <li>거실 메인 · 18평형<small>MODEL RNW0720C2S.AKM</small></li>
+            <li>안방 · 6평형<small>MODEL RNW0230C2S.AKM</small></li>
+            <li>기타 룸 · 5평형 (구성별 1~3대)<small>MODEL RNW0200C2S.AKM</small></li>
+          </ul>
+        </div>
       </div>
-      <div class="unitcard">
-        <div class="tag">INDOOR UNIT · 1WAY 천장형</div>
-        <h3 style="margin:8px 0 6px">LG 상업용 냉방전용 실내기</h3>
-        <div class="modelrow"><div class="pyeong"><b>18</b><span>평형</span></div>
-          <div class="mm">거실 메인 · 1way 천장형<small>MODEL RNW0720C2S.AKM</small></div></div>
-        <div class="modelrow"><div class="pyeong"><b>6</b><span>평형</span></div>
-          <div class="mm">안방 · 1way 천장형<small>MODEL RNW0230C2S.AKM</small></div></div>
-        <div class="modelrow"><div class="pyeong"><b>5</b><span>평형</span></div>
-          <div class="mm">기타 룸 · 1way 천장형 (구성별 1~3대)<small>MODEL RNW0200C2S.AKM</small></div></div>
+
+      <div class="pcard">
+        <div class="ph"><div class="ic">🧰</div><div class="tx">이미지 준비 중</div></div>
+        <div class="pbody">
+          <div class="tag">ACCESSORIES · 부수자재</div>
+          <h3>시공 부수자재</h3>
+          <ul>
+            <li>전용 유선 리모컨 2개<small>MODEL PWLSSC41C</small></li>
+            <li>냉매 배관 기본 30M · 보온 마감</li>
+            <li>전원선 기본 50M · 공용부 전원연결</li>
+            <li>실외기 2단 제작앵글 · 앵커 고정</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pimg"><img src="img/outdoor-unit.png" alt="LG 상업용 냉방전용 실외기"></div>
+        <div class="pbody">
+          <div class="tag">OUTDOOR UNIT · 실외기</div>
+          <h3>LG 상업용 냉방전용 실외기</h3>
+          <ul>
+            <li>4HP · 2대 구성 시공<small>MODEL RPUQ041S2S</small></li>
+            <li>5HP · 3·4·5대 구성 시공<small>MODEL RPUQ051S2S</small></li>
+            <li>일반 가정용 대비 고효율 상업용 등급 → 전력비 절감</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="ph"><div class="ic">📱</div><div class="tx">이미지 준비 중</div></div>
+        <div class="pbody">
+          <div class="tag">CONTROL · LG ThinQ</div>
+          <h3>스마트 제어 · LG ThinQ</h3>
+          <ul>
+            <li>스마트폰 앱으로 원격 제어 · 예약</li>
+            <li>외출 중에도 켜고 끄기 가능</li>
+            <li>전용 유선 리모컨 병행 사용</li>
+          </ul>
+        </div>
       </div>
     </div>
+    
     <div class="callout">
       <h3 style="margin-bottom:8px">💡 스마트한 제어 · 고효율 설계</h3>
       <p>제공되는 <b>전용 리모컨</b>과 <b>스마트폰 앱</b>으로 언제 어디서나 냉방을 켜고 끄고 예약할 수 있습니다.
         고효율 인버터 상업용 등급으로 <b>전력 효율</b>도 우수해, 일상 편의와 운영비를 동시에 잡았습니다.</p>
     </div>
-    <p class="pnote">※ 실제 제품 사진은 모델 확인 후 추후 추가될 예정입니다.</p>
+    <p class="pnote">※ 부수자재 · LG ThinQ 이미지는 준비 중입니다. 제품 사진은 최종 모델 확정 후 교체될 수 있습니다.</p>
   </div>
 </section>
 

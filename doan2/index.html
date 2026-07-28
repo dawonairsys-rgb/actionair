@@ -276,6 +276,42 @@
     .ab{font-size:12px;padding:6px 13px;margin-left:42px}
   }
   .btn{cursor:pointer}
+
+  /* LG 카탈로그형 라이프스타일 블록 */
+  .lifehero{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 18px 44px rgba(30,42,56,.16)}
+  .lifehero img{width:100%;display:block}
+  .lifehero .ov{position:absolute;left:0;right:0;bottom:0;padding:36px 40px;color:#fff;
+    background:linear-gradient(to top,rgba(15,22,31,.86),rgba(15,22,31,.52) 46%,rgba(15,22,31,.12) 76%,rgba(15,22,31,0))}
+  .lifehero .ovk{display:inline-block;background:rgba(192,160,90,.94);color:#231c08;font-weight:800;
+    letter-spacing:2px;font-size:12px;padding:6px 13px;border-radius:100px}
+  .lifehero .ovt{font-size:35px;font-weight:800;letter-spacing:-1.4px;line-height:1.2;margin-top:9px}
+  .lifehero .ovs{font-size:15.5px;color:#D9E1EA;margin-top:9px;max-width:520px}
+  .imgnote{margin-top:10px;font-size:12px;color:var(--muted)}
+
+  .lifesub{display:grid;grid-template-columns:1.05fr 1fr;gap:22px;margin-top:28px;align-items:center}
+  .lifesub .ph2{border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .lifesub .ph2 img{width:100%;display:block}
+  .lifesub h3{font-size:23px;letter-spacing:-.7px;margin-bottom:14px}
+  .lifesub ul{list-style:none}
+  .lifesub li{position:relative;padding-left:21px;margin-top:11px;font-size:15px;color:#3B424C;line-height:1.6}
+  .lifesub li:before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+
+  .catlabel{margin:34px 0 13px;font-size:13px;font-weight:800;letter-spacing:2.4px;color:var(--gold-d);
+    display:flex;align-items:center;gap:14px}
+  .catlabel:after{content:"";flex:1;height:1px;background:var(--line)}
+
+  @media (max-width:760px){
+    .lifehero{border-radius:16px}
+    .lifehero .ov{padding:18px 18px 16px;
+      background:linear-gradient(to top,rgba(15,22,31,.90),rgba(15,22,31,.62) 42%,rgba(15,22,31,.16) 74%,rgba(15,22,31,0))}
+    .lifehero .ovk{font-size:10.5px;letter-spacing:1.4px;padding:5px 11px}
+    .lifehero .ovt{font-size:22px;margin-top:6px}
+    .lifehero .ovs{font-size:13px;margin-top:5px}
+    .lifesub{grid-template-columns:1fr;gap:16px;margin-top:20px}
+    .lifesub h3{font-size:18.5px;margin-bottom:9px}
+    .lifesub li{font-size:14px;margin-top:8px;padding-left:18px}
+    .catlabel{margin:26px 0 11px;font-size:11.5px;letter-spacing:1.8px}
+  }
 </style>
 </head>
 <body>
@@ -371,6 +407,29 @@
   <div class="wrap">
     <div class="eyebrow">04 · SYSTEM SPEC</div>
     <h2>시스템 구성 — <span class="g">LG 상업용 냉방전용</span></h2>
+    <div class="lifehero">
+      <img src="img/life-1.png" alt="거실 천장에 설치된 LG 1way 천장형 실내기">
+      <div class="ov">
+        <div class="ovk">LG 1WAY 천장형</div>
+        <div class="ovt">천장에 스며드는 냉방</div>
+        <div class="ovs">거실부터 방까지, 생활 공간을 해치지 않는 매립형 설계</div>
+      </div>
+    </div>
+    <p class="imgnote">* 소비자의 이해를 돕기 위해 연출된 이미지입니다.</p>
+
+    <div class="lifesub">
+      <div class="ph2"><img src="img/life-2.png" alt="화이트 인테리어 거실에 설치된 1way 천장형 실내기"></div>
+      <div>
+        <h3>스마트한 제어 · 고효율 설계</h3>
+        <ul>
+          <li>전용 무선 리모컨과 스마트폰 앱으로 언제 어디서나 켜고 끄고 예약</li>
+          <li>예약 · 취침 운전으로 생활 패턴에 맞춘 냉방</li>
+          <li>고효율 인버터 상업용 등급으로 전력 효율 확보</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="catlabel">PRODUCT LINE-UP</div>
     <div class="catalog">
       <div class="pcard">
         <div class="pimg"><img src="img/indoor-1way.png" alt="LG 1way 천장형 실내기"></div>
@@ -426,11 +485,6 @@
       </div>
     </div>
     
-    <div class="callout">
-      <h3 style="margin-bottom:8px">💡 스마트한 제어 · 고효율 설계</h3>
-      <p>제공되는 <b>전용 리모컨</b>과 <b>스마트폰 앱</b>으로 언제 어디서나 냉방을 켜고 끄고 예약할 수 있습니다.
-        고효율 인버터 상업용 등급으로 <b>전력 효율</b>도 우수해, 일상 편의와 운영비를 동시에 잡았습니다.</p>
-    </div>
     <p class="pnote">※ 제품 사진은 최종 모델 확정 후 교체될 수 있으며, LG ThinQ 앱 화면은 제조사 제공 이미지로 앱 버전·모델에 따라 실제 화면과 다를 수 있습니다.</p>
   </div>
 </section>

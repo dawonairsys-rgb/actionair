@@ -156,6 +156,11 @@
   .acct .anote li{font-size:13.5px;color:#3B424C;padding-left:15px;position:relative;line-height:1.55}
   .acct .anote li:before{content:"·";position:absolute;left:4px;font-weight:800;color:var(--gold-d)}
   .acct .anote b{color:var(--gold-d)}
+  .acct .numrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .copybtn{border:1px solid var(--gold);background:#fff;color:var(--gold-d);font-family:inherit;font-weight:800;
+    font-size:12.5px;padding:6px 13px;border-radius:100px;cursor:pointer;white-space:nowrap;transition:.15s}
+  .copybtn:hover{background:var(--gold);color:#2a2208}
+  .copybtn.done{background:#2F6B48;border-color:#2F6B48;color:#fff}
 
   /* 모바일 간격 압축 */
   @media (max-width:760px){
@@ -295,7 +300,9 @@
       <div class="ah">계약금 입금 계좌</div>
       <div class="arow">
         <div class="ai"><span>계약금</span><b>1,000,000원</b></div>
-        <div class="ai"><span>입금 계좌</span><b>농협 301-0378-9026-01</b></div>
+        <div class="ai"><span>입금 계좌</span>
+          <div class="numrow"><b>농협 301-0378-9026-01</b><button type="button" class="copybtn" data-copy="301-0378-9026-01">복사</button></div>
+        </div>
         <div class="ai"><span>예금주</span><b>㈜다원에어시스</b></div>
       </div>
       <ul class="anote">
@@ -454,6 +461,37 @@
     if (!el) return;
     e.preventDefault();
     el.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  /* 계좌번호 복사 */
+  function copyFallback(text, done){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    try { document.execCommand('copy'); done(); } catch (err) {}
+    document.body.removeChild(ta);
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest ? e.target.closest('[data-copy]') : null;
+    if (!btn) return;
+    var text = btn.getAttribute('data-copy');
+    var label = btn.getAttribute('data-label') || btn.textContent;
+    btn.setAttribute('data-label', label);
+    var done = function(){
+      btn.textContent = '복사됨';
+      btn.classList.add('done');
+      setTimeout(function(){ btn.textContent = label; btn.classList.remove('done'); }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function(){ copyFallback(text, done); });
+    } else {
+      copyFallback(text, done);
+    }
   });
 })();
 </script>

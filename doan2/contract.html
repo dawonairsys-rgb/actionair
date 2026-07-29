@@ -144,9 +144,28 @@
     .callbox .lbl2{font-size:12px}
   }
 
+  /* 계약금 입금 계좌 안내 */
+  .acct{background:#FBF7EE;border:1px solid var(--gold);border-radius:16px;padding:22px 24px;margin-bottom:22px}
+  .acct .ah{font-weight:800;font-size:16.5px;margin-bottom:14px}
+  .acct .arow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+  .acct .ai{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .acct .ai span{display:block;font-size:12.5px;color:var(--muted);font-weight:700;margin-bottom:5px}
+  .acct .ai b{font-size:18px;letter-spacing:-.4px}
+  .acct .ai b.todo{font-size:14px;color:#B4451F}
+  .acct .anote{list-style:none;display:grid;gap:8px}
+  .acct .anote li{font-size:13.5px;color:#3B424C;padding-left:15px;position:relative;line-height:1.55}
+  .acct .anote li:before{content:"·";position:absolute;left:4px;font-weight:800;color:var(--gold-d)}
+  .acct .anote b{color:var(--gold-d)}
+
   /* 모바일 간격 압축 */
   @media (max-width:760px){
     section{padding:32px 0}
+    .acct{padding:16px 17px;margin-bottom:14px}
+    .acct .ah{font-size:15.5px;margin-bottom:11px}
+    .acct .arow{grid-template-columns:1fr;gap:8px;margin-bottom:13px}
+    .acct .ai{padding:11px 14px}
+    .acct .ai b{font-size:16.5px}
+    .acct .anote li{font-size:13px}
     h2{margin-bottom:18px}
     .steps,.flow,.paycards,.warngrid{gap:10px}
 
@@ -236,7 +255,7 @@
           <div class="amt">1,000,000원 <small>정액</small></div>
           <div class="when">납부 시점</div>
           <div class="whenv">계약 체결 시</div>
-          <div class="extra">구글폼 작성·신청 직후 납부</div>
+          <div class="extra">구글폼 작성·신청 직후 납부 · 입금 계좌는 아래 <b>신청 방법</b>에 안내</div>
         </div>
       </div>
       <div class="step">
@@ -271,6 +290,21 @@
       <div class="fcard"><div class="fn">2</div><h3>계약금 납부</h3><p>신청 직후 계약금 1,000,000원 입금</p></div>
       <div class="fcard"><div class="fn">3</div><h3>접수 확인</h3><p>접수 완료 안내 · 세대별 시공일 개별 협의</p></div>
     </div>
+
+    <div class="acct">
+      <div class="ah">계약금 입금 계좌</div>
+      <div class="arow">
+        <div class="ai"><span>계약금</span><b>1,000,000원</b></div>
+        <div class="ai"><span>입금 계좌</span><b>농협 301-0378-9026-01</b></div>
+        <div class="ai"><span>예금주</span><b class="todo">[예금주명 확인 중]</b></div>
+      </div>
+      <ul class="anote">
+        <li><b>신청폼 제출만으로는 접수가 완료되지 않습니다.</b> 계약금 입금이 확인된 시점에 접수가 확정됩니다.</li>
+        <li>입금은 <b>계약자 본인 명의</b>로 해주세요. 명의가 다른 경우 입금 후 <b>1555-7726</b>으로 알려주시기 바랍니다.</li>
+        <li>중도금·잔금 납부 시점과 금액은 위 <b>결제 단계</b>를, 결제수단별 혜택은 아래 <b>구성별 가격</b>을 확인해 주세요.</li>
+      </ul>
+    </div>
+
     <div class="applybox" data-scroll-target="apply">
       <h3 style="color:#fff">지금 신청하기</h3>
       <p style="margin:8px 0 18px">설치할 <b style="color:var(--gold)">대수(구성)에 맞는 신청폼</b>을 선택해 작성해 주세요.</p>

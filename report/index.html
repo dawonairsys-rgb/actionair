@@ -471,7 +471,6 @@ function renderAll() {
   document.getElementById('updated-a').textContent = '최종 업데이트: '+new Date().toLocaleDateString('ko-KR');
 }
 
-/* ── 테이블 공통 렌더 ── */
 function renderTableTo(rows, tbodyId, cntId) {
   document.getElementById(cntId).textContent = rows.length+'건';
   const teamClass = t => {
@@ -509,6 +508,30 @@ function renderTableTo(rows, tbodyId, cntId) {
       <td class="l">${paidTag}</td>
     </tr>`;
   }).join('');
+
+  // 합계 행 (취소됨·휴무 제외)
+  const sumRows = rows.filter(r => !EXCL.includes(r.team));
+  const sums = {
+    contract:   sumRows.reduce((s,r)=>s+(r.contract||0),0),
+    product:    sumRows.reduce((s,r)=>s+(r.product||0),0),
+    labor:      sumRows.reduce((s,r)=>s+(r.labor||0),0),
+    paint_cost: sumRows.reduce((s,r)=>s+(r.paint_cost||0),0),
+    material:   sumRows.reduce((s,r)=>s+(r.material||0),0),
+    profit:     sumRows.reduce((s,r)=>s+(r.profit||0),0),
+  };
+  document.getElementById(tbodyId).innerHTML += `
+  <tr style="background:#1a2744;font-weight:700;">
+    <td class="l" colspan="4" style="color:#fff;border:none;">
+      합 계 <span style="font-size:10px;opacity:.65">(취소됨·휴무 제외)</span>
+    </td>
+    <td class="r num" style="color:#fff;border:none;">${fmt(sums.contract)}</td>
+    <td class="r num" style="color:#fff;border:none;">${fmt(sums.product)}</td>
+    <td class="r num" style="color:#fff;border:none;">${fmt(sums.labor)}</td>
+    <td class="r num" style="color:#fff;border:none;">${fmt(sums.paint_cost)}</td>
+    <td class="r num" style="color:#fff;border:none;">${fmt(sums.material)}</td>
+    <td class="r num" style="color:${sums.profit<0?'#ff8a80':'#a5d6a7'};border:none;">${fmt(sums.profit)}</td>
+    <td style="border:none;"></td>
+  </tr>`;
 }
 
 /* ── 결재란 ── */

@@ -145,6 +145,40 @@ tr.row-holiday { opacity:.4; }
 .bigo-item .bigo-memo { color:#444; }
 
 .empty-msg { color:#aaa; font-size:13px; padding:8px 0; }
+.approval-card {
+  flex:1; min-width:160px; max-width:220px;
+  border:2px solid #d0d5e0; border-radius:12px;
+  padding:18px 20px; text-align:center; transition:.2s;
+  cursor:pointer; user-select:none; background:#fff;
+}
+.approval-card:hover { border-color:#1a2744; }
+.approval-card.checked {
+  border-color:#1a2744; background:#1a2744; color:#fff;
+}
+.approval-role {
+  font-size:13px; font-weight:700; margin-bottom:12px; color:inherit;
+}
+.approval-check {
+  font-size:32px; margin-bottom:10px; display:block;
+}
+.approval-card.checked .approval-check { content:'✅'; }
+.approval-time {
+  font-size:11px; color:#888; min-height:16px; line-height:1.5;
+}
+.approval-card.checked .approval-time { color:rgba(255,255,255,.75); }
+.approval-reset {
+  font-size:11px; color:#aaa; margin-top:6px; cursor:pointer;
+  text-decoration:underline; display:none;
+}
+.approval-card.checked .approval-reset { display:block; color:rgba(255,255,255,.6); }
+
+.sel-drop {
+  padding:9px 14px; border:2px solid #d0d5e0; border-radius:8px;
+  font-size:14px; font-family:inherit; background:#fff; color:#1a2744;
+  cursor:pointer; outline:none; transition:.15s; min-width:120px;
+}
+.sel-drop:focus { border-color:#1a2744; }
+
 .updated { font-size:11px; color:#bbb; text-align:right; margin-top:12px; }
 </style>
 </head>
@@ -172,7 +206,7 @@ tr.row-holiday { opacity:.4; }
 
   <!-- ① 보고 페이지 -->
   <div class="page active" id="page-report">
-    <div class="week-tabs" id="tabs-report"></div>
+    <div id="report-week-label" style="font-size:13px;color:#888;margin-bottom:18px;font-weight:600;"></div>
 
     <!-- 요약 카드 -->
     <div class="summary-grid" id="summary-cards"></div>
@@ -210,12 +244,23 @@ tr.row-holiday { opacity:.4; }
       </div>
     </div>
 
+    <!-- 결재란 -->
+    <div class="section">
+      <div class="sec-title">✅ 결 재</div>
+      <div id="approval-box" style="display:flex;gap:16px;flex-wrap:wrap;"></div>
+    </div>
+
     <div class="updated" id="updated-r"></div>
   </div>
 
   <!-- ② 전체 내역 -->
   <div class="page" id="page-all">
-    <div class="week-tabs" id="tabs-all"></div>
+    <!-- 드롭다운 필터 -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+      <select id="sel-year"  class="sel-drop" onchange="onYearChange()"></select>
+      <select id="sel-month" class="sel-drop" onchange="onMonthChange()"></select>
+      <select id="sel-week"  class="sel-drop" onchange="onWeekChange()"></select>
+    </div>
 
     <!-- 상세 테이블 -->
     <div class="section">
@@ -232,7 +277,13 @@ tr.row-holiday { opacity:.4; }
       </div>
     </div>
 
-    <!-- 특이사항 -->
+    <!-- 결재 현황 -->
+    <div class="section">
+      <div class="sec-title">✅ 결 재 현 황</div>
+      <div id="all-approval-box" style="display:flex;gap:12px;flex-wrap:wrap;"></div>
+    </div>
+
+    <!-- 특이사항 (전체내역) -->
     <div class="section" id="sec-bigo-all">
       <div class="sec-title">📌 특이사항 (비고) <span class="badge" id="cnt-bigo-all">0건</span></div>
       <div class="bigo-list" id="list-bigo-all"></div>
@@ -261,9 +312,9 @@ async function initApp() {
   const res = await fetch('data.json');
   DATA = await res.json();
   curR = DATA[DATA.length-1].key;
-  curA = DATA[DATA.length-1].key;
-  buildTabs('tabs-report', 'R');
-  buildTabs('tabs-all',    'A');
+  // 전전주 = 최신에서 2번째 (없으면 최신)
+  curA = DATA.length >= 2 ? DATA[DATA.length-2].key : DATA[DATA.length-1].key;
+  buildDropdowns();
   renderReport();
   renderAll();
 }
@@ -276,25 +327,64 @@ function showPage(name) {
   event.currentTarget.classList.add('active');
 }
 
-/* ── 탭 ── */
-function buildTabs(wrapId, mode) {
-  const wrap = document.getElementById(wrapId);
-  wrap.innerHTML = '';
-  DATA.forEach(w => {
-    const btn = document.createElement('button');
-    btn.className = 'wtab';
-    btn.textContent = w.key + ' (' + w.label + ')';
-    btn.onclick = () => {
-      if (mode==='R') { curR = w.key; renderReport(); }
-      else            { curA = w.key; renderAll();    }
-      wrap.querySelectorAll('.wtab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    };
-    if ((mode==='R' && w.key===curR)||(mode==='A' && w.key===curA))
-      btn.classList.add('active');
-    wrap.appendChild(btn);
-  });
+/* ── 드롭다운 ── */
+function buildDropdowns() {
+  // 연도 목록
+  const years = [...new Set(DATA.map(w => w.month.slice(0,4)))];
+  const selY = document.getElementById('sel-year');
+  selY.innerHTML = years.map(y => `<option value="${y}">${y}년</option>`).join('');
+
+  // 현재 선택된 주의 연도/월 기준으로 초기값 설정
+  const curWeek = DATA.find(w => w.key === curA);
+  const initYear  = curWeek ? curWeek.month.slice(0,4) : years[years.length-1];
+  const initMonth = curWeek ? curWeek.month.slice(5,7) : '';
+  selY.value = initYear;
+
+  buildMonthDropdown(initYear, initMonth);
 }
+
+function buildMonthDropdown(year, selectMonth) {
+  const months = [...new Set(
+    DATA.filter(w => w.month.startsWith(year)).map(w => w.month.slice(5,7))
+  )];
+  const selM = document.getElementById('sel-month');
+  selM.innerHTML = months.map(m => `<option value="${m}">${parseInt(m)}월</option>`).join('');
+  if (selectMonth && months.includes(selectMonth)) selM.value = selectMonth;
+  else selM.value = months[months.length-1];
+  buildWeekDropdown(year, selM.value);
+}
+
+function buildWeekDropdown(year, month) {
+  const ymonth = `${year}-${month}`;
+  const weeks  = DATA.filter(w => w.month === ymonth);
+  const selW   = document.getElementById('sel-week');
+  selW.innerHTML = weeks.map(w =>
+    `<option value="${w.key}">${w.key} (${w.label})</option>`
+  ).join('');
+  // curA가 이 목록에 있으면 그걸로, 없으면 마지막
+  const match = weeks.find(w => w.key === curA);
+  selW.value = match ? match.key : weeks[weeks.length-1].key;
+  curA = selW.value;
+}
+
+function onYearChange() {
+  const y = document.getElementById('sel-year').value;
+  buildMonthDropdown(y, null);
+  curA = document.getElementById('sel-week').value;
+  renderAll();
+}
+function onMonthChange() {
+  const y = document.getElementById('sel-year').value;
+  const m = document.getElementById('sel-month').value;
+  buildWeekDropdown(y, m);
+  curA = document.getElementById('sel-week').value;
+  renderAll();
+}
+function onWeekChange() {
+  curA = document.getElementById('sel-week').value;
+  renderAll();
+}
+
 
 /* ── 유틸 ── */
 const EXCL = ['휴무','취소됨','시공취소','대체공휴일',''];
@@ -309,6 +399,9 @@ function renderReport() {
   const w     = getWeek(curR);
   const rows  = w.rows;
   const valid = validRows(rows);
+
+  // 주차 라벨
+  document.getElementById('report-week-label').textContent = '📅 ' + w.key + '  ' + w.label;
 
   // 요약
   const tc = valid.reduce((s,r)=>s+r.contract,0);
@@ -356,6 +449,10 @@ function renderReport() {
 
   // 주간 상세 테이블
   renderTableTo(rows, 'tbody-report', 'cnt-report-table');
+
+  // 결재란
+  renderApproval();
+
   document.getElementById('updated-r').textContent = '최종 업데이트: '+new Date().toLocaleDateString('ko-KR');
 }
 
@@ -367,6 +464,10 @@ function renderAll() {
 
   // 특이사항
   renderBigo(w.bigo, 'cnt-bigo-all', 'list-bigo-all');
+
+  // 결재 현황
+  renderAllApproval();
+
   document.getElementById('updated-a').textContent = '최종 업데이트: '+new Date().toLocaleDateString('ko-KR');
 }
 
@@ -410,7 +511,76 @@ function renderTableTo(rows, tbodyId, cntId) {
   }).join('');
 }
 
-/* ── 특이사항 공통 렌더 ── */
+/* ── 결재란 ── */
+const APPROVAL_ROLES = ['담당','팀장','대표'];
+
+function approvalKey(weekKey, role) {
+  return `approval_${weekKey}_${role}`;
+}
+
+function renderApproval() {
+  const box = document.getElementById('approval-box');
+  box.innerHTML = '';
+  APPROVAL_ROLES.forEach(role => {
+    const key       = approvalKey(curR, role);
+    const savedTime = localStorage.getItem(key);
+    const isChecked = !!savedTime;
+
+    const card = document.createElement('div');
+    card.className = 'approval-card' + (isChecked ? ' checked' : '');
+    card.innerHTML = `
+      <div class="approval-role">${role}</div>
+      <span class="approval-check">${isChecked ? '✅' : '⬜'}</span>
+      <div class="approval-time">${isChecked ? savedTime : '미결재'}</div>
+      <div class="approval-reset" onclick="resetApproval(event,'${role}')">취소</div>
+    `;
+    card.onclick = (e) => {
+      if (e.target.classList.contains('approval-reset')) return;
+      if (!isChecked) {
+        const now = new Date();
+        const timeStr = now.getFullYear() + '.' +
+          String(now.getMonth()+1).padStart(2,'0') + '.' +
+          String(now.getDate()).padStart(2,'0') + ' ' +
+          String(now.getHours()).padStart(2,'0') + ':' +
+          String(now.getMinutes()).padStart(2,'0');
+        localStorage.setItem(key, timeStr);
+        renderApproval();
+        renderAllApproval();
+      }
+    };
+    box.appendChild(card);
+  });
+}
+
+function resetApproval(e, role) {
+  e.stopPropagation();
+  if (!confirm(`"${role}" 결재를 취소하시겠습니까?`)) return;
+  localStorage.removeItem(approvalKey(curR, role));
+  renderApproval();
+  renderAllApproval();
+}
+
+/* ── 전체내역 결재 표시 ── */
+function renderAllApproval() {
+  const el = document.getElementById('all-approval-box');
+  if (!el) return;
+  const week = DATA.find(w => w.key === curA);
+  if (!week) return;
+  el.innerHTML = APPROVAL_ROLES.map(role => {
+    const saved = localStorage.getItem(approvalKey(curA, role));
+    return `<div style="display:flex;align-items:center;gap:8px;padding:10px 14px;
+      border-radius:8px;background:${saved?'#e8f5e9':'#f5f5f5'};
+      border:1px solid ${saved?'#a5d6a7':'#ddd'};min-width:140px;">
+      <span style="font-size:18px">${saved?'✅':'⬜'}</span>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:${saved?'#2e7d32':'#888'}">${role}</div>
+        <div style="font-size:11px;color:${saved?'#555':'#aaa'}">${saved||'미결재'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+
 function renderBigo(bigo, cntId, listId) {
   document.getElementById(cntId).textContent = (bigo||[]).length+'건';
   const el = document.getElementById(listId);

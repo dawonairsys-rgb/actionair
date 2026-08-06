@@ -202,6 +202,59 @@
 
   [data-scroll-target]{scroll-margin-top:74px}
   .btn{cursor:pointer}
+
+  /* ── 화이트 테마 (계약·신청 페이지 전용) — 색상만 재정의, 구조·문구 변화 없음 ── */
+  :root{ --cream:#FFFFFF; --line:#E4E6E2; --shadow:0 8px 24px rgba(20,24,28,.06); }
+  body{background:#FFFFFF}
+
+  .topbar{background:#FFFFFF;color:var(--ink);border-bottom:1px solid var(--line)}
+  .topbar .bland b{color:var(--gold-d)}
+  .topbar a{color:var(--ink);border-color:#D9DCD7}
+
+  .hero{background:#FFFFFF;color:var(--ink);border-bottom:1px solid var(--line)}
+  .hero:before{background:radial-gradient(circle,rgba(192,160,90,.14),transparent 70%)}
+  .hero .kick{color:var(--gold-d)}
+  .hero h1 .g{color:var(--gold-d)}
+  .hero .lead{color:var(--muted)}
+  .hero .chip{background:#F7F8F6;border:1px solid var(--line);color:#3B424C}
+  .hero .chip b{color:var(--gold-d)}
+
+  .step .sh{background:#F7F8F6;color:var(--ink);border-bottom:1px solid var(--line)}
+  .step .sh .st{color:var(--gold-d)}
+
+  .fcard .fn{background:var(--ink);color:#fff}
+
+  .applybox{background:#FFFFFF;color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .applybox p{color:var(--muted)}
+  .applybox h3[style]{color:var(--ink)!important}
+
+  .btn.ghost{background:#FFFFFF;color:var(--ink);border:1.5px solid #D9DCD7}
+
+  .ptable thead th{background:#F7F8F6;color:var(--ink);border-bottom:1px solid var(--line)}
+
+  .speed{background:#FFFFFF;color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .speed .big{color:var(--gold-d)}
+  .speed p{color:#3B424C}
+
+  .cta{background:#FFFFFF;color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .cta .lbl{color:var(--muted)}
+  .cta .num{color:var(--gold-d)}
+  .cta h2[style]{color:var(--ink)!important}
+
+  .callbox{background:#FBF8F1;border:1.5px solid var(--gold)}
+  .callbox .lbl2{color:var(--gold-d)}
+  .callbox .num2{color:var(--ink)}
+
+  footer{background:#F7F8F6;color:var(--muted);border-top:1px solid var(--line)}
+  footer b{color:var(--ink)}
+
+  /* 화이트 배경에서 대비 보정 */
+  .hero .lead{color:#4B535D}
+  .applybox p{color:#4B535D}
+  .cta p[style]{color:#5A626C!important}
+  .applybox b[style],.cta b[style],.applybox p b,.cta p b{color:var(--gold-d)!important}
+  .callbox .ic{color:#2a2208}
+
 </style>
 </head>
 <body>

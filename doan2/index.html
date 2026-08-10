@@ -223,6 +223,13 @@
   .callbox .tx span{display:block}
   .callbox .lbl2{color:var(--gold);font-size:13px;font-weight:800;letter-spacing:.2px}
   .callbox .num2{font-size:33px;font-weight:800;color:#fff;letter-spacing:1px;line-height:1.18}
+  .callrow{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center}
+  .callbox.sub{padding:12px 20px}
+  .callbox.sub .ic{width:38px;height:38px;background:rgba(192,160,90,.20);color:var(--gold)}
+  .callbox.sub .num2{font-size:25px;letter-spacing:.6px}
+  .callnote{margin-top:14px;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.72)}
+  .callnote b{color:#fff;font-weight:800}
+  @media (max-width:560px){ .callrow{flex-direction:column} .callbox,.callbox.sub{width:100%;justify-content:flex-start} }
   @media (max-width:440px){
     .callbox{padding:12px 17px;gap:12px}
     .callbox .ic{width:38px;height:38px;font-size:18px}
@@ -345,13 +352,23 @@
     <div class="cta">
       <h2 style="margin-bottom:6px">지금 바로 신청하세요</h2>
       <p style="color:#C9D2DD">구성 선택부터 결제 단계까지 전용 페이지에서 안내드립니다. 궁금한 점은 전용 상담으로 문의해 주세요.</p>
-      <a class="callbox" href="tel:15557726">
-        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
-        <span class="tx">
-          <span class="lbl2">힐스테이트 도안2차 전용 상담</span>
-          <span class="num2">1555-7726</span>
-        </span>
-      </a>
+      <div class="callrow">
+        <a class="callbox" href="tel:15557726">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+          <span class="tx">
+            <span class="lbl2">힐스테이트 도안2차 전용 상담</span>
+            <span class="num2">1555-7726</span>
+          </span>
+        </a>
+        <a class="callbox sub" href="tel:01023122627">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+          <span class="tx">
+            <span class="lbl2">전화 · 문자 모두 가능</span>
+            <span class="num2">010-2312-2627</span>
+          </span>
+        </a>
+      </div>
+      <p class="callnote">대표전화 통화량이 많을 때는 <b>010-2312-2627</b>로 전화 주시거나 문자를 남겨 주세요. 확인하는 대로 연락드립니다.</p>
       <div class="btnrow">
         <a class="btn red" href="contract.html">신청하기 &rarr;</a>
         <a class="btn ghost" href="tel:15557726">전화 상담하기</a>
@@ -687,13 +704,23 @@
     <div class="cta">
       <h2 style="margin-bottom:6px">계약·신청은 전용 페이지에서</h2>
       <p style="color:#C9D2DD">결제 단계·신청 방법·구성 선택을 한 곳에서 안내해 드립니다.</p>
-      <a class="callbox" href="tel:15557726">
-        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
-        <span class="tx">
-          <span class="lbl2">힐스테이트 도안2차 전용 상담</span>
-          <span class="num2">1555-7726</span>
-        </span>
-      </a>
+      <div class="callrow">
+        <a class="callbox" href="tel:15557726">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+          <span class="tx">
+            <span class="lbl2">힐스테이트 도안2차 전용 상담</span>
+            <span class="num2">1555-7726</span>
+          </span>
+        </a>
+        <a class="callbox sub" href="tel:01023122627">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+          <span class="tx">
+            <span class="lbl2">전화 · 문자 모두 가능</span>
+            <span class="num2">010-2312-2627</span>
+          </span>
+        </a>
+      </div>
+      <p class="callnote">대표전화 통화량이 많을 때는 <b>010-2312-2627</b>로 전화 주시거나 문자를 남겨 주세요. 확인하는 대로 연락드립니다.</p>
       <div class="btnrow">
         <a class="btn red" href="contract.html">신청하기 &rarr;</a>
         <a class="btn ghost" href="tel:15557726">전화 상담하기</a>
@@ -705,7 +732,7 @@
 <footer>
   <div class="wrap">
     <b>힐스테이트 도안2차 냉방시스템 개별설치</b> · 시공 주관 ㈜다원에어시스 + 액션에어<br>
-    대표번호 1555-7726 · 세종시 소정면 소정구길 228 · 사업자 520-88-00856<br>
+    대표번호 1555-7726 · 휴대전화 010-2312-2627 · 세종시 소정면 소정구길 228 · 사업자 520-88-00856<br>
     <span style="opacity:.7">본 안내는 입주민 이해를 돕기 위한 자료이며, 세부 조건은 계약 시점 협약서·안내에 따릅니다.</span>
   </div>
 </footer>

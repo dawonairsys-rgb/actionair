@@ -182,6 +182,7 @@ tr.row-holiday { opacity:.4; }
 
 .updated { font-size:11px; color:#bbb; text-align:right; margin-top:12px; }
 </style>
+<script src="config.js"></script>
 </head>
 <body>
 
@@ -313,8 +314,8 @@ async function initApp() {
   const res = await fetch('data.json');
   DATA = await res.json();
   curR = DATA[DATA.length-1].key;
-  // 전전주 = 최신에서 2번째 (없으면 최신)
   curA = DATA.length >= 2 ? DATA[DATA.length-2].key : DATA[DATA.length-1].key;
+  await loadApprovalData();
   buildDropdowns();
   renderReport();
   renderAll();
@@ -535,11 +536,56 @@ function renderTableTo(rows, tbodyId, cntId) {
   </tr>`;
 }
 
-/* ── 결재란 ── */
+/* ── 결재란 (GitHub 연동) ── */
 const APPROVAL_ROLES = ['담당','팀장','대표'];
+// GH_TOKEN은 config.js에서 로드됨 (window.GH_TOKEN)
+const GH_REPO   = 'dawonairsys-rgb/actionair';
+const GH_PATH   = 'report/approval.json';
+const GH_API    = `https://api.github.com/repos/${GH_REPO}/contents/${GH_PATH}`;
+
+let APPROVAL_DATA = {};   // 전체 결재 데이터 캐시
+let APPROVAL_SHA  = '';   // 파일 SHA (업데이트 시 필요)
+
+// 앱 시작 시 결재 데이터 로드
+async function loadApprovalData() {
+  try {
+    const res  = await fetch(GH_API, {
+      headers: { 'Authorization': `token ${window.GH_TOKEN}` }
+    });
+    const json = await res.json();
+    APPROVAL_SHA  = json.sha;
+    APPROVAL_DATA = JSON.parse(atob(json.content.replace(/\n/g,'')));
+  } catch(e) {
+    APPROVAL_DATA = {};
+  }
+}
+
+// GitHub에 결재 데이터 저장
+async function saveApprovalData() {
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(APPROVAL_DATA, null, 2))));
+  const body = {
+    message: '결재 업데이트',
+    content,
+    sha: APPROVAL_SHA
+  };
+  try {
+    const res  = await fetch(GH_API, {
+      method:  'PUT',
+      headers: {
+        'Authorization': `token ${window.GH_TOKEN}`,
+        'Content-Type':  'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    const json = await res.json();
+    APPROVAL_SHA = json.content.sha;
+  } catch(e) {
+    alert('결재 저장 중 오류가 발생했습니다.');
+  }
+}
 
 function approvalKey(weekKey, role) {
-  return `approval_${weekKey}_${role}`;
+  return `${weekKey}__${role}`;
 }
 
 function renderApproval() {
@@ -547,7 +593,7 @@ function renderApproval() {
   box.innerHTML = '';
   APPROVAL_ROLES.forEach(role => {
     const key       = approvalKey(curR, role);
-    const savedTime = localStorage.getItem(key);
+    const savedTime = APPROVAL_DATA[key] || '';
     const isChecked = !!savedTime;
 
     const card = document.createElement('div');
@@ -558,7 +604,7 @@ function renderApproval() {
       <div class="approval-time">${isChecked ? savedTime : '미결재'}</div>
       <div class="approval-reset" onclick="resetApproval(event,'${role}')">취소</div>
     `;
-    card.onclick = (e) => {
+    card.onclick = async (e) => {
       if (e.target.classList.contains('approval-reset')) return;
       if (!isChecked) {
         const now = new Date();
@@ -567,31 +613,31 @@ function renderApproval() {
           String(now.getDate()).padStart(2,'0') + ' ' +
           String(now.getHours()).padStart(2,'0') + ':' +
           String(now.getMinutes()).padStart(2,'0');
-        localStorage.setItem(key, timeStr);
+        APPROVAL_DATA[key] = timeStr;
         renderApproval();
         renderAllApproval();
+        await saveApprovalData();
       }
     };
     box.appendChild(card);
   });
 }
 
-function resetApproval(e, role) {
+async function resetApproval(e, role) {
   e.stopPropagation();
   if (!confirm(`"${role}" 결재를 취소하시겠습니까?`)) return;
-  localStorage.removeItem(approvalKey(curR, role));
+  delete APPROVAL_DATA[approvalKey(curR, role)];
   renderApproval();
   renderAllApproval();
+  await saveApprovalData();
 }
 
 /* ── 전체내역 결재 표시 ── */
 function renderAllApproval() {
   const el = document.getElementById('all-approval-box');
   if (!el) return;
-  const week = DATA.find(w => w.key === curA);
-  if (!week) return;
   el.innerHTML = APPROVAL_ROLES.map(role => {
-    const saved = localStorage.getItem(approvalKey(curA, role));
+    const saved = APPROVAL_DATA[approvalKey(curA, role)] || '';
     return `<div style="display:flex;align-items:center;gap:8px;padding:10px 14px;
       border-radius:8px;background:${saved?'#e8f5e9':'#f5f5f5'};
       border:1px solid ${saved?'#a5d6a7':'#ddd'};min-width:140px;">

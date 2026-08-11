@@ -4,103 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>다원에어시스 시공 현황</title>
+<script src="config.js"></script>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Malgun Gothic','맑은 고딕',sans-serif; background:#f0f2f5; color:#222; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Malgun Gothic','맑은 고딕',sans-serif; background:#f0f2f5; color:#222; }
 
-/* ── 로그인 ── */
-#login-screen {
-  position:fixed; inset:0; background:#1a2744;
-  display:flex; align-items:center; justify-content:center; z-index:9999;
-}
-.login-box {
-  background:#fff; border-radius:16px; padding:48px 40px;
-  width:340px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.4);
-}
+/* 로그인 */
+#login-screen { position:fixed; inset:0; background:#1a2744; display:flex; align-items:center; justify-content:center; z-index:9999; }
+.login-box { background:#fff; border-radius:16px; padding:48px 40px; width:340px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.4); }
 .login-box h1 { font-size:19px; color:#1a2744; margin-bottom:6px; }
 .login-box p  { font-size:13px; color:#888; margin-bottom:26px; }
-.login-box input {
-  width:100%; padding:12px 16px; border:2px solid #ddd;
-  border-radius:8px; font-size:15px; margin-bottom:12px;
-  outline:none; letter-spacing:4px; text-align:center; font-family:inherit;
-}
+.login-box input { width:100%; padding:12px 16px; border:2px solid #ddd; border-radius:8px; font-size:15px; margin-bottom:12px; outline:none; letter-spacing:4px; text-align:center; font-family:inherit; }
 .login-box input:focus { border-color:#1a2744; }
-.login-box button {
-  width:100%; padding:13px; background:#1a2744; color:#fff;
-  border:none; border-radius:8px; font-size:15px; cursor:pointer; font-family:inherit;
-}
+.login-box button { width:100%; padding:13px; background:#1a2744; color:#fff; border:none; border-radius:8px; font-size:15px; cursor:pointer; font-family:inherit; }
 .login-box button:hover { background:#243660; }
 #login-error { color:#e03; font-size:13px; margin-top:10px; display:none; }
 
-/* ── 앱 ── */
+/* 앱 */
 #app { display:none; min-height:100vh; }
-
-/* ── 헤더 ── */
-header {
-  background:#1a2744; color:#fff; padding:0 28px;
-  display:flex; align-items:center; gap:0;
-  position:sticky; top:0; z-index:100;
-  box-shadow:0 2px 8px rgba(0,0,0,.3); height:52px;
-}
+header { background:#1a2744; color:#fff; padding:0 28px; display:flex; align-items:center; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,.3); height:52px; }
 header .logo { font-size:16px; font-weight:700; margin-right:32px; white-space:nowrap; }
-.nav-btn {
-  height:52px; padding:0 20px; background:transparent; color:rgba(255,255,255,.65);
-  border:none; border-bottom:3px solid transparent; cursor:pointer;
-  font-size:14px; font-family:inherit; transition:.2s;
-}
-.nav-btn:hover  { color:#fff; }
+.nav-btn { height:52px; padding:0 20px; background:transparent; color:rgba(255,255,255,.65); border:none; border-bottom:3px solid transparent; cursor:pointer; font-size:14px; font-family:inherit; transition:.2s; }
+.nav-btn:hover { color:#fff; }
 .nav-btn.active { color:#fff; border-bottom-color:#60a5fa; }
 
-/* ── 페이지 공통 ── */
 .page { display:none; max-width:1380px; margin:0 auto; padding:28px 22px; }
 .page.active { display:block; }
 
-/* ── 주차 탭 ── */
-.week-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
-.wtab {
-  padding:7px 15px; border-radius:20px; border:2px solid #d0d5e0;
-  background:#fff; cursor:pointer; font-size:13px; font-family:inherit; transition:.15s;
-}
-.wtab:hover  { border-color:#1a2744; color:#1a2744; }
-.wtab.active { background:#1a2744; color:#fff; border-color:#1a2744; }
-
-/* ── 요약 카드 ── */
-.summary-grid {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:14px; margin-bottom:22px;
-}
-.card {
-  background:#fff; border-radius:12px; padding:18px 20px;
-  box-shadow:0 2px 8px rgba(0,0,0,.07);
-}
+/* 요약 카드 */
+.summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-bottom:22px; }
+.card { background:#fff; border-radius:12px; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,.07); }
 .card-label { font-size:12px; color:#888; margin-bottom:6px; }
 .card-value { font-size:22px; font-weight:700; color:#1a2744; }
 .card-value.green  { color:#2e7d32; }
 .card-value.orange { color:#f57c00; }
 .card-value.red    { color:#c62828; }
 
-/* ── 섹션 ── */
-.section {
-  background:#fff; border-radius:12px; padding:22px;
-  box-shadow:0 2px 8px rgba(0,0,0,.07); margin-bottom:20px;
-}
-.sec-title {
-  font-size:14px; font-weight:700; color:#1a2744;
-  margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid #f0f2f5;
-  display:flex; align-items:center; gap:8px;
-}
-.badge {
-  font-size:11px; padding:2px 8px; border-radius:10px;
-  background:#e8eaf6; color:#3949ab; font-weight:600;
-}
+/* 섹션 */
+.section { background:#fff; border-radius:12px; padding:22px; box-shadow:0 2px 8px rgba(0,0,0,.07); margin-bottom:20px; }
+.sec-title { font-size:14px; font-weight:700; color:#1a2744; margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid #f0f2f5; display:flex; align-items:center; gap:8px; }
+.badge { font-size:11px; padding:2px 8px; border-radius:10px; background:#e8eaf6; color:#3949ab; font-weight:600; }
 
-/* ── 테이블 ── */
+/* 테이블 */
 .tbl-wrap { overflow-x:auto; }
 table { width:100%; border-collapse:collapse; font-size:12px; }
-th {
-  background:#1a2744; color:#fff; padding:10px 8px;
-  text-align:center; white-space:nowrap;
-}
+th { background:#1a2744; color:#fff; padding:10px 8px; text-align:center; white-space:nowrap; }
 td { padding:8px 8px; border-bottom:1px solid #f0f2f5; vertical-align:middle; }
 td.r { text-align:right; }
 td.c { text-align:center; }
@@ -115,123 +63,77 @@ tr.team-KY공조  > td:first-child { border-left:3px solid #00838f; }
 tr.team-류부원장 > td:first-child { border-left:3px solid #6a1b9a; }
 tr.row-holiday { opacity:.4; }
 .num { font-variant-numeric:tabular-nums; }
-.tag {
-  display:inline-block; padding:2px 7px; border-radius:4px;
-  font-size:11px; font-weight:600;
-}
-.tag-미수 { background:#fff3e0; color:#e65100; }
-.tag-완납 { background:#e8f5e9; color:#2e7d32; }
-.tag-취소 { background:#fce4ec; color:#c62828; }
+.tag { display:inline-block; padding:2px 7px; border-radius:4px; font-size:11px; font-weight:600; }
+.tag-미수    { background:#fff3e0; color:#e65100; }
+.tag-부분입금 { background:#fff8e1; color:#f57f17; }
+.tag-완납    { background:#e8f5e9; color:#2e7d32; }
+.tag-취소    { background:#fce4ec; color:#c62828; }
+.tag-시공예정 { background:#e3f2fd; color:#1565c0; }
+.tag-판넬미완료 { background:#fce4ec; color:#ad1457; }
+.tag-시공중  { background:#f3e5f5; color:#6a1b9a; }
 
-/* ── 알림 ── */
+/* 알림 */
 .alert-list { display:flex; flex-direction:column; gap:10px; }
-.alert-item {
-  display:flex; align-items:flex-start; gap:12px;
-  padding:13px 15px; border-radius:8px; background:#fff8e1;
-  border-left:4px solid #ffa000;
-}
-.alert-item.cancel { background:#fce4ec; border-color:#e91e63; }
-.alert-item.info   { background:#e8f5e9; border-color:#43a047; }
+.alert-item { display:flex; align-items:flex-start; gap:12px; padding:13px 15px; border-radius:8px; background:#fff8e1; border-left:4px solid #ffa000; }
+.alert-item.cancel  { background:#fce4ec; border-color:#e91e63; }
+.alert-item.partial { background:#fff3e0; border-color:#ff6f00; }
 .alert-icon { font-size:17px; flex-shrink:0; margin-top:1px; }
 .alert-text { font-size:13px; line-height:1.65; }
 .alert-text strong { display:block; font-size:13px; margin-bottom:2px; }
+.partial-badge { display:inline-block; background:#ff6f00; color:#fff; font-size:10px; font-weight:700; padding:1px 6px; border-radius:4px; margin-left:6px; vertical-align:middle; }
 
-/* ── 특이사항 ── */
+/* 특이사항 */
 .bigo-list { display:flex; flex-direction:column; gap:8px; }
-.bigo-item {
-  padding:11px 14px; border-radius:8px; background:#f8f9fc;
-  border-left:4px solid #1a2744; font-size:13px; line-height:1.6;
-}
+.bigo-item { padding:11px 14px; border-radius:8px; background:#f8f9fc; border-left:4px solid #1a2744; font-size:13px; line-height:1.6; }
 .bigo-item .bigo-who { font-weight:700; color:#1a2744; margin-bottom:3px; }
 .bigo-item .bigo-memo { color:#444; }
 
-.empty-msg { color:#aaa; font-size:13px; padding:8px 0; }
-.approval-card {
-  flex:1; min-width:160px; max-width:220px;
-  border:2px solid #d0d5e0; border-radius:12px;
-  padding:18px 20px; text-align:center; transition:.2s;
-  cursor:pointer; user-select:none; background:#fff;
-}
+/* 결재 */
+.approval-card { flex:1; min-width:160px; max-width:220px; border:2px solid #d0d5e0; border-radius:12px; padding:18px 20px; text-align:center; transition:.2s; cursor:pointer; user-select:none; background:#fff; }
 .approval-card:hover { border-color:#1a2744; }
-.approval-card.checked {
-  border-color:#1a2744; background:#1a2744; color:#fff;
-}
-.approval-role {
-  font-size:13px; font-weight:700; margin-bottom:12px; color:inherit;
-}
-.approval-check {
-  font-size:32px; margin-bottom:10px; display:block;
-}
-.approval-card.checked .approval-check { content:'✅'; }
-.approval-time {
-  font-size:11px; color:#888; min-height:16px; line-height:1.5;
-}
+.approval-card.checked { border-color:#1a2744; background:#1a2744; color:#fff; }
+.approval-role { font-size:13px; font-weight:700; margin-bottom:12px; }
+.approval-check { font-size:32px; margin-bottom:10px; display:block; }
+.approval-time { font-size:11px; color:#888; min-height:16px; }
 .approval-card.checked .approval-time { color:rgba(255,255,255,.75); }
-.approval-reset {
-  font-size:11px; color:#aaa; margin-top:6px; cursor:pointer;
-  text-decoration:underline; display:none;
-}
+.approval-reset { font-size:11px; color:#aaa; margin-top:6px; cursor:pointer; text-decoration:underline; display:none; }
 .approval-card.checked .approval-reset { display:block; color:rgba(255,255,255,.6); }
 
-.sel-drop {
-  padding:9px 14px; border:2px solid #d0d5e0; border-radius:8px;
-  font-size:14px; font-family:inherit; background:#fff; color:#1a2744;
-  cursor:pointer; outline:none; transition:.15s; min-width:120px;
-}
+/* 드롭다운 */
+.sel-drop { padding:9px 14px; border:2px solid #d0d5e0; border-radius:8px; font-size:14px; font-family:inherit; background:#fff; color:#1a2744; cursor:pointer; outline:none; min-width:120px; }
 .sel-drop:focus { border-color:#1a2744; }
 
+.empty-msg { color:#aaa; font-size:13px; padding:8px 0; }
 .updated { font-size:11px; color:#bbb; text-align:right; margin-top:12px; }
 </style>
-<script src="config.js"></script>
 </head>
 <body>
 
-<!-- 로그인 -->
 <div id="login-screen">
   <div class="login-box">
     <h1>🔒 다원에어시스</h1>
     <p>시공 현황 보고 페이지</p>
-    <input type="password" id="pw-input" placeholder="비밀번호 입력"
-           onkeydown="if(event.key==='Enter')tryLogin()">
+    <input type="password" id="pw-input" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')tryLogin()">
     <button onclick="tryLogin()">입장</button>
     <div id="login-error">비밀번호가 올바르지 않습니다.</div>
   </div>
 </div>
 
-<!-- 앱 -->
 <div id="app">
   <header>
     <div class="logo">📊 다원에어시스</div>
-    <button class="nav-btn active" onclick="showPage('report')">보고 페이지</button>
-    <button class="nav-btn"        onclick="showPage('all')">전체 내역</button>
+    <button class="nav-btn active" onclick="showPage('report',this)">보고 페이지</button>
+    <button class="nav-btn"        onclick="showPage('all',this)">전체 내역</button>
   </header>
 
-  <!-- ① 보고 페이지 -->
+  <!-- 보고 페이지 -->
   <div class="page active" id="page-report">
     <div id="report-week-label" style="font-size:13px;color:#888;margin-bottom:18px;font-weight:600;"></div>
 
-    <!-- 요약 카드 -->
+    <!-- 1. 요약 카드 -->
     <div class="summary-grid" id="summary-cards"></div>
 
-    <!-- 미수 -->
-    <div class="section" id="sec-unpaid">
-      <div class="sec-title">⚠️ 미수 건 현황 <span class="badge" id="cnt-unpaid">0건</span></div>
-      <div class="alert-list" id="list-unpaid"></div>
-    </div>
-
-    <!-- 취소 -->
-    <div class="section" id="sec-cancel">
-      <div class="sec-title">🚫 취소 건 현황 <span class="badge" id="cnt-cancel">0건</span></div>
-      <div class="alert-list" id="list-cancel"></div>
-    </div>
-
-    <!-- 특이사항 -->
-    <div class="section" id="sec-bigo">
-      <div class="sec-title">📌 특이사항 (비고) <span class="badge" id="cnt-bigo">0건</span></div>
-      <div class="bigo-list" id="list-bigo"></div>
-    </div>
-
-    <!-- 주간 상세 테이블 -->
+    <!-- 2. 주간 상세 테이블 -->
     <div class="section">
       <div class="sec-title">📋 주간 상세 내역 <span class="badge" id="cnt-report-table">0건</span></div>
       <div class="tbl-wrap">
@@ -239,14 +141,32 @@ tr.row-holiday { opacity:.4; }
           <thead><tr>
             <th>시공팀</th><th>거래처명</th><th>시공일자</th><th>실내기</th>
             <th>계약금액</th><th>제품대</th><th>인건비</th><th>도배비</th>
-            <th>자재비</th><th>수 익</th><th>완납여부</th>
+            <th>자재비</th><th>수 익</th><th>진행상태</th><th>완납여부</th>
           </tr></thead>
           <tbody id="tbody-report"></tbody>
         </table>
       </div>
     </div>
 
-    <!-- 결재란 -->
+    <!-- 3. 잔금 입금 현황 -->
+    <div class="section">
+      <div class="sec-title">💰 잔금 입금 현황 <span class="badge" id="cnt-unpaid">0건</span></div>
+      <div class="alert-list" id="list-unpaid"></div>
+    </div>
+
+    <!-- 4. 취소 건 현황 -->
+    <div class="section">
+      <div class="sec-title">🚫 취소 건 현황 <span class="badge" id="cnt-cancel">0건</span></div>
+      <div class="alert-list" id="list-cancel"></div>
+    </div>
+
+    <!-- 5. 특이사항 -->
+    <div class="section">
+      <div class="sec-title">📌 특이사항 <span class="badge" id="cnt-bigo">0건</span></div>
+      <div class="bigo-list" id="list-bigo"></div>
+    </div>
+
+    <!-- 6. 결재 -->
     <div class="section">
       <div class="sec-title">✅ 결 재</div>
       <div id="approval-box" style="display:flex;gap:16px;flex-wrap:wrap;"></div>
@@ -255,16 +175,14 @@ tr.row-holiday { opacity:.4; }
     <div class="updated" id="updated-r"></div>
   </div>
 
-  <!-- ② 전체 내역 -->
+  <!-- 전체 내역 -->
   <div class="page" id="page-all">
-    <!-- 드롭다운 필터 -->
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
       <select id="sel-year"  class="sel-drop" onchange="onYearChange()"></select>
       <select id="sel-month" class="sel-drop" onchange="onMonthChange()"></select>
       <select id="sel-week"  class="sel-drop" onchange="onWeekChange()"></select>
     </div>
 
-    <!-- 상세 테이블 -->
     <div class="section">
       <div class="sec-title">📋 주간 상세 내역 <span class="badge" id="cnt-all">0건</span></div>
       <div class="tbl-wrap">
@@ -272,22 +190,20 @@ tr.row-holiday { opacity:.4; }
           <thead><tr>
             <th>시공팀</th><th>거래처명</th><th>시공일자</th><th>실내기</th>
             <th>계약금액</th><th>제품대</th><th>인건비</th><th>도배비</th>
-            <th>자재비</th><th>수 익</th><th>완납여부</th>
+            <th>자재비</th><th>수 익</th><th>진행상태</th><th>완납여부</th>
           </tr></thead>
           <tbody id="tbody-all"></tbody>
         </table>
       </div>
     </div>
 
-    <!-- 결재 현황 -->
     <div class="section">
-      <div class="sec-title">✅ 결 재 현 황</div>
+      <div class="sec-title">✅ 결재 현황</div>
       <div id="all-approval-box" style="display:flex;gap:12px;flex-wrap:wrap;"></div>
     </div>
 
-    <!-- 특이사항 (전체내역) -->
-    <div class="section" id="sec-bigo-all">
-      <div class="sec-title">📌 특이사항 (비고) <span class="badge" id="cnt-bigo-all">0건</span></div>
+    <div class="section">
+      <div class="sec-title">📌 특이사항 <span class="badge" id="cnt-bigo-all">0건</span></div>
       <div class="bigo-list" id="list-bigo-all"></div>
     </div>
 
@@ -321,72 +237,12 @@ async function initApp() {
   renderAll();
 }
 
-/* ── 페이지 전환 ── */
-function showPage(name) {
+function showPage(name, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  event.currentTarget.classList.add('active');
+  btn.classList.add('active');
 }
-
-/* ── 드롭다운 ── */
-function buildDropdowns() {
-  // 연도 목록
-  const years = [...new Set(DATA.map(w => w.month.slice(0,4)))];
-  const selY = document.getElementById('sel-year');
-  selY.innerHTML = years.map(y => `<option value="${y}">${y}년</option>`).join('');
-
-  // 현재 선택된 주의 연도/월 기준으로 초기값 설정
-  const curWeek = DATA.find(w => w.key === curA);
-  const initYear  = curWeek ? curWeek.month.slice(0,4) : years[years.length-1];
-  const initMonth = curWeek ? curWeek.month.slice(5,7) : '';
-  selY.value = initYear;
-
-  buildMonthDropdown(initYear, initMonth);
-}
-
-function buildMonthDropdown(year, selectMonth) {
-  const months = [...new Set(
-    DATA.filter(w => w.month.startsWith(year)).map(w => w.month.slice(5,7))
-  )];
-  const selM = document.getElementById('sel-month');
-  selM.innerHTML = months.map(m => `<option value="${m}">${parseInt(m)}월</option>`).join('');
-  if (selectMonth && months.includes(selectMonth)) selM.value = selectMonth;
-  else selM.value = months[months.length-1];
-  buildWeekDropdown(year, selM.value);
-}
-
-function buildWeekDropdown(year, month) {
-  const ymonth = `${year}-${month}`;
-  const weeks  = DATA.filter(w => w.month === ymonth);
-  const selW   = document.getElementById('sel-week');
-  selW.innerHTML = weeks.map(w =>
-    `<option value="${w.key}">${w.key} (${w.label})</option>`
-  ).join('');
-  // curA가 이 목록에 있으면 그걸로, 없으면 마지막
-  const match = weeks.find(w => w.key === curA);
-  selW.value = match ? match.key : weeks[weeks.length-1].key;
-  curA = selW.value;
-}
-
-function onYearChange() {
-  const y = document.getElementById('sel-year').value;
-  buildMonthDropdown(y, null);
-  curA = document.getElementById('sel-week').value;
-  renderAll();
-}
-function onMonthChange() {
-  const y = document.getElementById('sel-year').value;
-  const m = document.getElementById('sel-month').value;
-  buildWeekDropdown(y, m);
-  curA = document.getElementById('sel-week').value;
-  renderAll();
-}
-function onWeekChange() {
-  curA = document.getElementById('sel-week').value;
-  renderAll();
-}
-
 
 /* ── 유틸 ── */
 const EXCL = ['휴무','취소됨','시공취소','대체공휴일',''];
@@ -396,106 +252,184 @@ function fmt(n)  { return Number(n).toLocaleString('ko-KR'); }
 function fmtM(n) { return (n/10000).toFixed(0)+'만'; }
 function getWeek(key) { return DATA.find(w=>w.key===key)||{rows:[],bigo:[]}; }
 
+/* ── 완납여부 분류 ── */
+function classifyPaid(paid, team) {
+  if (!paid) return 'unknown';
+  if (['취소됨','시공취소'].includes(team)) return 'cancel';
+  const p = paid.trim();
+  if (p === '시공예정') return 'scheduled';
+  if (p === '미수') return 'unpaid';
+  if (p.includes('미수')) return 'partial';   // 미수인데 일부 내용 있으면 부분입금
+  if (p.includes('완납')) return 'done';
+  if (p.includes('이체') || p.includes('카드') || p.includes('온누리')) return 'done';
+  return 'unknown';
+}
+
+/* ── 진행상태 태그 ── */
+function getProgressTag(row) {
+  const memo = (row.memo || '').toLowerCase();
+  const paid = (row.paid || '');
+  const team = row.team;
+
+  if (['취소됨','시공취소'].includes(team))
+    return '<span class="tag tag-취소">시공취소</span>';
+  if (HOL.includes(team)) return '';
+  if (!team) return '';
+
+  // 판넬미완료
+  if (memo.includes('판넬') || memo.includes('pannel'))
+    return '<span class="tag tag-판넬미완료">판넬미완료</span>';
+  // 시공예정
+  if (paid === '시공예정' || memo.includes('시공예정') || memo.includes('예정'))
+    return '<span class="tag tag-시공예정">시공예정</span>';
+  // 시공중 (제품장착 예정 등)
+  if (memo.includes('장착') || memo.includes('시공중') || memo.includes('미뤄'))
+    return '<span class="tag tag-시공중">진행중</span>';
+  // 기본: 시공완료
+  return '<span class="tag tag-완납" style="background:#e3f2fd;color:#1565c0;">시공완료</span>';
+}
+
+/* ── 완납 태그 ── */
+function getPaidTag(row) {
+  const cls = classifyPaid(row.paid, row.team);
+  if (cls === 'cancel')    return '<span class="tag tag-취소">취소</span>';
+  if (cls === 'done')      return '<span class="tag tag-완납">완납</span>';
+  if (cls === 'unpaid')    return '<span class="tag tag-미수">미수</span>';
+  if (cls === 'partial')   return '<span class="tag tag-부분입금">부분입금</span>';
+  if (cls === 'scheduled') return '<span class="tag tag-시공예정">예정</span>';
+  return row.paid ? `<span style="font-size:11px">${row.paid}</span>` : '';
+}
+
+/* ── 드롭다운 ── */
+function buildDropdowns() {
+  const years = [...new Set(DATA.map(w => w.month.slice(0,4)))];
+  const selY  = document.getElementById('sel-year');
+  selY.innerHTML = years.map(y => `<option value="${y}">${y}년</option>`).join('');
+  const curWeek   = DATA.find(w => w.key === curA);
+  const initYear  = curWeek ? curWeek.month.slice(0,4) : years[years.length-1];
+  const initMonth = curWeek ? curWeek.month.slice(5,7) : '';
+  selY.value = initYear;
+  buildMonthDropdown(initYear, initMonth);
+}
+function buildMonthDropdown(year, selectMonth) {
+  const months = [...new Set(DATA.filter(w=>w.month.startsWith(year)).map(w=>w.month.slice(5,7)))];
+  const selM   = document.getElementById('sel-month');
+  selM.innerHTML = months.map(m=>`<option value="${m}">${parseInt(m)}월</option>`).join('');
+  if (selectMonth && months.includes(selectMonth)) selM.value = selectMonth;
+  else selM.value = months[months.length-1];
+  buildWeekDropdown(year, selM.value);
+}
+function buildWeekDropdown(year, month) {
+  const weeks = DATA.filter(w=>w.month===`${year}-${month}`);
+  const selW  = document.getElementById('sel-week');
+  selW.innerHTML = weeks.map(w=>`<option value="${w.key}">${w.key} (${w.label})</option>`).join('');
+  const match = weeks.find(w=>w.key===curA);
+  selW.value = match ? match.key : weeks[weeks.length-1].key;
+  curA = selW.value;
+}
+function onYearChange()  { buildMonthDropdown(document.getElementById('sel-year').value, null); curA=document.getElementById('sel-week').value; renderAll(); }
+function onMonthChange() { buildWeekDropdown(document.getElementById('sel-year').value, document.getElementById('sel-month').value); curA=document.getElementById('sel-week').value; renderAll(); }
+function onWeekChange()  { curA=document.getElementById('sel-week').value; renderAll(); }
+
 /* ── 보고 페이지 렌더 ── */
 function renderReport() {
   const w     = getWeek(curR);
   const rows  = w.rows;
   const valid = validRows(rows);
 
-  // 주차 라벨
   document.getElementById('report-week-label').textContent = '📅 ' + w.key + '  ' + w.label;
 
-  // 요약
+  // 요약 카드 (수익률 제거)
   const tc = valid.reduce((s,r)=>s+r.contract,0);
   const tp = valid.reduce((s,r)=>s+r.profit,0);
-  const uc = valid.filter(r=>r.paid&&r.paid.includes('미수')).length;
+  const unpaidRows = valid.filter(r => ['unpaid','partial'].includes(classifyPaid(r.paid, r.team)));
   const cc = rows.filter(r=>['취소됨','시공취소'].includes(r.team)).length;
   document.getElementById('summary-cards').innerHTML = `
     <div class="card"><div class="card-label">총 계약금액</div><div class="card-value">${fmtM(tc)}</div></div>
     <div class="card"><div class="card-label">총 수익</div><div class="card-value green">${fmtM(tp)}</div></div>
     <div class="card"><div class="card-label">시공 건수</div><div class="card-value">${valid.length}건</div></div>
-    <div class="card"><div class="card-label">미수 건수</div><div class="card-value ${uc?'orange':''}">${uc}건</div></div>
+    <div class="card"><div class="card-label">미수/부분입금</div><div class="card-value ${unpaidRows.length?'orange':''}">${unpaidRows.length}건</div></div>
     <div class="card"><div class="card-label">취소 건수</div><div class="card-value ${cc?'red':''}">${cc}건</div></div>
-    <div class="card"><div class="card-label">수익률</div><div class="card-value">${tc>0?(tp/tc*100).toFixed(1):0}%</div></div>
   `;
 
-  // 미수
-  const unpaid = valid.filter(r=>r.paid&&r.paid.includes('미수'));
-  document.getElementById('cnt-unpaid').textContent = unpaid.length+'건';
-  document.getElementById('list-unpaid').innerHTML = unpaid.length
-    ? unpaid.map(r=>`<div class="alert-item">
-        <div class="alert-icon">💰</div>
-        <div class="alert-text">
-          <strong>[${r.team}] ${r.name}</strong>
-          시공일: ${r.sdate} &nbsp;|&nbsp; 계약: ${fmt(r.contract)}원 &nbsp;|&nbsp; 수익: ${fmt(r.profit)}원
-          ${r.paid&&r.paid!=='미수'?'<br>완납현황: '+r.paid:''}
-          ${r.memo?'<br>비고: '+r.memo:''}
-        </div></div>`).join('')
-    : '<div class="empty-msg">미수 건 없음</div>';
+  // 상세 테이블 (취소 제외)
+  renderTableTo(rows.filter(r=>!['취소됨','시공취소'].includes(r.team)), 'tbody-report', 'cnt-report-table');
+
+  // 잔금 입금 현황 (미수 + 부분입금)
+  renderUnpaid(valid);
 
   // 취소
-  const cancelled = rows.filter(r=>['취소됨','시공취소'].includes(r.team));
-  document.getElementById('cnt-cancel').textContent = cancelled.length+'건';
-  document.getElementById('list-cancel').innerHTML = cancelled.length
-    ? cancelled.map(r=>`<div class="alert-item cancel">
-        <div class="alert-icon">🚫</div>
-        <div class="alert-text">
-          <strong>[취소] ${r.name}</strong>
-          시공일: ${r.sdate} &nbsp;|&nbsp; 계약: ${fmt(r.contract)}원
-          ${r.memo?'<br>비고: '+r.memo:''}
-        </div></div>`).join('')
-    : '<div class="empty-msg">취소 건 없음</div>';
+  renderCancel(rows);
 
   // 특이사항
   renderBigo(w.bigo, 'cnt-bigo', 'list-bigo');
 
-  // 주간 상세 테이블
-  renderTableTo(rows, 'tbody-report', 'cnt-report-table');
-
-  // 결재란
+  // 결재
   renderApproval();
 
-  document.getElementById('updated-r').textContent = '최종 업데이트: '+new Date().toLocaleDateString('ko-KR');
+  document.getElementById('updated-r').textContent = '최종 업데이트: ' + new Date().toLocaleDateString('ko-KR');
+}
+
+/* ── 잔금 현황 ── */
+function renderUnpaid(valid) {
+  const unpaidRows = valid.filter(r => ['unpaid','partial'].includes(classifyPaid(r.paid, r.team)));
+  document.getElementById('cnt-unpaid').textContent = unpaidRows.length + '건';
+  const list = document.getElementById('list-unpaid');
+  if (!unpaidRows.length) { list.innerHTML = '<div class="empty-msg">미수 건 없음 ✅</div>'; return; }
+  list.innerHTML = unpaidRows.map(r => {
+    const cls     = classifyPaid(r.paid, r.team);
+    const isPartial = cls === 'partial';
+    const paidDetail = r.paid && r.paid !== '미수' ? r.paid : '';
+    return `<div class="alert-item ${isPartial?'partial':''}">
+      <div class="alert-icon">${isPartial?'💛':'💰'}</div>
+      <div class="alert-text">
+        <strong>[${r.team}] ${r.name}${isPartial?'<span class="partial-badge">부분입금</span>':''}</strong>
+        시공일: ${r.sdate} &nbsp;|&nbsp; 계약: ${fmt(r.contract)}원 &nbsp;|&nbsp; 수익: ${fmt(r.profit)}원
+        ${paidDetail ? '<br>입금현황: ' + paidDetail : ''}
+        ${r.memo ? '<br>비고: ' + r.memo : ''}
+      </div></div>`;
+  }).join('');
+}
+
+/* ── 취소 현황 ── */
+function renderCancel(rows) {
+  const cancelled = rows.filter(r=>['취소됨','시공취소'].includes(r.team));
+  document.getElementById('cnt-cancel').textContent = cancelled.length + '건';
+  const list = document.getElementById('list-cancel');
+  if (!cancelled.length) { list.innerHTML = '<div class="empty-msg">취소 건 없음</div>'; return; }
+  list.innerHTML = cancelled.map(r=>`<div class="alert-item cancel">
+    <div class="alert-icon">🚫</div>
+    <div class="alert-text">
+      <strong>[취소] ${r.name}</strong>
+      시공일: ${r.sdate} &nbsp;|&nbsp; 계약: ${fmt(r.contract)}원
+      ${r.memo?'<br>비고: '+r.memo:''}
+    </div></div>`).join('');
 }
 
 /* ── 전체 내역 렌더 ── */
 function renderAll() {
-  const w    = getWeek(curA);
-  const rows = w.rows;
-  renderTableTo(rows, 'tbody-all', 'cnt-all');
-
-  // 특이사항
-  renderBigo(w.bigo, 'cnt-bigo-all', 'list-bigo-all');
-
-  // 결재 현황
+  const w = getWeek(curA);
+  renderTableTo(w.rows, 'tbody-all', 'cnt-all');
   renderAllApproval();
-
-  document.getElementById('updated-a').textContent = '최종 업데이트: '+new Date().toLocaleDateString('ko-KR');
+  renderBigo(w.bigo, 'cnt-bigo-all', 'list-bigo-all');
+  document.getElementById('updated-a').textContent = '최종 업데이트: ' + new Date().toLocaleDateString('ko-KR');
 }
 
+/* ── 테이블 공통 렌더 ── */
 function renderTableTo(rows, tbodyId, cntId) {
-  document.getElementById(cntId).textContent = rows.length+'건';
+  document.getElementById(cntId).textContent = rows.length + '건';
   const teamClass = t => {
-    if (t==='시공1팀') return 'team-시공1팀';
-    if (t==='이엘이')  return 'team-이엘이';
+    if (t==='시공1팀')  return 'team-시공1팀';
+    if (t==='이엘이')   return 'team-이엘이';
     if (t==='척척박사') return 'team-척척박사';
     if (['취소됨','시공취소'].includes(t)) return 'team-취소됨';
-    if (t==='KY공조')  return 'team-KY공조';
+    if (t==='KY공조')   return 'team-KY공조';
     if (t==='류부원장') return 'team-류부원장';
     return '';
   };
-
   document.getElementById(tbodyId).innerHTML = rows.map(r => {
     const isHol = HOL.includes(r.team);
-    let paidTag = '';
-    if (['취소됨','시공취소'].includes(r.team))
-      paidTag = '<span class="tag tag-취소">취소</span>';
-    else if (r.paid) {
-      if (r.paid.includes('미수')) paidTag = '<span class="tag tag-미수">미수</span>';
-      else if (r.paid.includes('완납')) paidTag = '<span class="tag tag-완납">완납</span>';
-      else paidTag = `<span style="font-size:11px">${r.paid}</span>`;
-    }
-    const profitStyle = r.profit<0 ? 'color:#c62828' : '';
+    const profitStyle = r.profit < 0 ? 'color:#c62828' : '';
     return `<tr class="${teamClass(r.team)}${isHol?' row-holiday':''}">
       <td class="l">${r.team}</td>
       <td class="l">${r.name}</td>
@@ -507,11 +441,12 @@ function renderTableTo(rows, tbodyId, cntId) {
       <td class="r num">${r.paint_cost?fmt(r.paint_cost):'-'}</td>
       <td class="r num">${r.material?fmt(r.material):'-'}</td>
       <td class="r num" style="${profitStyle}">${r.profit?fmt(r.profit):'-'}</td>
-      <td class="l">${paidTag}</td>
+      <td class="c">${getProgressTag(r)}</td>
+      <td class="l">${getPaidTag(r)}</td>
     </tr>`;
   }).join('');
 
-  // 합계 행 (취소됨·휴무 제외)
+  // 합계 행 (취소·휴무 제외)
   const sumRows = rows.filter(r => !EXCL.includes(r.team));
   const sums = {
     contract:   sumRows.reduce((s,r)=>s+(r.contract||0),0),
@@ -523,99 +458,85 @@ function renderTableTo(rows, tbodyId, cntId) {
   };
   document.getElementById(tbodyId).innerHTML += `
   <tr class="total-row" style="background:#1a2744;font-weight:700;">
-    <td class="l" colspan="4" style="color:#fff;border:none;">
-      합 계 <span style="font-size:10px;opacity:.65">(취소됨·휴무 제외)</span>
-    </td>
+    <td class="l" colspan="4" style="color:#fff;border:none;">합 계 <span style="font-size:10px;opacity:.65">(취소됨·휴무 제외)</span></td>
     <td class="r num" style="color:#fff;border:none;">${fmt(sums.contract)}</td>
     <td class="r num" style="color:#fff;border:none;">${fmt(sums.product)}</td>
     <td class="r num" style="color:#fff;border:none;">${fmt(sums.labor)}</td>
     <td class="r num" style="color:#fff;border:none;">${fmt(sums.paint_cost)}</td>
     <td class="r num" style="color:#fff;border:none;">${fmt(sums.material)}</td>
     <td class="r num" style="color:${sums.profit<0?'#ff8a80':'#a5d6a7'};border:none;">${fmt(sums.profit)}</td>
-    <td style="border:none;"></td>
+    <td colspan="2" style="border:none;"></td>
   </tr>`;
+}
+
+/* ── 특이사항 ── */
+function renderBigo(bigo, cntId, listId) {
+  document.getElementById(cntId).textContent = (bigo||[]).length + '건';
+  const el = document.getElementById(listId);
+  if (!bigo||!bigo.length) { el.innerHTML = '<div class="empty-msg">특이사항 없음</div>'; return; }
+  el.innerHTML = bigo.map(b=>`
+    <div class="bigo-item">
+      <div class="bigo-who">[${b.team}] ${b.name} <span style="font-weight:400;color:#666;font-size:12px">${b.sdate}</span></div>
+      <div class="bigo-memo">${b.memo}</div>
+    </div>`).join('');
 }
 
 /* ── 결재란 (GitHub 연동) ── */
 const APPROVAL_ROLES = ['담당','팀장','대표'];
-// GH_TOKEN은 config.js에서 로드됨 (window.GH_TOKEN)
-const GH_REPO   = 'dawonairsys-rgb/actionair';
-const GH_PATH   = 'report/approval.json';
-const GH_API    = `https://api.github.com/repos/${GH_REPO}/contents/${GH_PATH}`;
+const GH_REPO = 'dawonairsys-rgb/actionair';
+const GH_PATH = 'report/approval.json';
+const GH_API  = `https://api.github.com/repos/${GH_REPO}/contents/${GH_PATH}`;
 
-let APPROVAL_DATA = {};   // 전체 결재 데이터 캐시
-let APPROVAL_SHA  = '';   // 파일 SHA (업데이트 시 필요)
+let APPROVAL_DATA = {}, APPROVAL_SHA = '';
 
-// 앱 시작 시 결재 데이터 로드
 async function loadApprovalData() {
   try {
-    const res  = await fetch(GH_API, {
-      headers: { 'Authorization': `token ${window.GH_TOKEN}` }
-    });
+    const res  = await fetch(GH_API, { headers: { 'Authorization': `token ${window.GH_TOKEN}` } });
     const json = await res.json();
     APPROVAL_SHA  = json.sha;
     APPROVAL_DATA = JSON.parse(atob(json.content.replace(/\n/g,'')));
-  } catch(e) {
-    APPROVAL_DATA = {};
-  }
+  } catch(e) { APPROVAL_DATA = {}; }
 }
 
-// GitHub에 결재 데이터 저장
 async function saveApprovalData() {
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(APPROVAL_DATA, null, 2))));
-  const body = {
-    message: '결재 업데이트',
-    content,
-    sha: APPROVAL_SHA
-  };
   try {
     const res  = await fetch(GH_API, {
-      method:  'PUT',
-      headers: {
-        'Authorization': `token ${window.GH_TOKEN}`,
-        'Content-Type':  'application/json'
-      },
-      body: JSON.stringify(body)
+      method: 'PUT',
+      headers: { 'Authorization': `token ${window.GH_TOKEN}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: '결재 업데이트', content, sha: APPROVAL_SHA })
     });
     const json = await res.json();
     APPROVAL_SHA = json.content.sha;
-  } catch(e) {
-    alert('결재 저장 중 오류가 발생했습니다.');
-  }
+  } catch(e) { alert('결재 저장 오류'); }
 }
 
-function approvalKey(weekKey, role) {
-  return `${weekKey}__${role}`;
-}
+function approvalKey(weekKey, role) { return `${weekKey}__${role}`; }
 
 function renderApproval() {
   const box = document.getElementById('approval-box');
   box.innerHTML = '';
   APPROVAL_ROLES.forEach(role => {
-    const key       = approvalKey(curR, role);
+    const key = approvalKey(curR, role);
     const savedTime = APPROVAL_DATA[key] || '';
     const isChecked = !!savedTime;
-
     const card = document.createElement('div');
     card.className = 'approval-card' + (isChecked ? ' checked' : '');
     card.innerHTML = `
       <div class="approval-role">${role}</div>
-      <span class="approval-check">${isChecked ? '✅' : '⬜'}</span>
-      <div class="approval-time">${isChecked ? savedTime : '미결재'}</div>
-      <div class="approval-reset" onclick="resetApproval(event,'${role}')">취소</div>
-    `;
+      <span class="approval-check">${isChecked?'✅':'⬜'}</span>
+      <div class="approval-time">${isChecked?savedTime:'미결재'}</div>
+      <div class="approval-reset" onclick="resetApproval(event,'${role}')">취소</div>`;
     card.onclick = async (e) => {
       if (e.target.classList.contains('approval-reset')) return;
       if (!isChecked) {
         const now = new Date();
-        const timeStr = now.getFullYear() + '.' +
-          String(now.getMonth()+1).padStart(2,'0') + '.' +
-          String(now.getDate()).padStart(2,'0') + ' ' +
-          String(now.getHours()).padStart(2,'0') + ':' +
+        APPROVAL_DATA[key] = now.getFullYear()+'.'+
+          String(now.getMonth()+1).padStart(2,'0')+'.'+
+          String(now.getDate()).padStart(2,'0')+' '+
+          String(now.getHours()).padStart(2,'0')+':'+
           String(now.getMinutes()).padStart(2,'0');
-        APPROVAL_DATA[key] = timeStr;
-        renderApproval();
-        renderAllApproval();
+        renderApproval(); renderAllApproval();
         await saveApprovalData();
       }
     };
@@ -627,41 +548,23 @@ async function resetApproval(e, role) {
   e.stopPropagation();
   if (!confirm(`"${role}" 결재를 취소하시겠습니까?`)) return;
   delete APPROVAL_DATA[approvalKey(curR, role)];
-  renderApproval();
-  renderAllApproval();
+  renderApproval(); renderAllApproval();
   await saveApprovalData();
 }
 
-/* ── 전체내역 결재 표시 ── */
 function renderAllApproval() {
   const el = document.getElementById('all-approval-box');
   if (!el) return;
   el.innerHTML = APPROVAL_ROLES.map(role => {
     const saved = APPROVAL_DATA[approvalKey(curA, role)] || '';
-    return `<div style="display:flex;align-items:center;gap:8px;padding:10px 14px;
-      border-radius:8px;background:${saved?'#e8f5e9':'#f5f5f5'};
-      border:1px solid ${saved?'#a5d6a7':'#ddd'};min-width:140px;">
+    return `<div style="display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;
+      background:${saved?'#e8f5e9':'#f5f5f5'};border:1px solid ${saved?'#a5d6a7':'#ddd'};min-width:140px;">
       <span style="font-size:18px">${saved?'✅':'⬜'}</span>
       <div>
         <div style="font-size:13px;font-weight:700;color:${saved?'#2e7d32':'#888'}">${role}</div>
         <div style="font-size:11px;color:${saved?'#555':'#aaa'}">${saved||'미결재'}</div>
-      </div>
-    </div>`;
+      </div></div>`;
   }).join('');
-}
-
-
-function renderBigo(bigo, cntId, listId) {
-  document.getElementById(cntId).textContent = (bigo||[]).length+'건';
-  const el = document.getElementById(listId);
-  if (!bigo||!bigo.length) {
-    el.innerHTML = '<div class="empty-msg">특이사항 없음</div>'; return;
-  }
-  el.innerHTML = bigo.map(b=>`
-    <div class="bigo-item">
-      <div class="bigo-who">[${b.team}] ${b.name} <span style="font-weight:400;color:#666;font-size:12px">${b.sdate}</span></div>
-      <div class="bigo-memo">${b.memo}</div>
-    </div>`).join('');
 }
 </script>
 </body>

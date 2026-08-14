@@ -104,7 +104,8 @@
     background:var(--dew-soft);border-left:3px solid var(--dew);
     padding:12px 14px;font-size:14.5px;line-height:1.55;color:var(--ink-2);
   }
-  .cond b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px;font-weight:800;letter-spacing:-.01em}
+  .cond > li > b:first-child{display:block;color:var(--ink);font-size:16px;margin-bottom:2px;font-weight:800;letter-spacing:-.01em}
+  .cond strong{color:var(--ink);font-weight:800}
 
   .todo{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
   .todo li{
@@ -194,7 +195,7 @@
     .split .txt{font-size:14.5px}
 
     .cond li{font-size:16px;padding:14px 16px}
-    .cond b{font-size:16.5px}
+    .cond > li > b:first-child{font-size:16.5px}
     .todo li{font-size:16.5px;padding:13px 0}
     .tip{font-size:15px;padding:14px 16px}
     .block.alt .tip{background:var(--surface)}
@@ -275,7 +276,7 @@
     <h2>물방울을 키우는 세 가지</h2>
     <ul class="cond">
       <li><b>한 대만 켜고 주무실 때</b>집 전체 습도는 높은데 실내기 하나가 그 습기를 다 감당합니다.</li>
-      <li><b>찬 바람이 싫어 위로 + 약풍으로 두실 때</b>바람이 몸에 닿는 게 싫어 풍향을 올리고 풍량을 1단에 두면, 공기가 천천히 지나가며 열교환이 과하게 일어납니다. 토출구 표면이 더 차가워져 <b>이슬이 가장 잘 맺히는 조합</b>입니다.</li>
+      <li><b>찬 바람이 싫어 위로 + 약풍으로 두실 때</b>바람이 몸에 닿는 게 싫어 풍향을 올리고 풍량을 1단에 두면, 공기가 천천히 지나가며 열교환이 과하게 일어납니다. 토출구 표면이 더 차가워져 <strong>이슬이 가장 잘 맺히는 조합</strong>입니다.</li>
       <li><b>샤워·조리 직후에 켤 때</b>습도가 한창 올라간 상태에서 가동하면 표면에 맺히는 양이 늘어납니다.</li>
     </ul>
   </div>

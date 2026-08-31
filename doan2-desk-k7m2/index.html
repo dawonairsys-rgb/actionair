@@ -580,22 +580,6 @@ a{color:var(--accent-ink)}
     </div>
   </section>
 
-  <!-- 09 -->
-  <section id="s9">
-    <div class="shead"><span class="num">09</span><h2>단지 혜택 — Aqara IOT</h2></div>
-
-    <div class="q">
-      <p class="ask">블라인드 혜택이 있다던데요?</p>
-      <div class="say"><span class="lbl">그대로 읽기</span>
-        <p>Aqara 정품 전동블라인드나 전동커튼을 지정 구매처에서 구매하신 세대는, 냉방시스템 시공하고 같이 진행할 때 전원연결공사를 무상으로 해드립니다.</p>
-      </div>
-      <ul class="note">
-        <li><b>냉방시스템 공동구매 참여 세대 한정</b> · 지정 구매처 <b>구매 영수증 제출 시</b> 적용.</li>
-        <li>Aqara 제품 자체는 입주민이 직접 구매. <b>지정 구매처 외 구매 건은 대상 제외.</b></li>
-      </ul>
-    </div>
-  </section>
-
   <footer>
     <p><b>도안2차 전용 연락처</b> <span class="mono">1555-7726 / 010-2312-2627</span> · 계약금 계좌 <span class="mono">농협 301-0378-9026-01 ㈜다원에어시스</span></p>
     <p class="mono">근거: 도안2차 시공계약 약관 · 제품안내·계약신청 배포 페이지 · 통합시트 접수 현황(2026-08-31) · 작성 2026-08-31</p>
@@ -637,10 +621,10 @@ a{color:var(--accent-ink)}
   .masthead .sub{ display:none; }             /* 읽는 법 안내는 화면에서만 */
   .stamp{ display:none; }                     /* 상단 내부용 띠와 중복 */
   .hardrules{ margin-top:5pt; }
-  .hard{ padding:5pt 9pt; border-width:1.2pt; }
+  .hard{ padding:5pt 10pt; border-width:1.2pt; }
   .hard p{ font-size:10.5pt; }
   .keys{ margin-bottom:7pt; }
-  .key{ padding:4pt 9pt; }
+  .key{ padding:5pt 10pt; }
   .key dt{ font-size:8pt; margin-bottom:1pt; letter-spacing:.08em; }
   .key dd{ font-size:10.5pt; }
   .key dd .s{ font-size:9pt; margin-top:1pt; }
@@ -648,10 +632,10 @@ a{color:var(--accent-ink)}
   /* ── 장 나누기 ──
      기본은 섹션마다 새 장(넘기면서 찾기 좋게).
      다만 짧은 섹션이 연달아 오는 구간은 한 장에 묶어 빈 종이를 줄인다.
-     s6+s7 / s8+s9 (측정 높이 합계가 1면 이내) */
+     s6+s7 (측정 높이 합계가 1면 이내) */
   section{ break-before:page; page-break-before:always; margin:0 0 0; }
-  #s0,#s7,#s9{ break-before:auto; page-break-before:auto; }
-  #s7,#s9{ margin-top:8pt; }
+  #s0,#s7{ break-before:auto; page-break-before:auto; }
+  #s7{ margin-top:8pt; }
   .shead{
     break-after:avoid; page-break-after:avoid;
     align-items:center; gap:10pt;
@@ -677,7 +661,7 @@ a{color:var(--accent-ink)}
   }
   .say{
     background:#fff; border:none; border-bottom:0.7pt solid #C9CDD3;
-    padding:9pt 11pt 8pt; margin:0;
+    padding:9pt 10pt 8pt; margin:0;
     break-inside:avoid; page-break-inside:avoid;
   }
   .say .lbl{ display:none; }
@@ -685,13 +669,14 @@ a{color:var(--accent-ink)}
   .say p:last-child{ margin-bottom:0; }
   .say p::before,.say p::after{ color:#8C002C; }
 
-  .note{ font-size:9.5pt; color:#2B3037; background:#F2F3F5; margin:0; padding:7pt 11pt 6pt; }
-  .note li{ margin:2pt 0; padding-left:13px; }
+  .note{ font-size:9.5pt; color:#2B3037; background:#F2F3F5; margin:0; padding:7pt 10pt 6pt 10pt; }
+  .note li{ margin:2pt 0; padding-left:0; }        /* 본문과 같은 왼쪽 선에 맞춤 */
+  .note li::before{ left:-11px; }                   /* 짧은 선은 여백 쪽으로 뺀다 */
   .note b,.note strong{ color:#000; }
   .q .callout{ margin:0; border-top:0.7pt solid #C9CDD3; border-left-width:3.5pt; }
 
   .callout{
-    padding:7pt 10pt; margin-top:7pt; font-size:9.5pt;
+    padding:7pt 10pt; margin-top:7pt; font-size:9.5pt; align-items:flex-start;
     border-left-width:3.5pt; break-inside:avoid; page-break-inside:avoid;
   }
   section > .callout{ margin-top:0; margin-bottom:11pt; }
@@ -699,10 +684,10 @@ a{color:var(--accent-ink)}
 
   .tblwrap{ overflow:visible !important; margin:0 0 9pt; break-inside:avoid; page-break-inside:avoid; }
   table{ min-width:0 !important; font-size:9.5pt; }
-  th,td{ padding:4pt 8pt; }
+  th,td{ padding:5pt 10pt; }
   thead{ display:table-header-group; }
   tr{ break-inside:avoid; page-break-inside:avoid; }
-  caption{ padding:4pt 8pt; font-size:8.5pt; }
+  caption{ padding:4pt 10pt; font-size:8.5pt; }
 
   .check li,.later li{ padding:6pt 0; font-size:10.5pt; break-inside:avoid; page-break-inside:avoid; }
   .check .sub2,.later .sub2{ font-size:9pt; color:#33383F; }

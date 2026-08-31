@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<title>도안2차 현장 상담 시트</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  .internal-bar{
+    position:sticky;top:0;z-index:60;
+    background:#A50034;color:#fff;
+    font-family:"IBM Plex Mono","Consolas",monospace;
+    font-size:12px;font-weight:600;letter-spacing:.06em;
+    padding:7px 16px;text-align:center;line-height:1.5;
+  }
+  @media print{
+    .internal-bar{position:static}
+    nav{display:none !important}
+    .wrap{display:block !important;max-width:none !important}
+    section{break-inside:avoid;page-break-inside:avoid}
+    .say{break-inside:avoid;page-break-inside:avoid}
+    body{font-size:11pt}
+  }
+</style>
+</head>
+<body>
+<div class="internal-bar">내부용 · 고객 배포 금지 · 링크 공유 주의</div>
+<style>
+:root{
+  --ground:#FFFFFF;
+  --surface:#F4F5F7;
+  --surface-2:#EAECF0;
+  --ink:#16181C;
+  --muted:#646B76;
+  --rule:#DFE2E7;
+  --accent:#A50034;
+  --accent-ink:#A50034;
+  --accent-tint:#FBEEF2;
+  --warn:#8A5200;
+  --warn-tint:#FDF3E3;
+  --ok:#14603C;
+  --ok-tint:#EAF5EF;
+  --shadow:0 1px 2px rgba(22,24,28,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#131519;
+    --surface:#1B1E24;
+    --surface-2:#242832;
+    --ink:#E9EBEF;
+    --muted:#98A0AC;
+    --rule:#2C313A;
+    --accent:#E86A8C;
+    --accent-ink:#F0879F;
+    --accent-tint:#2A171E;
+    --warn:#E7B15E;
+    --warn-tint:#2A2115;
+    --ok:#6FCB9C;
+    --ok-tint:#152620;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#131519;
+  --surface:#1B1E24;
+  --surface-2:#242832;
+  --ink:#E9EBEF;
+  --muted:#98A0AC;
+  --rule:#2C313A;
+  --accent:#E86A8C;
+  --accent-ink:#F0879F;
+  --accent-tint:#2A171E;
+  --warn:#E7B15E;
+  --warn-tint:#2A2115;
+  --ok:#6FCB9C;
+  --ok-tint:#152620;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"IBM Plex Sans KR","Malgun Gothic",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-text-size-adjust:100%;
+}
+.mono{font-family:"IBM Plex Mono","Consolas",monospace;font-variant-numeric:tabular-nums}
+
+/* ── shell ── */
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px 96px}
+@media(min-width:960px){
+  .wrap{display:grid;grid-template-columns:212px minmax(0,1fr);gap:44px;padding:0 28px 120px}
+  .masthead{grid-column:1/-1}
+}
+
+/* ── masthead ── */
+.masthead{padding:34px 0 22px;border-bottom:3px solid var(--ink)}
+.kicker{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 10px
+}
+h1{
+  font-family:"Gothic A1","Malgun Gothic",sans-serif;font-weight:800;
+  font-size:clamp(30px,6vw,44px);line-height:1.14;letter-spacing:-.02em;
+  margin:0;text-wrap:balance
+}
+.sub{margin:12px 0 0;color:var(--muted);font-size:15px;max-width:62ch}
+.stamp{
+  display:inline-block;margin-top:14px;padding:5px 11px;
+  background:var(--surface-2);border:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em;color:var(--muted)
+}
+
+/* ── hard rules strip ── */
+.hardrules{
+  margin:22px 0 0;display:grid;gap:10px
+}
+@media(min-width:700px){.hardrules{grid-template-columns:1fr 1fr}}
+.hard{
+  display:flex;gap:12px;align-items:flex-start;
+  background:var(--accent-tint);border:1px solid var(--accent);
+  padding:13px 15px
+}
+.hard .tag{
+  flex:none;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+  letter-spacing:.1em;color:var(--accent-ink);padding-top:3px
+}
+.hard p{margin:0;font-size:14.5px;line-height:1.5}
+.hard b{font-weight:600}
+
+/* ── nav ── */
+nav{position:sticky;top:0;z-index:20;background:var(--ground);
+  padding:10px 0;border-bottom:1px solid var(--rule);margin-bottom:26px}
+.navscroll{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.navscroll::-webkit-scrollbar{display:none}
+nav a{
+  flex:none;text-decoration:none;color:var(--muted);
+  font-size:13px;padding:6px 11px;border:1px solid var(--rule);
+  white-space:nowrap;background:var(--surface)
+}
+nav a:hover,nav a:focus-visible{color:var(--accent-ink);border-color:var(--accent);outline:none}
+nav a .n{font-family:"IBM Plex Mono",monospace;font-size:11px;margin-right:5px;opacity:.7}
+@media(min-width:960px){
+  nav{position:sticky;top:20px;align-self:start;background:transparent;
+    border:none;padding:0;margin:34px 0 0;grid-column:1}
+  .navscroll{flex-direction:column;gap:2px;overflow:visible}
+  nav a{background:transparent;border:none;border-left:2px solid var(--rule);
+    padding:5px 0 5px 12px;font-size:13.5px}
+  nav a:hover,nav a:focus-visible{border-left-color:var(--accent);background:transparent}
+}
+main{min-width:0}
+@media(min-width:960px){main{grid-column:2;padding-top:34px}}
+
+/* ── sections ── */
+section{margin:0 0 46px;scroll-margin-top:76px}
+@media(min-width:960px){section{scroll-margin-top:24px}}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead .num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--accent-ink)}
+.shead h2{
+  font-family:"Gothic A1",sans-serif;font-weight:700;font-size:clamp(19px,3.4vw,23px);
+  margin:0;letter-spacing:-.015em;line-height:1.25
+}
+.shead .flag{
+  margin-left:auto;flex:none;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  letter-spacing:.06em;color:var(--warn);background:var(--warn-tint);
+  border:1px solid var(--warn);padding:2px 7px
+}
+
+/* ── Q blocks ── */
+.q{margin:0 0 26px}
+.q > .ask{
+  font-family:"Gothic A1",sans-serif;font-weight:700;font-size:17px;
+  margin:0 0 10px;line-height:1.4;letter-spacing:-.01em
+}
+.say{
+  background:var(--surface);border-top:2px solid var(--accent);
+  padding:15px 17px 16px;margin:0 0 12px
+}
+.say .lbl{
+  display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;
+  letter-spacing:.14em;color:var(--accent-ink);margin-bottom:9px
+}
+.say p{margin:0 0 11px;font-size:16.5px;line-height:1.7;font-weight:500}
+.say p:last-child{margin-bottom:0}
+.say p::before{content:"“";color:var(--accent-ink);font-weight:600}
+.say p::after{content:"”";color:var(--accent-ink);font-weight:600}
+.note{margin:0;padding-left:0;list-style:none;font-size:14.5px;color:var(--muted);line-height:1.6}
+.note li{position:relative;padding-left:15px;margin:5px 0}
+.note li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:1px;background:var(--muted)}
+.note b,.note strong{color:var(--ink);font-weight:600}
+
+.callout{
+  display:flex;gap:11px;background:var(--warn-tint);border-left:3px solid var(--warn);
+  padding:12px 14px;margin:12px 0 0;font-size:14.5px;line-height:1.6
+}
+.callout .ic{flex:none;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:11px;
+  letter-spacing:.08em;color:var(--warn);padding-top:3px}
+.callout div p{margin:0 0 7px}
+.callout div p:last-child{margin:0}
+.callout b{font-weight:600;color:var(--ink)}
+
+/* ── tables ── */
+.tblwrap{overflow-x:auto;margin:0 0 16px;border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{
+  background:var(--surface-2);font-family:"Gothic A1",sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:-.005em;white-space:nowrap
+}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hi{color:var(--accent-ink);font-weight:600}
+caption{caption-side:bottom;text-align:left;padding:9px 13px;font-size:13px;color:var(--muted);background:var(--surface)}
+
+/* ── key facts ── */
+.keys{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:0 0 18px}
+@media(min-width:640px){.keys{grid-template-columns:1fr 1fr}}
+.key{background:var(--ground);padding:13px 15px}
+.key dt{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+  letter-spacing:.1em;color:var(--muted);margin:0 0 5px}
+.key dd{margin:0;font-size:16px;font-weight:600;line-height:1.45}
+.key dd .s{display:block;font-size:13.5px;font-weight:400;color:var(--muted);margin-top:3px}
+
+/* ── checklist ── */
+.check{list-style:none;margin:0;padding:0;font-size:15px}
+.check li{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--rule)}
+.check li:last-child{border-bottom:none}
+.check .box{flex:none;width:15px;height:15px;border:1.5px solid var(--muted);margin-top:5px}
+.check b{font-weight:600}
+.check .sub2{display:block;font-size:13.5px;color:var(--muted);margin-top:2px}
+
+/* ── ask-later list ── */
+.later{counter-reset:l;list-style:none;margin:0;padding:0}
+.later li{counter-increment:l;position:relative;padding:11px 0 11px 38px;border-bottom:1px solid var(--rule);font-size:15px}
+.later li:last-child{border-bottom:none}
+.later li::before{
+  content:counter(l,decimal-leading-zero);position:absolute;left:0;top:12px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--accent-ink)
+}
+.later .sub2{display:block;font-size:13.5px;color:var(--muted);margin-top:3px}
+
+footer{border-top:1px solid var(--rule);margin-top:44px;padding-top:18px;
+  font-size:13px;color:var(--muted);line-height:1.7}
+footer .mono{font-size:12.5px}
+a{color:var(--accent-ink)}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Hillstate Doan 2 · Field Desk</p>
+    <h1>도안2차 현장 상담 Q&amp;A 시트</h1>
+    <p class="sub">2026년 9월 5일 토요일 · 커뮤니티센터 상담·현장 계약. 굵은 따옴표 문장은 그대로 읽으셔도 됩니다. 아래 회색 글은 추가 질문이 들어왔을 때 쓰는 근거입니다.</p>
+    <span class="stamp">내부용 · 고객 배포 금지 · 2026-08-31 기준</span>
+
+    <div class="hardrules">
+      <div class="hard">
+        <span class="tag">주의 01</span>
+        <p><b>“10년 A/S”는 이 현장에서 쓰지 마세요.</b> 도안2차 약관은 제품·시공 모두 <b>무상 2년</b>입니다.</p>
+      </div>
+      <div class="hard">
+        <span class="tag">주의 02</span>
+        <p>현장 연락처는 <b class="mono">1555-7726 / 010-2312-2627</b>. 블로그에 쓰는 010-4854-2627이 아닙니다.</p>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="섹션 이동">
+    <div class="navscroll">
+      <a href="#s0"><span class="n">00</span>먼저 외울 것</a>
+      <a href="#s1"><span class="n">01</span>가격·결제</a>
+      <a href="#s2"><span class="n">02</span>구성 선택</a>
+      <a href="#s3"><span class="n">03</span>시공 일정·범위</a>
+      <a href="#s4"><span class="n">04</span>도배 마감</a>
+      <a href="#s5"><span class="n">05</span>보증·A/S</a>
+      <a href="#s6"><span class="n">06</span>실외기·공용부</a>
+      <a href="#s7"><span class="n">07</span>취소·위약금</a>
+      <a href="#s8"><span class="n">08</span>임차인·명의</a>
+      <a href="#s9"><span class="n">09</span>참여 현황</a>
+      <a href="#s10"><span class="n">10</span>단지 혜택</a>
+      <a href="#s11"><span class="n">11</span>즉답 금지</a>
+      <a href="#s12"><span class="n">12</span>접수 체크</a>
+    </div>
+  </nav>
+
+  <main>
+
+  <!-- 00 -->
+  <section id="s0">
+    <div class="shead"><span class="num">00</span><h2>먼저 외울 다섯 가지</h2></div>
+
+    <dl class="keys">
+      <div class="key"><dt>계약금</dt><dd>100만원 정액<span class="s">농협 <span class="mono">301-0378-9026-01</span> ㈜다원에어시스 · 계약자 본인 명의</span></dd></div>
+      <div class="key"><dt>중도금</dt><dd>2대 300 / 3대 400 / <span class="hi">4·5대 500만원</span><span class="s">시공 1일 전, 제품 입고 시점</span></dd></div>
+      <div class="key"><dt>잔금</dt><dd>시운전 완료 당일 현장 이체<span class="s">계약자 명의 · 입회 못 해도 통보 즉시 당일</span></dd></div>
+      <div class="key"><dt>보증</dt><dd>제품·시공 각 무상 2년<span class="s">+ 시공 후 1년 공용부·실외기실 정기점검</span></dd></div>
+      <div class="key"><dt>전용 연락처</dt><dd class="mono">1555-7726 / 010-2312-2627</dd></div>
+      <div class="key"><dt>단지 규모</dt><dd>4BL·7BL 각 258세대<span class="s">총 516세대 기준 단가</span></dd></div>
+    </dl>
+
+    <div class="tblwrap">
+      <table>
+        <caption>부가세 포함 · 기본 시공 일체 포함(배관 30M · 전원선 50M · 보양 · 도배). 차액은 전 구성 동일하게 15만원.</caption>
+        <thead>
+          <tr><th>구성</th><th>실내기</th><th class="num">공식 판매가<br>(카드 가능)</th><th class="num">현금+현금영수증</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>2대</b> 4HP</td><td>18평 + 6평</td><td class="num">5,750,000</td><td class="num hi">5,600,000</td></tr>
+          <tr><td><b>3대</b> 5HP</td><td>18평 + 6평 + 5평</td><td class="num">6,750,000</td><td class="num hi">6,600,000</td></tr>
+          <tr><td><b>4대</b> 5HP</td><td>18평 + 6평 + 5평×2</td><td class="num">7,950,000</td><td class="num hi">7,800,000</td></tr>
+          <tr><td><b>5대</b> 5HP</td><td>18평 + 6평 + 5평×3</td><td class="num">8,950,000</td><td class="num hi">8,800,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section id="s1">
+    <div class="shead"><span class="num">01</span><h2>가격 · 결제</h2></div>
+
+    <div class="q">
+      <p class="ask">왜 이 가격인가요? 다른 데보다 비싼 것 같은데요.</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>일반 세대 시공은 집 안에서 끝나지만, 이 단지는 실외기실이 없어서 옥상하고 2층 공용부까지 같이 시공합니다. 입상배관, 비트실 타공, 2단 앵글, 세대에서 공용부까지 가는 전원선 공사가 전부 들어가 있고요. 그 비용을 계약한 전 세대로 균등하게 나눠서 모든 세대가 같은 단가를 적용받습니다.</p>
+      </div>
+      <ul class="note">
+        <li>고소·안전관리 공수가 다수 추가됩니다. 개별로 하면 이 단가가 안 나옵니다.</li>
+        <li><b>층·평형·위치로 금액이 달라지지 않습니다.</b> 모든 세대 동일 단가.</li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">카드로 해도 되나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>됩니다. 공식 판매가로 카드결제 가능하시고요, 현금에 현금영수증 발행 조건이면 15만원 할인된 금액으로 해드립니다.</p>
+      </div>
+      <div class="callout"><span class="ic">주의</span><div>
+        <p>현금영수증 조건으로 <b>할인받아 계약한 뒤 잔금을 카드로 바꾸면 2.5% 카드 수수료가 추가 청구</b>될 수 있습니다. 계약 시점에 결제수단을 정하셔야 한다고 미리 말씀드리세요.</p>
+      </div></div>
+    </div>
+
+    <div class="q">
+      <p class="ask">계약금은 언제, 얼마 넣나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>계약금은 100만원 정액이고, 신청폼 작성하신 직후에 농협 301-0378-9026-01, 주식회사 다원에어시스로 입금해 주시면 됩니다. 폼만 내시면 접수가 안 되고, 입금이 확인된 시점에 접수가 확정됩니다.</p>
+      </div>
+      <ul class="note">
+        <li>반드시 <b>계약자 본인 명의</b>로. 명의가 다르면 입금 후 연락 달라고 안내.</li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">중도금·잔금은요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>중도금은 제품이 입고되는 시점, 시공 하루 전까지 넣어주시면 됩니다. 4대·5대는 500만원이고요. 잔금은 시운전 끝나는 당일 현장에서 바로 이체해 주시는 조건입니다.</p>
+      </div>
+      <ul class="note">
+        <li>잔금 현장 이체는 <b>미수금 차단 목적</b>으로 약관에 명시된 조건입니다.</li>
+        <li>계약자가 현장에 못 오셔도 <b>시운전 완료 통보 즉시 당일 이체</b>.</li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">디지털 온누리상품권 쓸 수 있나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>온누리는 중도금부터 쓰시는 걸로 안내드리고 있습니다. 계약금은 계좌로 넣어주시고요.</p>
+        <p>온누리는 실제로 물건이 들어오고 공사가 확정된 뒤에 쓰는 결제수단이라서요. 계약금 단계는 아직 발주 전이라 중간에 변동이 생기면 부분 환불 처리가 까다로워서 오히려 고객님이 불편해지십니다.</p>
+        <p>중도금이 4대 기준 500만원이라, 온누리로 쓰시려던 금액은 중도금에서 다 쓰실 수 있습니다. 절감되는 금액은 그대로예요.</p>
+      </div>
+      <ul class="note">
+        <li>절감 규모(현 정책 기준): 최대 <b class="mono">14만</b>[2대] / <b class="mono">21만</b>[3대] / <b class="mono">28만</b>[4·5대]</li>
+        <li>정책은 변동 가능 → <b>“시공 시점에 적용 가능 여부를 다시 확인해서 안내드리겠습니다”</b> 로 여지를 남기세요.</li>
+      </ul>
+      <div class="callout"><span class="ic">받아치기</span><div>
+        <p>“계약금도 온누리 된다고 들었는데요” → <b>“초기에 몇 분은 그렇게 진행된 건이 있는데, 지금은 중도금부터로 정리해서 안내드리고 있습니다.”</b></p>
+        <p>구글폼 「결제 수단(예정)」에 ‘디지털 온누리상품권’ 선택지가 있어 오해 소지가 있습니다. 선택하신 분에게는 구두로 한 번 더 짚어주세요.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section id="s2">
+    <div class="shead"><span class="num">02</span><h2>구성 선택</h2></div>
+
+    <div class="q">
+      <p class="ask">우리 집은 몇 대가 맞나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>세대 구조하고 실제 쓰시는 패턴에 따라 달라서요, 접수해 주시면 개별 상담으로 최적 구성을 잡아드립니다.</p>
+      </div>
+      <ul class="note">
+        <li>실내기: 거실 18평형 <span class="mono">RNW0720C2S</span> + 안방 6평형 <span class="mono">RNW0230C2S</span> + 나머지 방 5평형 <span class="mono">RNW0200C2S</span> 1~3대</li>
+        <li>실외기: <b>2대 구성 = 4HP</b> <span class="mono">RPUQ041S2S</span> / <b>3·4·5대 = 5HP</b> <span class="mono">RPUQ051S2S</span></li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">2대만 하고 나중에 더 달면 안 되나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>2대 구성은 시스템 특성상 나중에 추가 설치가 안 됩니다. 방 개수하고 앞으로 쓰실 계획을 미리 생각하시고 정하셔야 해요.</p>
+        <p>3대 이상으로 하시면 나중에 추가는 가능한데, 그때는 개별 작업이라 비용이 더 붙습니다.</p>
+      </div>
+      <ul class="note">
+        <li>3대 이상 추가 시공 시 <b>전실 운전에서 실외기 용량이 부족</b>할 수 있다는 조항도 있습니다.</li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">기존 FCU는 다 떼어가나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>냉방시스템이 들어가는 자리의 FCU만 철거해서 반출합니다. 안 쓰는 자리에 남는 FCU를 추가로 떼어내길 원하시면 1대당 철거비하고 도배 복구비가 따로 발생합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section id="s3">
+    <div class="shead"><span class="num">03</span><h2>시공 — 일정 · 범위</h2></div>
+
+    <div class="q">
+      <p class="ask">언제 시공하나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>세대 실내 작업은 전체 세대 접수가 마무리된 뒤에 온라인으로 별도 예약을 받아서 확정합니다. 날짜가 잡히면 개별로 협의해서 알려드려요.</p>
+      </div>
+      <ul class="note">
+        <li>신청 마감·시공 일정은 <b>통합관리위원회 협의 후 별도 공지</b>.</li>
+        <li>폼의 「시공일」 항목은 날짜 입력이 아니라 <b>안내 확인 체크</b>입니다. (“날짜 썼는데요?” 대응용)</li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">하루면 끝나나요? 집을 비워야 하나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>세대 안 작업은 하루 안에 끝냅니다. FCU 철거, 배관, 실내기 설치, 보양, 도배 마감까지요. 일반적으로는 2~4일 걸리는데 이 단지는 전용 시공 패턴으로 하루에 마칩니다.</p>
+        <p>시작하실 때하고 끝날 때 한 번씩 입회만 해주시면 됩니다.</p>
+      </div>
+      <div class="callout"><span class="ic">꼭</span><div>
+        <p><b>실외기 설치와 시운전은 별도 일자</b>입니다. 옥상·2층 공용부 진행 상황을 따라갑니다. 이걸 안 짚으면 “하루라며?” 민원이 됩니다.</p>
+      </div></div>
+    </div>
+
+    <div class="q">
+      <p class="ask">뭐가 포함되고 뭐가 추가인가요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>배관 30미터, 전원선 50미터, 층별 비트실 타공, 실내 보양, 배관·타공 도배 마감, 공용부 2단 앵글, 시운전까지 전부 계약 단가에 들어 있습니다. 별도 추가비용 없습니다.</p>
+      </div>
+      <div class="tblwrap">
+        <table>
+          <caption>추가 비용이 발생하는 네 가지 — 외워두세요.</caption>
+          <thead><tr><th>상황</th><th>비용</th></tr></thead>
+          <tbody>
+            <tr><td>설치 안 하는 자리의 <b>남은 FCU 추가 철거</b></td><td>1대당 철거 + 도배 복구비</td></tr>
+            <tr><td>2층·4층 외벽 배관 커버를 <b>갈바 외 소재</b>로 요구</td><td>차액 별도</td></tr>
+            <tr><td>계약 후 <b>6개월 내 시공 예약 미진행</b>으로 지연</td><td>기간 중 단종·단가 인상분 고객 부담</td></tr>
+            <tr><td>현금영수증 할인 계약 후 <b>잔금 카드 결제</b></td><td>카드 수수료 2.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="q">
+      <p class="ask">인테리어 공사랑 같이 하면 안 되나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>목공이나 도배, 바닥 같은 다른 마감 공사랑 동시 진행은 안 됩니다. 일정이 겹치면 사전에 협의해서 조정해 드려요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="s4">
+    <div class="shead"><span class="num">04</span><h2>도배 마감</h2><span class="flag">분쟁 다발 · 먼저 말할 것</span></div>
+
+    <div class="q">
+      <p class="ask">도배는 어떻게 해주세요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>천장 전체 도배가 아니고 부분 도배 마감입니다. 스킬도배라고 하는데요, 기존 FCU하고 새로 들어가는 1WAY 제품 크기가 달라서 제품 옆으로 뜨는 부분을 막아주는 작업이에요.</p>
+        <p>이때 쓰는 도배지가 기존에 발라진 것과 같은 제품은 아닙니다. 기존 도배지는 시간이 지나면서 변색이 되기 때문에 색이나 질감이 조금 다를 수 있고, 절개선이 보일 수 있다는 점은 미리 말씀드립니다.</p>
+      </div>
+      <ul class="note">
+        <li><b>먼저 말하는 게 낫습니다.</b> 나중에 나오면 클레임, 미리 말하면 동의 항목이 됩니다.</li>
+        <li>도배는 <b>전담 도배사가 별도 일자</b>에 올 수 있습니다. 지연이나 하자가 아닙니다.</li>
+        <li>설비 완료 시점 기준 = <b>실내기 설치 + 배관·전원 연결이 끝난 시점</b>. 도배 여부와 무관합니다.</li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">천장 인테리어를 했는데요 / 도배지를 바꿨는데요.</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>그 경우는 기존 벽지하고 무늬나 색이 안 맞아서 당일 마감이 어려울 수 있습니다. 신청서에 그 항목이 있으니 꼭 체크해 주세요. 미리 알면 따로 준비해서 갑니다.</p>
+      </div>
+      <ul class="note">
+        <li>폼에 「기존 천장 인테리어·도배지 변경 여부」 문항이 있습니다. <b>현장 접수 시 꼭 확인.</b></li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">시공하고 나면 청소는 해주시나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>분진이 다른 공간으로 날리지 않게 보양 작업은 기본으로 들어갑니다. 다만 시공 끝나고 남은 먼지 청소는 거주하시는 분께서 해주셔야 하는 부분이에요.</p>
+      </div>
+      <ul class="note">
+        <li>시운전·청소 과정에서 먼지가 유입될 수 있고, 이건 시공 하자가 아닙니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="s5">
+    <div class="shead"><span class="num">05</span><h2>보증 · A/S</h2></div>
+
+    <div class="q">
+      <p class="ask">A/S는 몇 년인가요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>제품은 LG전자 공식 서비스망으로 2년, 설치 시공도 인도일로부터 2년 무상입니다. 그리고 시공 후 1년 시점에 공용부하고 실외기실 정기점검을 저희가 나와서 해드립니다.</p>
+      </div>
+      <div class="tblwrap">
+        <table>
+          <caption>책임 구분 — 물어보면 이대로.</caption>
+          <thead><tr><th>상황</th><th>처리 주체</th></tr></thead>
+          <tbody>
+            <tr><td>제품 자체 결함</td><td>LG전자 공식 서비스망</td></tr>
+            <tr><td>설치·시공 하자</td><td>다원에어시스 + 액션에어</td></tr>
+            <tr><td>분지관 용접부 냉매 누설</td><td>시공팀 <b>무상</b></td></tr>
+            <tr><td>입주민 사용 부주의</td><td>유상 (LG 정책)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="note">
+        <li><b>시공 하자로 인정되는 범위</b> — 냉매 누설 / 드레인 누수 / 실내외기 체결 불량, 그중 <b>을의 시공 과실로 발생한 것에 한함</b>.</li>
+      </ul>
+      <div class="callout"><span class="ic">제외</span><div>
+        <p><b>드레인 배관은 기존 FCU 배관을 재사용</b>합니다. 기존 배관에서 나는 누수·막힘은 시공 하자가 아니고, 새로 연결한 부위까지가 책임 범위입니다.</p>
+        <p><b>제품 토출부 결로, 천장 내부 배관 결로</b>는 실내 습도·환기 등 사용 환경에 따른 것으로 보증 대상 제외입니다.</p>
+        <p>타 인테리어 공사(목공·도배)로 인한 훼손, 임의 개조, 천재지변 제외. <b>을의 귀책이 아닌 하자로 방문하면 출장비가 발생</b>합니다.</p>
+      </div></div>
+    </div>
+
+    <div class="q">
+      <p class="ask">차단기 바꾼다는데 나중에 문제 없나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>세대 차단기는 LG전자 설치 기준에 맞춰서 변경 시공합니다. 나중에 아파트 전기점검에서 지적이 나오더라도 그건 저희 귀책은 아니라서, 재교체 의무는 지지 않는다고 약관에 들어가 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="s6">
+    <div class="shead"><span class="num">06</span><h2>실외기 · 공용부</h2></div>
+
+    <div class="q">
+      <p class="ask">실외기는 어디에 다나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>세대 베란다가 아니라 옥상하고 2층 커뮤니티층 외부 공용공간에 설치됩니다. 한 층에 부하가 몰리지 않게 위쪽 7개 층은 옥상, 아래쪽 6개 층은 2층으로 나눠서 답니다. 세대별 위치는 서로 다릅니다.</p>
+      </div>
+      <ul class="note">
+        <li>2단 제작앵글 적용 — 면적 효율 · 낙하방지 · 점검 동선 확보.</li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">실외기 소음 민원 나면요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>공용부 실외기 소음 관련 민원은 저희 책임 범위에는 들어가 있지 않습니다. 단지 차원에서 협약으로 진행되는 부분이라서요.</p>
+      </div>
+      <div class="callout"><span class="ic">말조심</span><div>
+        <p>약관상 소음 민원으로 시공이 불가해져도 <b>기 발주된 제품·자재 대금 납부 의무는 남습니다.</b> 먼저 꺼내지 말고, 물어보면 답하는 선으로.</p>
+      </div></div>
+    </div>
+
+    <div class="q">
+      <p class="ask">2층·4층인데 배관이 밖으로 나온다던데요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>2층하고 4층 세대는 외벽을 통해서 공용부로 직접 배관이 갑니다. 배관 커버는 갈바 소재로 마감하는 게 기준이고요, 다른 소재를 원하시면 그 비용은 추가로 발생합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="s7">
+    <div class="shead"><span class="num">07</span><h2>계약 · 취소 · 위약금</h2><span class="flag">먼저 꺼내지 말 것</span></div>
+
+    <div class="q">
+      <p class="ask">계약했다가 취소되나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>공용부 배관하고 전기선로는 계약과 동시에 자재 준비하고 발주가 들어갑니다. 그래서 공용부 작업 안내 문자가 나간 뒤에는 취소가 안 되는 구조예요.</p>
+      </div>
+      <div class="tblwrap">
+        <table>
+          <caption>위약금 — 물어보면 담담하게 사실만.</caption>
+          <thead><tr><th>시점</th><th>결과</th></tr></thead>
+          <tbody>
+            <tr><td><b>중도금 납부 전</b> (계약금만 낸 상태)</td><td>위약금 총액 <b class="hi">200만원</b> — 기납부 계약금 100만 외 <b>100만원 추가 부담</b></td></tr>
+            <tr><td><b>중도금 납부 후</b></td><td>계약금+중도금 전액 위약금 귀속. 단 <b>제품은 인도</b></td></tr>
+            <tr><td><b>세대 실내 시공 완료 후</b></td><td>해지·환불 불가</td></tr>
+            <tr><td>건축물 구조상 시공 불가</td><td>위약금 없이 해지 가능</td></tr>
+            <tr><td>다원 귀책으로 해지</td><td>입금액 전부 반환</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout"><span class="ic">톤</span><div>
+        <p>“왜 이렇게 빡빡하냐” 하시면 → <b>“계약과 동시에 공용부 타공, 배관, 앵글, 전기 작업이 실제로 발주되기 때문입니다. 개별 시공이면 없을 조건인데 단지 일괄이라 생긴 조건이에요.”</b></p>
+      </div></div>
+    </div>
+
+    <div class="q">
+      <p class="ask">집을 팔면요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>매수인에게 계약상 권리·의무를 승계해 주셔야 하고, 승계 내용은 3일 안에 저희한테 알려주시면 됩니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section id="s8">
+    <div class="shead"><span class="num">08</span><h2>임차인 · 명의</h2></div>
+
+    <div class="q">
+      <p class="ask">세입자가 살고 있는데요.</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>신청서에 임차인 성함하고 연락처, 개인정보 동의 항목이 있습니다. 거주 형태를 임차인 거주로 선택하시면 그 항목이 나와요.</p>
+        <p>시공 협조나 청소, 민원 같은 임대인·임차인 사이의 문제는 계약자분께서 정리해 주셔야 하는 부분입니다.</p>
+      </div>
+      <ul class="note">
+        <li>소유자 직접거주면 임차인 항목은 <b>건너뛰고 제출</b>됩니다.</li>
+        <li>잔금은 임차인 거주 세대도 동일하게 <b>계약자 명의로 시운전 당일 이체</b>.</li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">입금을 배우자 명의로 해도 되나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>계약자 본인 명의로 해주시는 게 원칙이고요, 명의가 다르면 입금하시고 1555-7726이나 010-2312-2627로 알려주시면 됩니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section id="s9">
+    <div class="shead"><span class="num">09</span><h2>참여 현황 · 단가 보장</h2></div>
+
+    <div class="q">
+      <p class="ask">지금 몇 세대나 했어요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>현재 접수 기준으로 128세대, 계약금 입금이 확인된 세대가 114세대입니다. 4블럭 62세대, 7블럭 66세대 접수됐고요.</p>
+      </div>
+      <ul class="note">
+        <li>2026-08-31 기준. 4BL·7BL 각 258세대 = 총 516세대.</li>
+        <li>숫자를 그대로 말하기 부담스러우면 → <b>“지금도 계속 들어오고 있어서, 오늘도 현장 접수 받고 있습니다”</b> 로 넘기고 정확한 수치는 대표님 확인 후 안내한다고 하셔도 됩니다.</li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <p class="ask">참여 세대가 적으면 가격 올라가나요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>지금 안내드리는 금액은 단지 전체 참여 기준으로 잡은 단가입니다. 1차 행사까지는 현재 안내 금액을 보장해 드립니다.</p>
+      </div>
+      <ul class="note">
+        <li>조건은 <b>70% 이상 참여 기준</b>. 이 숫자는 먼저 꺼내지 마세요.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section id="s10">
+    <div class="shead"><span class="num">10</span><h2>단지 혜택 — Aqara IOT</h2></div>
+
+    <div class="q">
+      <p class="ask">블라인드 혜택이 있다던데요?</p>
+      <div class="say"><span class="lbl">그대로 읽기</span>
+        <p>Aqara 정품 전동블라인드나 전동커튼을 지정 구매처에서 구매하신 세대는, 냉방시스템 시공하고 같이 진행할 때 전원연결공사를 무상으로 해드립니다.</p>
+      </div>
+      <ul class="note">
+        <li><b>냉방시스템 공동구매 참여 세대 한정</b> · 지정 구매처 <b>구매 영수증 제출 시</b> 적용.</li>
+        <li>Aqara 제품 자체는 입주민이 직접 구매. <b>지정 구매처 외 구매 건은 대상 제외.</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section id="s11">
+    <div class="shead"><span class="num">11</span><h2>즉답하지 말 것</h2><span class="flag">확인 후 회신</span></div>
+    <p class="sub" style="margin:0 0 16px">“확인해서 바로 연락드리겠습니다”로 받아두고 메모만 하세요.</p>
+    <ol class="later">
+      <li><b>개별 할인 요구</b> — 공실이라 보양비 빼달라, 인테리어 같이 하니 도배비 빼달라 등
+        <span class="sub2">약관상 “본 계약 금액은 전체 세대 기준 일률 책정”이라 개별 공제는 없습니다. 현장에서 각 세우지 말고 위 문장으로 받으세요.</span></li>
+      <li><b>시공 날짜 확정 요구</b></li>
+      <li><b>온누리 계약금 적용</b>을 강하게 요구하는 경우</li>
+      <li>4·5대 외 <b>비표준 구성</b> — 6대 이상, 실내기 위치 변경 등</li>
+      <li>이미 계약한 세대의 <b>금액·조건 변경</b></li>
+      <li>신규 <b>동호수 정정</b>
+        <span class="sub2">이번 주에도 208-803 오기입 정정 건이 있었습니다. 접수 시 동호수를 두 번 확인하세요.</span></li>
+    </ol>
+  </section>
+
+  <!-- 12 -->
+  <section id="s12">
+    <div class="shead"><span class="num">12</span><h2>현장 접수 체크리스트</h2></div>
+    <ul class="check">
+      <li><span class="box"></span><span><b>동호수</b> — 블럭(4BL/7BL) + 동 + 호수
+        <span class="sub2">앞에 0 붙여 적지 않도록 확인. <span class="mono">208-803</span> ○ / <span class="mono">208-0803</span> ✕</span></span></li>
+      <li><span class="box"></span><span><b>계약자 성함 · 연락처 · 예비연락처</b></span></li>
+      <li><span class="box"></span><span><b>구성 대수</b> (2 / 3 / 4 / 5)<span class="sub2">대수별로 신청폼이 다릅니다</span></span></li>
+      <li><span class="box"></span><span><b>아파트 타입</b> — 84A / 84A-1 / 84B / 84C</span></li>
+      <li><span class="box"></span><span><b>결제수단</b> — 현금+현금영수증 / 카드<span class="sub2">금액이 15만원 갈립니다</span></span></li>
+      <li><span class="box"></span><span><b>현금영수증 발행번호</b></span></li>
+      <li><span class="box"></span><span><b>거주 형태</b> — 소유자 직접거주 / 임차인 거주<span class="sub2">임차인이면 성함·연락처·개인정보 동의까지</span></span></li>
+      <li><span class="box"></span><span><b>천장 인테리어·도배지 변경 여부</b></span></li>
+      <li><span class="box"></span><span><b>계약금 100만원 입금 안내</b><span class="sub2">농협 301-0378-9026-01 · 계약자 본인 명의</span></span></li>
+      <li><span class="box"></span><span><b>필수 확인 7개 항목 체크 안내</b>
+        <span class="sub2">보양·청소 / 실외기 위치·소음 / 취소 불가·중도금·위약금 / 비용 기준·시공 범위 / 세대 상태 확인 / 시운전·잔금 현장 이체 / 도배 마감</span></span></li>
+    </ul>
+    <div class="callout"><span class="ic">이후</span><div>
+      <p>접수가 들어오면 텔레그램으로 알림이 뜨고 계약서 PDF가 자동 생성됩니다. 고객에게는 <b>계약서 열람 링크</b>를 문자로 보내드리면 됩니다.</p>
+    </div></div>
+  </section>
+
+  <footer>
+    <p><b>도안2차 전용 연락처</b> <span class="mono">1555-7726 / 010-2312-2627</span> · 계약금 계좌 <span class="mono">농협 301-0378-9026-01 ㈜다원에어시스</span></p>
+    <p class="mono">근거: 도안2차 시공계약 약관 · 제품안내·계약신청 배포 페이지 · 통합시트 접수 현황(2026-08-31) · 작성 2026-08-31</p>
+  </footer>
+
+  </main>
+</div>
+</body>
+</html>

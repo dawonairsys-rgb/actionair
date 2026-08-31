@@ -292,7 +292,7 @@ a{color:var(--accent-ink)}
 
   <!-- 01 -->
   <section id="s1">
-    <div class="shead"><span class="num">01</span><h2>가격 · 결제</h2></div>
+    <div class="shead"><span class="num">01</span><h2>가격</h2></div>
 
     <div class="q">
       <p class="ask">왜 이 가격인가요? 다른 데보다 비싼 것 같은데요.</p>
@@ -324,6 +324,12 @@ a{color:var(--accent-ink)}
         <li>카드사 무이자는 달마다 바뀌므로 <b>“몇 개월 된다”고 확정해서 말하지 마세요.</b> 본인 카드사 앱이나 안내 문자로 확인하시라고 안내.</li>
       </ul>
     </div>
+
+  </section>
+
+  <!-- 03 -->
+  <section id="s2">
+    <div class="shead"><span class="num">02</span><h2>결제 단계</h2></div>
 
     <div class="q">
       <p class="ask">계약금은 언제, 얼마 넣나요?</p>
@@ -364,9 +370,9 @@ a{color:var(--accent-ink)}
     </div>
   </section>
 
-  <!-- 02 -->
-  <section id="s2">
-    <div class="shead"><span class="num">02</span><h2>구성 선택</h2></div>
+  <!-- 03 -->
+  <section id="s3">
+    <div class="shead"><span class="num">03</span><h2>구성 선택</h2></div>
 
     <div class="q">
       <p class="ask">우리 집은 몇 대가 맞나요?</p>
@@ -410,9 +416,9 @@ a{color:var(--accent-ink)}
     </div>
   </section>
 
-  <!-- 03 -->
-  <section id="s3">
-    <div class="shead"><span class="num">03</span><h2>시공 일정</h2></div>
+  <!-- 04 -->
+  <section id="s4">
+    <div class="shead"><span class="num">04</span><h2>시공 일정</h2></div>
 
     <div class="q">
       <p class="ask">언제 시공하나요?</p>
@@ -429,9 +435,9 @@ a{color:var(--accent-ink)}
 
   </section>
 
-  <!-- 04 -->
-  <section id="s4">
-    <div class="shead"><span class="num">04</span><h2>도배 마감</h2><span class="flag">분쟁 다발 · 먼저 말할 것</span></div>
+  <!-- 05 -->
+  <section id="s5">
+    <div class="shead"><span class="num">05</span><h2>도배 마감</h2><span class="flag">분쟁 다발 · 먼저 말할 것</span></div>
 
     <div class="q">
       <p class="ask">도배는 어떻게 해주세요?</p>
@@ -468,9 +474,9 @@ a{color:var(--accent-ink)}
     </div>
   </section>
 
-  <!-- 05 -->
-  <section id="s5">
-    <div class="shead"><span class="num">05</span><h2>보증 · A/S</h2></div>
+  <!-- 06 -->
+  <section id="s6">
+    <div class="shead"><span class="num">06</span><h2>보증 · A/S</h2></div>
 
     <div class="q">
       <p class="ask">A/S는 몇 년인가요?</p>
@@ -507,9 +513,9 @@ a{color:var(--accent-ink)}
     </div>
   </section>
 
-  <!-- 06 -->
-  <section id="s6">
-    <div class="shead"><span class="num">06</span><h2>실외기 · 공용부</h2></div>
+  <!-- 07 -->
+  <section id="s7">
+    <div class="shead"><span class="num">07</span><h2>실외기 · 공용부</h2></div>
 
     <div class="q">
       <p class="ask">실외기는 어디에 다나요?</p>
@@ -530,9 +536,9 @@ a{color:var(--accent-ink)}
 
   </section>
 
-  <!-- 07 -->
-  <section id="s7">
-    <div class="shead"><span class="num">07</span><h2>임차인 · 명의</h2></div>
+  <!-- 08 -->
+  <section id="s8">
+    <div class="shead"><span class="num">08</span><h2>임차인 · 명의</h2></div>
 
     <div class="q">
       <p class="ask">세입자가 살고 있는데요.</p>
@@ -555,9 +561,9 @@ a{color:var(--accent-ink)}
     </div>
   </section>
 
-  <!-- 08 -->
-  <section id="s8">
-    <div class="shead"><span class="num">08</span><h2>참여 현황 · 단가 보장</h2></div>
+  <!-- 09 -->
+  <section id="s9">
+    <div class="shead"><span class="num">09</span><h2>참여 현황 · 단가 보장</h2></div>
 
     <div class="q">
       <p class="ask">지금 몇 세대나 했어요?</p>
@@ -632,10 +638,10 @@ a{color:var(--accent-ink)}
   /* ── 장 나누기 ──
      기본은 섹션마다 새 장(넘기면서 찾기 좋게).
      다만 짧은 섹션이 연달아 오는 구간은 한 장에 묶어 빈 종이를 줄인다.
-     s6+s7 (측정 높이 합계가 1면 이내) */
+     s7+s8 (측정 높이 합계가 1면 이내) */
   section{ break-before:page; page-break-before:always; margin:0 0 0; }
-  #s0,#s7{ break-before:auto; page-break-before:auto; }
-  #s7{ margin-top:8pt; }
+  #s0,#s8{ break-before:auto; page-break-before:auto; }
+  #s8{ margin-top:8pt; }
   .shead{
     break-after:avoid; page-break-after:avoid;
     align-items:center; gap:10pt;
@@ -652,7 +658,8 @@ a{color:var(--accent-ink)}
   /* ── 문답을 '카드' 로 묶는다 (종이에서 덩어리로 잡히게) ── */
   .q{
     margin:0 0 11pt; border:1pt solid #6E747C; background:#fff;
-    break-inside:avoid; page-break-inside:avoid; overflow:hidden;
+    break-inside:avoid; page-break-inside:avoid;
+    overflow:visible;              /* hidden 이면 크롬이 장 나눔에서 내용을 잘라먹는다 */
   }
   .q > .ask{                       /* 질문 = 검은 띠 (아래로 훑으면 질문만 보임) */
     background:#16181C; color:#fff;

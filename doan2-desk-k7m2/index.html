@@ -16,74 +16,6 @@
     padding:7px 16px;text-align:center;line-height:1.5;
   }
 
-/* ──────────────── 인쇄 ──────────────── */
-@page{ size:A4; margin:12mm 13mm; }
-
-@media print{
-  /* 인쇄는 항상 밝은 팔레트로 고정 (다크 모드 브라우저 대응) */
-  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
-    --ground:#FFFFFF; --surface:#F2F3F5; --surface-2:#E8EAED;
-    --ink:#000000; --muted:#4A4F57; --rule:#B8BDC5;
-    --accent:#8C002C; --accent-ink:#8C002C; --accent-tint:#F6E9ED;
-    --warn:#6B4000; --warn-tint:#F7F0E2;
-    --ok:#0F4C30; --ok-tint:#EDF4F0;
-  }
-  *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-
-  html,body{ background:#fff !important; }
-  body{ font-size:10pt; line-height:1.5; }
-
-  nav{ display:none !important; }
-  .wrap{ display:block !important; max-width:none !important; padding:0 !important; }
-  main{ padding-top:0 !important; }
-
-  .internal-bar{
-    position:static; background:none; color:#8C002C;
-    border-bottom:1.5pt solid #8C002C; padding:0 0 4pt; text-align:left; font-size:8.5pt;
-  }
-
-  /* 1면 = 요약 카드 */
-  .masthead{ padding:10pt 0 8pt; border-bottom-width:2pt; }
-  h1{ font-size:22pt; }
-  .masthead .sub{ font-size:9.5pt; margin-top:6pt; }
-  .stamp{ margin-top:7pt; padding:2pt 6pt; font-size:8pt; }
-  .hardrules{ margin-top:9pt; }
-  .hard{ padding:7pt 9pt; }
-  .hard p{ font-size:10pt; }
-  #s0{ break-after:page; page-break-after:always; }
-
-  /* 끊김 제어 */
-  section{ margin-bottom:16pt; }
-  .shead{ break-after:avoid; page-break-after:avoid; margin-bottom:9pt; padding-bottom:4pt; }
-  .shead h2{ font-size:14pt; }
-  .q, .say, .callout, .keys, .tblwrap, .check li, .later li{
-    break-inside:avoid; page-break-inside:avoid;
-  }
-  tr,thead{ break-inside:avoid; page-break-inside:avoid; }
-  thead{ display:table-header-group; }
-
-  /* 블록 밀도 */
-  .q{ margin-bottom:13pt; }
-  .q > .ask{ font-size:11pt; margin-bottom:5pt; }
-  .say{ padding:8pt 10pt; margin-bottom:6pt; border-top-width:2pt; }
-  .say .lbl{ font-size:7.5pt; margin-bottom:5pt; }
-  .say p{ font-size:10.5pt; line-height:1.55; margin-bottom:5pt; }
-  .note{ font-size:9pt; }
-  .note li{ margin:2pt 0; }
-  .callout{ padding:7pt 9pt; margin-top:6pt; font-size:9pt; }
-  .keys{ margin-bottom:9pt; }
-  .key{ padding:7pt 9pt; }
-  .key dt{ font-size:7.5pt; margin-bottom:2pt; }
-  .key dd{ font-size:10.5pt; }
-  .key dd .s{ font-size:9pt; }
-  .tblwrap{ overflow:visible !important; margin-bottom:9pt; }
-  table{ min-width:0 !important; font-size:9.5pt; }
-  th,td{ padding:5pt 7pt; }
-  caption{ padding:4pt 7pt; font-size:8.5pt; }
-  .check li,.later li{ padding:5pt 0; font-size:10pt; }
-  .check .sub2,.later .sub2{ font-size:8.5pt; }
-  footer{ margin-top:14pt; padding-top:8pt; font-size:8.5pt; }
-}
 </style>
 </head>
 <body>
@@ -338,8 +270,6 @@ a{color:var(--accent-ink)}
       <a href="#s7"><span class="n">07</span>임차인·명의</a>
       <a href="#s8"><span class="n">08</span>참여 현황</a>
       <a href="#s9"><span class="n">09</span>단지 혜택</a>
-      <a href="#s10"><span class="n">10</span>즉답 금지</a>
-      <a href="#s11"><span class="n">11</span>접수 체크</a>
     </div>
   </nav>
 
@@ -682,44 +612,6 @@ a{color:var(--accent-ink)}
     </div>
   </section>
 
-  <!-- 10 -->
-  <section id="s10">
-    <div class="shead"><span class="num">10</span><h2>즉답하지 말 것</h2><span class="flag">확인 후 회신</span></div>
-    <p class="sub" style="margin:0 0 16px">“확인해서 바로 연락드리겠습니다”로 받아두고 메모만 하세요.</p>
-    <ol class="later">
-      <li><b>개별 할인 요구</b> — 공실이라 보양비 빼달라, 인테리어 같이 하니 도배비 빼달라 등
-        <span class="sub2">약관상 “본 계약 금액은 전체 세대 기준 일률 책정”이라 개별 공제는 없습니다. 현장에서 각 세우지 말고 위 문장으로 받으세요.</span></li>
-      <li><b>시공 날짜 확정 요구</b></li>
-      <li><b>온누리 계약금 적용</b>을 강하게 요구하는 경우</li>
-      <li>4·5대 외 <b>비표준 구성</b> — 6대 이상, 실내기 위치 변경 등</li>
-      <li>이미 계약한 세대의 <b>금액·조건 변경</b></li>
-      <li>신규 <b>동호수 정정</b>
-        <span class="sub2">이번 주에도 208-803 오기입 정정 건이 있었습니다. 접수 시 동호수를 두 번 확인하세요.</span></li>
-    </ol>
-  </section>
-
-  <!-- 11 -->
-  <section id="s11">
-    <div class="shead"><span class="num">11</span><h2>현장 접수 체크리스트</h2></div>
-    <ul class="check">
-      <li><span class="box"></span><span><b>동호수</b> — 블럭(4BL/7BL) + 동 + 호수
-        <span class="sub2">앞에 0 붙여 적지 않도록 확인. <span class="mono">208-803</span> ○ / <span class="mono">208-0803</span> ✕</span></span></li>
-      <li><span class="box"></span><span><b>계약자 성함 · 연락처 · 예비연락처</b></span></li>
-      <li><span class="box"></span><span><b>구성 대수</b> (2 / 3 / 4 / 5)<span class="sub2">대수별로 신청폼이 다릅니다</span></span></li>
-      <li><span class="box"></span><span><b>아파트 타입</b> — 84A / 84A-1 / 84B / 84C</span></li>
-      <li><span class="box"></span><span><b>결제수단</b> — 현금+현금영수증 / 카드<span class="sub2">금액이 15만원 갈립니다</span></span></li>
-      <li><span class="box"></span><span><b>현금영수증 발행번호</b></span></li>
-      <li><span class="box"></span><span><b>거주 형태</b> — 소유자 직접거주 / 임차인 거주<span class="sub2">임차인이면 성함·연락처·개인정보 동의까지</span></span></li>
-      <li><span class="box"></span><span><b>천장 인테리어·도배지 변경 여부</b></span></li>
-      <li><span class="box"></span><span><b>계약금 100만원 입금 안내</b><span class="sub2">농협 301-0378-9026-01 · 계약자 본인 명의</span></span></li>
-      <li><span class="box"></span><span><b>필수 확인 7개 항목 체크 안내</b>
-        <span class="sub2">보양·청소 / 실외기 위치·소음 / 취소 불가·중도금·위약금 / 비용 기준·시공 범위 / 세대 상태 확인 / 시운전·잔금 현장 이체 / 도배 마감</span></span></li>
-    </ul>
-    <div class="callout"><span class="ic">이후</span><div>
-      <p>접수가 들어오면 텔레그램으로 알림이 뜨고 계약서 PDF가 자동 생성됩니다. 고객에게는 <b>계약서 열람 링크</b>를 문자로 보내드리면 됩니다.</p>
-    </div></div>
-  </section>
-
   <footer>
     <p><b>도안2차 전용 연락처</b> <span class="mono">1555-7726 / 010-2312-2627</span> · 계약금 계좌 <span class="mono">농협 301-0378-9026-01 ㈜다원에어시스</span></p>
     <p class="mono">근거: 도안2차 시공계약 약관 · 제품안내·계약신청 배포 페이지 · 통합시트 접수 현황(2026-08-31) · 작성 2026-08-31</p>
@@ -727,5 +619,108 @@ a{color:var(--accent-ink)}
 
   </main>
 </div>
+<style>
+/* ★ 이 블록은 반드시 본문 <style> 뒤에 온다.
+   미디어쿼리는 우선순위를 올려주지 않으므로, 앞에 두면 본문 CSS 에 그대로 밀린다. */
+/* ──────────────── 인쇄 (종이 기준으로 다시 짬) ──────────────── */
+@page{ size:A4; margin:11mm 12mm; }
+
+@media print{
+  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
+    --ground:#FFFFFF; --surface:#F1F2F4; --surface-2:#E5E7EA;
+    --ink:#000000; --muted:#33383F; --rule:#9AA0A8;
+    --accent:#8C002C; --accent-ink:#8C002C; --accent-tint:#F7E8EC;
+    --warn:#5A3600; --warn-tint:#F8F1E4;
+    --ok:#0D4429; --ok-tint:#ECF3EF;
+  }
+  *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+  html,body{ background:#fff !important; }
+  body{ font-size:10.5pt; line-height:1.55; }
+  nav{ display:none !important; }
+  .wrap{ display:block !important; max-width:none !important; padding:0 !important; }
+  main{ padding-top:0 !important; }
+
+  .internal-bar{
+    position:static; background:none; color:#8C002C;
+    border-bottom:1.5pt solid #8C002C; padding:0 0 3pt;
+    text-align:left; font-size:8.5pt; letter-spacing:.04em;
+  }
+
+  /* ── 1면: 요약 카드 ── */
+  .masthead{ padding:4pt 0 5pt; border-bottom-width:2.5pt; }
+  h1{ font-size:16pt; }
+  .masthead .sub{ display:none; }             /* 읽는 법 안내는 화면에서만 */
+  .stamp{ display:none; }                     /* 상단 내부용 띠와 중복 */
+  .hardrules{ margin-top:5pt; }
+  .hard{ padding:5pt 9pt; border-width:1.2pt; }
+  .hard p{ font-size:10.5pt; }
+  .keys{ margin-bottom:7pt; }
+  .key{ padding:4pt 9pt; }
+  .key dt{ font-size:8pt; margin-bottom:1pt; letter-spacing:.08em; }
+  .key dd{ font-size:10.5pt; }
+  .key dd .s{ font-size:9pt; margin-top:1pt; }
+
+  /* ── 장 나누기 ──
+     기본은 섹션마다 새 장(넘기면서 찾기 좋게).
+     다만 짧은 섹션이 연달아 오는 구간은 한 장에 묶어 빈 종이를 줄인다.
+     s6+s7 / s8+s9 (측정 높이 합계가 1면 이내) */
+  section{ break-before:page; page-break-before:always; margin:0 0 0; }
+  #s0,#s7,#s9{ break-before:auto; page-break-before:auto; }
+  #s7,#s9{ margin-top:8pt; }
+  .shead{
+    break-after:avoid; page-break-after:avoid;
+    align-items:center; gap:10pt;
+    border-bottom:2.5pt solid var(--ink);
+    padding:0 0 5pt; margin:0 0 12pt;
+  }
+  .shead .num{
+    font-size:12pt; font-weight:700; color:#fff; background:#8C002C;
+    padding:3pt 7pt; line-height:1;
+  }
+  .shead h2{ font-size:17pt; }
+  .shead .flag{ font-size:9pt; padding:2pt 6pt; }
+
+  /* ── 문답: 종이에서 눈에 걸리게 ── */
+  .q{ margin:0 0 16pt; break-inside:avoid; page-break-inside:avoid; }
+  .q > .ask{
+    font-size:13pt; font-weight:800; color:#000;
+    margin:0 0 7pt; padding:0 0 3pt;
+    border-bottom:1pt solid var(--rule);
+  }
+  .say{
+    background:#F1F2F4; border-top:none; border-left:3.5pt solid #8C002C;
+    padding:8pt 11pt; margin:0 0 7pt;
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .say .lbl{ display:none; }
+  .say p{ font-size:11.5pt; line-height:1.6; margin:0 0 6pt; font-weight:600; color:#000; }
+  .say p:last-child{ margin-bottom:0; }
+
+  .note{ font-size:9.5pt; color:#33383F; }
+  .note li{ margin:3pt 0; padding-left:13px; }
+  .note b,.note strong{ color:#000; }
+
+  .callout{
+    padding:7pt 10pt; margin-top:7pt; font-size:9.5pt;
+    border-left-width:3.5pt; break-inside:avoid; page-break-inside:avoid;
+  }
+  .callout .ic{ font-size:8.5pt; }
+
+  .tblwrap{ overflow:visible !important; margin:0 0 9pt; break-inside:avoid; page-break-inside:avoid; }
+  table{ min-width:0 !important; font-size:9.5pt; }
+  th,td{ padding:4pt 8pt; }
+  thead{ display:table-header-group; }
+  tr{ break-inside:avoid; page-break-inside:avoid; }
+  caption{ padding:4pt 8pt; font-size:8.5pt; }
+
+  .check li,.later li{ padding:6pt 0; font-size:10.5pt; break-inside:avoid; page-break-inside:avoid; }
+  .check .sub2,.later .sub2{ font-size:9pt; color:#33383F; }
+  .check .box{ width:12pt; height:12pt; border-width:1pt; border-color:#000; }
+  .later li::before{ font-size:10pt; top:8pt; }
+
+  footer{ margin-top:14pt; padding-top:8pt; font-size:8.5pt; break-inside:avoid; }
+}
+</style>
 </body>
 </html>

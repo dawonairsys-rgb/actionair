@@ -635,13 +635,9 @@ a{color:var(--accent-ink)}
   .key dd{ font-size:10.5pt; }
   .key dd .s{ font-size:9pt; margin-top:1pt; }
 
-  /* ── 장 나누기 ──
-     기본은 섹션마다 새 장(넘기면서 찾기 좋게).
-     다만 짧은 섹션이 연달아 오는 구간은 한 장에 묶어 빈 종이를 줄인다.
-     s7+s8 (측정 높이 합계가 1면 이내) */
+  /* ── 장 나누기: 00~09 를 각각 한 장에 ── */
   section{ break-before:page; page-break-before:always; margin:0 0 0; }
-  #s0,#s8{ break-before:auto; page-break-before:auto; }
-  #s8{ margin-top:8pt; }
+  #s0{ break-before:auto; page-break-before:auto; }   /* 머리말 바로 아래 = 1장 */
   .shead{
     break-after:avoid; page-break-after:avoid;
     align-items:center; gap:10pt;

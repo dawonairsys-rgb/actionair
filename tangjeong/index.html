@@ -307,6 +307,7 @@
     <div class="fld" id="f-due">
       <label for="iDue">아파트 잔금일<span class="req">*</span></label>
       <input type="date" id="iDue">
+      <label class="check" style="margin-top:8px"><input type="checkbox" id="iDueLater"><span>아직 미정 <small>추후 결정</small></span></label>
     </div>
     <div class="fld" id="f-work">
       <label for="iWork">시공 요청일<span class="req">*</span></label>
@@ -449,11 +450,15 @@
   }
   chipGroup('typeSize', 'typeSize');
 
-  // ── 시공 요청일: 「아직 미정」 체크 시 날짜 입력을 잠근다 ──
-  $('iWorkLater').addEventListener('change', function(){
-    $('iWork').disabled = this.checked;
-    if(this.checked) $('iWork').value = '';
-  });
+  // ── 잔금일 · 시공 요청일: 「아직 미정」 체크 시 날짜 입력을 잠근다 ──
+  function laterToggle(checkId, dateId){
+    $(checkId).addEventListener('change', function(){
+      $(dateId).disabled = this.checked;
+      if(this.checked) $(dateId).value = '';
+    });
+  }
+  laterToggle('iWorkLater', 'iWork');
+  laterToggle('iDueLater', 'iDue');
 
   // ── 전화번호 자동 하이픈 ──
   function hyphenPhone(el){
@@ -532,7 +537,7 @@
       ['f-phone2', isPhone($('iPhone2').value),                    '예비연락처(휴대폰 번호)를 정확히 입력해 주세요.'],
       ['f-dongho', !!$('iDong').value && !!$('iHo').value,         '동 · 호수를 입력해 주세요.'],
       ['f-type',   !!aptType(),                                    '아파트 타입을 선택해 주세요.'],
-      ['f-due',    !!$('iDue').value,                              '아파트 잔금일을 선택해 주세요.'],
+      ['f-due',    !!$('iDue').value || $('iDueLater').checked,    '아파트 잔금일을 선택하거나 「아직 미정」을 체크해 주세요.'],
       ['f-work',   !!$('iWork').value || $('iWorkLater').checked,  '시공 요청일을 선택하거나 「아직 미정」을 체크해 주세요.'],
       ['c-terms',  $('aTerms').checked,                            '약관 전문 확인에 체크해 주세요.'],
       ['c-contract', $('aContract').checked,                       '계약서 대체 동의에 체크해 주세요.'],
@@ -568,7 +573,7 @@
       count: state.qty, onnuri: state.onnuri, options: opts,
       name: $('iName').value.trim(), phone: $('iPhone').value, phone2: $('iPhone2').value,
       dong: $('iDong').value, ho: $('iHo').value, aptType: aptType(),
-      dueDate: $('iDue').value, workDate: $('iWorkLater').checked ? '' : $('iWork').value, workUndecided: $('iWorkLater').checked,
+      dueDate: $('iDueLater').checked ? '' : $('iDue').value, dueUndecided: $('iDueLater').checked, workDate: $('iWorkLater').checked ? '' : $('iWork').value, workUndecided: $('iWorkLater').checked,
       moveIn: $('iMove').value.trim(), cashReceipt: $('iCash').value.trim(),
       agreeTerms: $('aTerms').checked, agreeContract: $('aContract').checked, agreePrivacy: $('aPrivacy').checked,
       sig: exportSignature(),

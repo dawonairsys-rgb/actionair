@@ -308,6 +308,7 @@
     <div class="fld" id="f-work">
       <label for="iWork">시공 요청일<span class="req">*</span></label>
       <input type="date" id="iWork">
+      <label class="check" style="margin-top:8px"><input type="checkbox" id="iWorkLater"><span>아직 미정 <small>추후 협의</small></span></label>
       <p class="hint">※ 시공일은 일정에 따라 변동될 수 있습니다.</p>
     </div>
     <div class="fld">
@@ -443,6 +444,12 @@
   }
   chipGroup('typeSize', 'typeSize');
 
+  // ── 시공 요청일: 「아직 미정」 체크 시 날짜 입력을 잠근다 ──
+  $('iWorkLater').addEventListener('change', function(){
+    $('iWork').disabled = this.checked;
+    if(this.checked) $('iWork').value = '';
+  });
+
   // ── 전화번호 자동 하이픈 ──
   function hyphenPhone(el){
     el.addEventListener('input', function(){
@@ -521,7 +528,7 @@
       ['f-dongho', !!$('iDong').value && !!$('iHo').value,         '동 · 호수를 입력해 주세요.'],
       ['f-type',   !!aptType(),                                    '아파트 타입을 선택해 주세요.'],
       ['f-due',    !!$('iDue').value,                              '아파트 잔금일을 선택해 주세요.'],
-      ['f-work',   !!$('iWork').value,                             '시공 요청일을 선택해 주세요.'],
+      ['f-work',   !!$('iWork').value || $('iWorkLater').checked,  '시공 요청일을 선택하거나 「아직 미정」을 체크해 주세요.'],
       ['c-terms',  $('aTerms').checked,                            '약관 전문 확인에 체크해 주세요.'],
       ['c-contract', $('aContract').checked,                       '계약서 대체 동의에 체크해 주세요.'],
       ['c-privacy', $('aPrivacy').checked,                         '개인정보 수집·이용 동의에 체크해 주세요.'],
@@ -556,7 +563,7 @@
       count: state.qty, onnuri: state.onnuri, options: opts,
       name: $('iName').value.trim(), phone: $('iPhone').value, phone2: $('iPhone2').value,
       dong: $('iDong').value, ho: $('iHo').value, aptType: aptType(),
-      dueDate: $('iDue').value, workDate: $('iWork').value,
+      dueDate: $('iDue').value, workDate: $('iWorkLater').checked ? '' : $('iWork').value, workUndecided: $('iWorkLater').checked,
       moveIn: $('iMove').value.trim(), cashReceipt: $('iCash').value.trim(),
       agreeTerms: $('aTerms').checked, agreeContract: $('aContract').checked, agreePrivacy: $('aPrivacy').checked,
       sig: exportSignature(),

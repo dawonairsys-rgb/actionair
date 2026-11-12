@@ -154,6 +154,9 @@
   .done-t td b{color:var(--lg-red);font-size:16px}
   .link-btn{display:block;width:100%;text-align:center;border:1.5px solid var(--lg-red);color:var(--lg-red);
     text-decoration:none;font-weight:800;font-size:15px;padding:14px;border-radius:14px;background:#fff;margin-top:14px}
+  .link-btn[hidden]{display:none}
+  button.link-btn{font-family:inherit;cursor:pointer}
+  .link-btn.save-btn{background:var(--lg-red);color:#fff}
 
   .footer{text-align:center;font-size:12.5px;color:var(--muted);margin-top:28px;line-height:1.7}
   .footer b{color:var(--ink)}
@@ -357,6 +360,8 @@
       <tr><th>구성 · 금액</th><td id="dSum"></td></tr>
       <tr><th>계약금</th><td>박람회 현장에서 직원이 안내해 드립니다.</td></tr>
     </table>
+    <button type="button" class="link-btn save-btn" id="dSave" hidden>계약서 PDF 내 휴대폰에 저장</button>
+    <button type="button" class="link-btn share-btn" id="dShare" hidden>카카오톡 · 문자로 보내기</button>
     <a class="link-btn" id="dView" href="#" target="_blank" rel="noopener">서명한 계약서 보기 →</a>
     <p class="go-note">계약서가 열리지 않으면 현장 직원에게 말씀해 주세요. 문의 010-6496-2627</p>
   </div>
@@ -570,6 +575,35 @@
       ua: navigator.userAgent, screen: screen.width + 'x' + screen.height, clientAt: new Date().toISOString()
     };
   }
+  // ── 계약서 PDF 저장 · 공유 ──
+  function pdfFile(res){
+    var bin = atob(res.pdf), len = bin.length, bytes = new Uint8Array(len);
+    for(var i = 0; i < len; i++) bytes[i] = bin.charCodeAt(i);
+    var name = res.pdfName || (res.no + '_계약서.pdf');
+    try { return new File([bytes], name, { type: 'application/pdf' }); }
+    catch(e){ var b = new Blob([bytes], { type: 'application/pdf' }); b.name = name; return b; }
+  }
+  function setupSave(res){
+    if(!res.pdf) return;                      // 서버가 PDF를 보내지 않으면 버튼을 띄우지 않는다
+    var file;
+    try { file = pdfFile(res); } catch(e){ return; }
+    $('dSave').hidden = false;
+    $('dSave').addEventListener('click', function(){
+      var url = URL.createObjectURL(file);
+      var a = document.createElement('a');
+      a.href = url; a.download = file.name; a.rel = 'noopener';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 60000);
+    });
+    var canShare = false;
+    try { canShare = !!(navigator.canShare && navigator.canShare({ files: [file] })); } catch(e){ canShare = false; }
+    if(!canShare) return;
+    $('dShare').hidden = false;
+    $('dShare').addEventListener('click', function(){
+      navigator.share({ files: [file], title: '시스템에어컨 설치 계약서 ' + res.no }).catch(function(){});
+    });
+  }
+
   function setSending(on){
     state.sending = on;
     $('submitBtn').disabled = on;
@@ -582,6 +616,7 @@
     $('dAddr').textContent = '더샵 탕정인피니티시티 1차 ' + payload.dong + '동 ' + payload.ho + '호 (' + payload.aptType + ')';
     $('dSum').textContent = state.qty + '대 · ' + amountText();
     $('dView').setAttribute('href', ENDPOINT + '?t=' + encodeURIComponent(res.token));
+    setupSave(res);
     $('formCard').style.display = 'none';
     $('introBlock').style.display = 'none';
     $('doneCard').style.display = 'block';

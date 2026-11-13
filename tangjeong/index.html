@@ -223,6 +223,7 @@
     <div>
       <h3>디지털 온누리상품권 결제</h3>
       <p>결제 금액 중 <b>300만원까지</b> 온누리상품권으로 결제할 수 있습니다. 상품권 구매 시 선할인을 받아 <b>최대 21만원</b>이 절약됩니다. 이미 구매해 두신 분만 사용 가능합니다.</p>
+      <p style="margin-top:6px">온누리상품권 할인은 <b>구매 시 선할인</b> 받는 것으로, 구매 당시 할인율을 적용받습니다.</p>
       <p style="margin-top:6px"><b>결제 조건</b> : 온누리상품권 결제는 <b>아산 사무실에 방문하여 QR 결제</b>로 진행합니다.</p>
     </div>
   </div>
@@ -417,7 +418,7 @@
     if(!state.qty) return;
     $('sumText').textContent = state.qty + '대 · ' + amountText() + ' · AI 실외기 업그레이드 포함';
     $('amtHint').textContent = state.onnuri
-      ? '계약 금액 ' + contractAmount() + '만원 중 ' + state.onnuri + '만원을 이미 구매해 두신 디지털 온누리상품권으로 결제합니다. 계약 금액은 그대로이며, 온누리 결제는 아산 사무실에 방문하여 QR 결제로 진행합니다.'
+      ? '계약 금액 ' + contractAmount() + '만원 중 ' + state.onnuri + '만원을 이미 구매해 두신 디지털 온누리상품권으로 결제합니다. 계약 금액은 그대로입니다. 온누리상품권 할인은 구매 시 선할인 받는 것으로, 구매 당시 할인율을 적용받습니다. 온누리 결제는 아산 사무실에 방문하여 QR 결제로 진행합니다.'
       : '계약 금액 중 ' + ONNURI_MAX + '만원까지 온누리상품권으로 결제할 수 있습니다. 상품권 구매 시 받는 선할인만큼(최대 ' + (ONNURI_MAX / 100) * ONNURI_SAVE_PER_100 + '만원) 부담이 줄며, 계약 금액은 그대로입니다.';
   }
   document.querySelectorAll('.price').forEach(function(btn){

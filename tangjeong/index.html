@@ -407,16 +407,17 @@
   })();
 
   // ── 대수 선택 ──
-  function applied(onnuri){ return PRICE[state.qty].price - (onnuri / 100) * ONNURI_SAVE_PER_100; }
+  // 계약 금액은 온누리 사용과 무관하다. 온누리상품권은 구매할 때 선할인을 받는 결제 수단이다.
+  function contractAmount(){ return PRICE[state.qty].price; }
   function amountText(){
-    return state.onnuri ? applied(state.onnuri) + '만원 (온누리 ' + state.onnuri + '만원 사용)' : applied(0) + '만원';
+    return '계약 금액 ' + contractAmount() + '만원' + (state.onnuri ? ' (그중 온누리 ' + state.onnuri + '만원 결제)' : '');
   }
   function refreshSummary(){
     if(!state.qty) return;
     $('sumText').textContent = state.qty + '대 · ' + amountText() + ' · AI 실외기 업그레이드 포함';
     $('amtHint').textContent = state.onnuri
-      ? '이미 구매해 두신 디지털 온누리상품권 ' + state.onnuri + '만원을 사용하는 금액입니다.'
-      : '온누리상품권을 ' + ONNURI_MAX + '만원 사용하시면 ' + applied(ONNURI_MAX) + '만원입니다.';
+      ? '계약 금액 ' + contractAmount() + '만원 중 ' + state.onnuri + '만원을 이미 구매해 두신 디지털 온누리상품권으로 결제합니다. 계약 금액은 그대로입니다.'
+      : '계약 금액 중 ' + ONNURI_MAX + '만원까지 온누리상품권으로 결제할 수 있습니다. 상품권 구매 시 받는 선할인만큼(최대 ' + (ONNURI_MAX / 100) * ONNURI_SAVE_PER_100 + '만원) 부담이 줄며, 계약 금액은 그대로입니다.';
   }
   document.querySelectorAll('.price').forEach(function(btn){
     btn.addEventListener('click', function(){
